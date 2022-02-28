@@ -12,7 +12,19 @@ export default defineConfig({
         }),
         markdown({
             headEnabled: true,
-            wrapperClasses: 'markdown-wrapper'
+            wrapperClasses: 'markdown-wrapper',
+            transforms: {
+                before(code, id){
+                    console.log(code)
+                    console.log(id)
+                    return code
+                },
+                after(code, id){
+                    console.log(code)
+                    console.log(id)
+                    return code
+                }
+            }
         }),
         viteComponents({
             customLoaderMatcher: path => path.endsWith('.md'),
