@@ -1,15 +1,37 @@
 import path from "path"
 import fs from "fs"
+import MarkdownIt from "markdown-it"
+import meta from "markdown-it-meta"
+import emoji from "markdown-it-emoji"
+import externalLinks from "markdown-it-external-links"
+import { v4 as uuidv4 } from 'uuid';
+
+const md = new MarkdownIt({
+    html: true,
+    xhtmlOut: true,
+    linkify: true,
+    typographer: true
+});
+
+md.use(meta)
+    .use(emoji)
+    .use(externalLinks, {
+        externalTarget: "_blank"
+    })
 
 const source = "."
 
 class FileTree {
     constructor (filePath, name = null) {
-        //this.path = filePath
-        this.path = filePath.slice(source.length, filePath.length)
+        this.path = filePath.slice(source.length + 1, filePath.length)
         this.link = filePath
         this.text = name
         this.children = []
+        this.markdownContent = null
+        this.htmlContent = null
+        this.meta = {
+            uuid : uuidv4()
+        }
     }
 }
 
@@ -28,7 +50,6 @@ const readDir = function (filePath) {
 
             if (stat.isDirectory()) {
                 delete fileInfo.path
-                delete fileInfo.component
                 fileInfo.children = readDir(fileInfo.link)
             }
 
@@ -36,6 +57,10 @@ const readDir = function (filePath) {
                 fileArray.push(fileInfo)
 
                 if (!stat.isDirectory()) {
+                    fileInfo.markdownContent = fs.readFileSync(fileInfo.link, {encoding:'utf8'})
+                    fileInfo.htmlContent = md.render(fileInfo.markdownContent)
+
+                    fileInfo.meta = {... fileInfo.meta, ...md.meta }
                     allFiles.push(fileInfo)
                 }
             }
@@ -62,7 +87,8 @@ export default function scanMarkdownFiles() {
 
             const filesTree = readDir(source)
 
-            return `const pages = ${JSON.stringify(allFiles)};\n\nexport default pages;`
+            return `const pages = ${JSON.stringify(allFiles)};\n\n
+            export default pages;`
         }
     }
 }

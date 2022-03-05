@@ -9,6 +9,11 @@
   },
   "dependencies": {
     "@vueuse/head": "^0.7.5",
+    "markdown-it": "^12.3.2",
+    "markdown-it-emoji": "^2.0.0",
+    "markdown-it-external-links": "^0.0.6",
+    "markdown-it-meta": "^0.0.1",
+    "uuid": "^8.3.2",
     "vue": "^3.2.25",
     "vue-router": "4"
   },
