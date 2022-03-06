@@ -5,6 +5,8 @@ import { createHead } from '@vueuse/head'
 import basePlugin from "./plugins/basePlugin.js";
 const head = createHead()
 
+import "./assets/style/index.scss"
+
 createApp(App)
     .use(router)
     .use(head)

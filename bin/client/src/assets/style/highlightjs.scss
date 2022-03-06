@@ -1,0 +1,76 @@
+/* HLJS CUSTOM THEME */
+.hljs {
+    position: relative;
+}
+
+.hljs-comment,
+.hljs-quote {
+    color: #8999a9;
+}
+
+/* Ocean Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+    color: #ec6875; //#bf616a;
+}
+
+/* Ocean Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+    color: #ffb36f; //#e59e5f;  /*d08770*/
+}
+
+/* Ocean Yellow */
+.hljs-attribute {
+    color: #ebcb8b;
+}
+
+/* Ocean Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+    color: #9bea93; //#7fcf77;
+}
+
+/* Ocean Blue */
+.hljs-title,
+.hljs-section {
+    color: #8fa1b3;
+}
+
+/* Ocean Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+    color: #9a84ff; //#9382e3;
+}
+
+.hljs {
+    display: block;
+    overflow-x: auto;
+    background: var(--code-background-color);
+    color: var(--code-color);
+    padding: 20px;
+    border-radius: 8px;
+    line-height: 1.3rem;
+}
+
+.hljs-emphasis {
+    font-style: italic;
+}
+
+.hljs-strong {
+    font-weight: bold;
+}

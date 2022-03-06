@@ -1,0 +1,9 @@
+.slide-in-bottom-enter-active, .slide-in-bottom-leave-active {
+    transition: opacity .5s, transform 0.5s ease-out;
+    transform-origin: top;
+}
+.slide-in-bottom-enter, .slide-in-bottom-leave-to {
+    opacity: 0;
+    transform: translateY(20px);
+    transform-origin: top;
+}

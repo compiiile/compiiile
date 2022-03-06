@@ -1,0 +1,49 @@
+h1, h2, h3, h4, h5 {
+    font-family: 'Archivo Black', sans-serif;
+    margin: 3rem 0 1.38rem;
+    line-height: 1.618;
+    font-weight: 400;
+}
+
+h1 {
+    margin-top: 0;
+    font-size: 2.074rem;
+}
+
+h2 {font-size: 1.728rem;}
+
+h3 {font-size: 1.44rem;}
+
+h4 {font-size: 1.2rem;}
+
+h5 {font-size: 1rem;}
+
+.text-xs {font-size: 0.833rem;}
+
+small, .text-sm {font-size: 0.694rem;}
+
+a {
+    text-decoration: underline;
+    cursor: pointer;
+    outline: none;
+}
+
+a, a:visited {
+    color: inherit;
+}
+
+body {
+    color: var(--text-color-base);
+}
+
+.text-color-light {
+    color: var(--text-color-light);
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.text-center {
+    text-align: center;
+}

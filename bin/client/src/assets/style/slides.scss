@@ -1,0 +1,50 @@
+.reveal {
+  height: 100vh;
+  width: 100vw;
+
+  pre code {
+    padding: 20px !important;
+    border-radius: 8px;
+    max-height: 80vh !important;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Archivo Black', sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    font-size: 24px;
+    border: none !important;
+  }
+
+  font-family: 'DM Sans', sans-serif !important;
+
+  p, li {
+    font-size: 24px !important;
+  }
+
+  .hljs {
+    font-size: 18px !important;
+  }
+
+  p code {
+    background-color: #333333;
+    padding: 2px;
+    border-radius: 3px;
+  }
+}
+
+:root {
+  --link-color: black;
+}
+
+.reveal-viewport {
+  background-color: #121113 !important;
+}
+
+.reveal .controls {
+  color: #eeaa6f !important;
+}
+
+.reveal .progress {
+  color: #eeaa6f !important;
+}

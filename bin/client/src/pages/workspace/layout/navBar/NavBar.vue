@@ -21,7 +21,7 @@
         padding: 30px 8px 30px 30px;
         flex: 0 0 auto;
         position: fixed;
-        top:0;
+        top: calc(var(--top-bar-height) + 1px);
         left:0;
         height: 100vh;
     }
