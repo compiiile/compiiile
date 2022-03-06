@@ -1,5 +1,6 @@
 <template>
-	<div >
+	<div>
+		<div v-html="$context.fileList.find(file => file.uuid === $route.name)?.toc"></div>
 		<div v-html="content" class="markdown-content"/>
 	</div>
 </template>

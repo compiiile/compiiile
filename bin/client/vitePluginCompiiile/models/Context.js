@@ -50,6 +50,7 @@ export default class {
                         fileListItem.markdownContent = fs.readFileSync(filePath, {encoding:'utf8'})
                         fileListItem.htmlContent = md.render(fileListItem.markdownContent)
                         fileListItem.meta = md.meta
+                        fileListItem.toc = md.toc
                         this.fileList.push(fileListItem)
 
                         const filePathWithoutExtension = filePath.substring(0, filePath.lastIndexOf('.'));

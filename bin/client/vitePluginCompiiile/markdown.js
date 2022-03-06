@@ -2,6 +2,8 @@ import MarkdownIt from "markdown-it"
 import meta from "markdown-it-meta"
 import emoji from "markdown-it-emoji"
 import externalLinks from "markdown-it-external-links"
+import anchor from "markdown-it-anchor"
+
 import hljs from "highlight.js"
 
 const md = new MarkdownIt({
@@ -16,7 +18,7 @@ const md = new MarkdownIt({
             } catch (__) {}
         }
 
-        return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
+        return `<pre class="hljs"><code>${md.utils.escapeHtml(str)}</code></pre>`;
     }
 });
 
@@ -24,6 +26,14 @@ md.use(meta)
     .use(emoji)
     .use(externalLinks, {
         externalTarget: "_blank"
+    })
+    .use(anchor, {
+        callback(ah,eh){
+            console.log(ah)
+            console.log(eh)
+            md.toc = []
+            // TODO compute md.toc
+        }
     })
 
 export default md
