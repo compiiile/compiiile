@@ -9,7 +9,7 @@
 		name: "Content",
 		computed: {
 			content(){
-				return this.$context.find(file => file.meta.uuid === this.$route.meta.uuid)?.htmlContent
+				return this.$context.pages.find(file => file.meta.uuid === this.$route.meta.uuid)?.htmlContent
 			}
 		},
 		mounted(){

@@ -1,3 +1,6 @@
-import routes from "~ahah"
+import { pages, filesTree } from "~ahah"
 
-export default routes
+console.log(pages)
+console.log(filesTree)
+
+export { pages, filesTree }

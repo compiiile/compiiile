@@ -1,4 +1,6 @@
-import context from "../utils/context.js"
+import * as context from "../utils/context.js"
+
+console.log(context)
 
 export default {
     install(app, options) {

@@ -7,7 +7,7 @@
 </template>
 
 <script>
-	import NavBar from "./NavBar.vue";
+	import NavBar from "./layout/navBar/NavBar.vue";
 
 	export default {
 		name: "WorkspacePage",

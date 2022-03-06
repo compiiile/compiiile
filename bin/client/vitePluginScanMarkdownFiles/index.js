@@ -1,33 +1,41 @@
 import path from "path"
 import fs from "fs"
-import MarkdownIt from "markdown-it"
-import meta from "markdown-it-meta"
-import emoji from "markdown-it-emoji"
-import externalLinks from "markdown-it-external-links"
 import { v4 as uuidv4 } from 'uuid';
-
-const md = new MarkdownIt({
-    html: true,
-    xhtmlOut: true,
-    linkify: true,
-    typographer: true
-});
-
-md.use(meta)
-    .use(emoji)
-    .use(externalLinks, {
-        externalTarget: "_blank"
-    })
+import md from "./markdown.js"
 
 const source = "."
 
+/*
+ Routes:
+ path folder/file (without ext, slugify)
+ name : uuid
+ meta (asSlides)
+ */
+
+/* NavListItem: (navListItems)
+ uuid
+ label (file name)
+ children
+ isFolder
+ */
+
+/*
+ FileListItem: (fileList)
+ uuid
+ markdownContent
+ htmlContent
+ meta (name ?)
+
+ */
 class FileTree {
     constructor (filePath, name = null) {
         this.path = filePath.slice(source.length + 1, filePath.length)
         this.link = filePath
         this.text = name
         this.children = []
+        this.name = path.parse(filePath).name
         this.markdownContent = null
+        this.isFolder = false
         this.htmlContent = null
         this.meta = {
             uuid : uuidv4()
@@ -50,6 +58,7 @@ const readDir = function (filePath) {
 
             if (stat.isDirectory()) {
                 delete fileInfo.path
+                fileInfo.isFolder = true
                 fileInfo.children = readDir(fileInfo.link)
             }
 
@@ -88,7 +97,8 @@ export default function scanMarkdownFiles() {
             const filesTree = readDir(source)
 
             return `const pages = ${JSON.stringify(allFiles)};\n\n
-            export default pages;`
+            const filesTree = ${JSON.stringify(filesTree)};\n\n
+            export { pages, filesTree };`
         }
     }
 }

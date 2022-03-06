@@ -199,6 +199,8 @@ Support open source work -> sponsor
 
 Exemple de github CI ?
 
+What it is, what it's not (not a markdown editor)
+
 ## Contributing
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md).

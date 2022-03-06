@@ -3,9 +3,9 @@ import WorkspacePage from "../pages/workspace/WorkspacePage.vue";
 import SlidesPage from "../pages/slides/SlidesPage.vue";
 import Content from "../pages/workspace/Content.vue";
 
-import context from "../utils/context.js"
+import { pages } from "../utils/context.js"
 
-const generatedRoutes = context.map(route => {
+const generatedRoutes = pages.map(route => {
     if(route.path){
         //route.component = () => import(/* @vite-ignore */route.path);
         route.component = Content
