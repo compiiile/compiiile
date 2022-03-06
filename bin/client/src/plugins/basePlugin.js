@@ -1,4 +1,4 @@
-import * as context from "../utils/context.js"
+import * as context from "~compiiile"
 
 console.log(context)
 

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div v-html="content" />
+		<div v-html="content"/>
 	</div>
 </template>
 
@@ -8,12 +8,9 @@
 	export default {
 		name: "Content",
 		computed: {
-			content(){
-				return this.$context.pages.find(file => file.meta.uuid === this.$route.meta.uuid)?.htmlContent
+			content() {
+				return this.$context.fileList.find(file => file.uuid === this.$route.name)?.htmlContent
 			}
-		},
-		mounted(){
-			console.log(this.$route)
 		}
 	}
 </script>

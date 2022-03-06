@@ -13,6 +13,7 @@
     "markdown-it-emoji": "^2.0.0",
     "markdown-it-external-links": "^0.0.6",
     "markdown-it-meta": "^0.0.1",
+    "slugify": "^1.6.5",
     "uuid": "^8.3.2",
     "vue": "^3.2.25",
     "vue-router": "4"

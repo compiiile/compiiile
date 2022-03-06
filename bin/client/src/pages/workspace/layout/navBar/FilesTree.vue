@@ -1,7 +1,7 @@
 <template>
     <ul class="files-tree text-xs">
         <nav-list-item v-for="navItem in $context.filesTree"
-                       :key="navItem.path"
+                       :key="navItem.uuid"
                        :item="navItem" />
     </ul>
 </template>

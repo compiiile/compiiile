@@ -1,7 +1,5 @@
 <template>
     <nav class="no-print">
-        <p class="bold text-xs">{{ $route.params.workspace }}</p>
-
         <files-tree />
     </nav>
 </template>

@@ -1,19 +1,24 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
+import {createRouter, createWebHashHistory} from 'vue-router';
 import WorkspacePage from "../pages/workspace/WorkspacePage.vue";
 import SlidesPage from "../pages/slides/SlidesPage.vue";
+import SlidesContent from "../pages/slides/SlidesContent.vue";
 import Content from "../pages/workspace/Content.vue";
 
-import { pages } from "../utils/context.js"
+import {routeList} from "~compiiile"
 
-const generatedRoutes = pages.map(route => {
-    if(route.path){
-        //route.component = () => import(/* @vite-ignore */route.path);
+const workspaceRoutes = routeList
+    .filter(route => !route.meta.asSlides)
+    .map(route => {
         route.component = Content
-    }
-    return route
-})
+        return route
+    })
 
-console.log(generatedRoutes)
+const slidesRoutes = routeList
+    .filter(route => route.meta.asSlides)
+    .map(route => {
+        route.component = SlidesContent
+        return route
+    })
 
 export default createRouter({
     history: createWebHashHistory(),
@@ -22,22 +27,13 @@ export default createRouter({
             path: "/c",
             name: "workspace",
             component: WorkspacePage,
-            children: generatedRoutes
+            children: workspaceRoutes
         },
         {
-            path: "/s/:pathMatch(.*)*",
+            path: "/s",
             name: "slides",
-            component: SlidesPage
+            component: SlidesPage,
+            children: slidesRoutes
         }
-    ],
-    /*routes: [
-        {
-            path: "/test",
-            //component: () => import("/Test.md")
-            component: "/Test.md",
-            customBlock: undefined,
-            props: true,
-            name: "test"
-        }
-    ]*/
+    ]
 });
