@@ -2,22 +2,6 @@ import Context from "./models/Context"
 
 const source = "."
 
-/*class FileTree {
-    constructor (filePath, name = null) {
-        this.path = filePath.slice(source.length + 1, filePath.length)
-        this.link = filePath
-        this.text = name
-        this.children = []
-        this.name = path.parse(filePath).name
-        this.markdownContent = null
-        this.isFolder = false
-        this.htmlContent = null
-        this.meta = {
-            uuid : uuidv4()
-        }
-    }
-}*/
-
 export default function compiiile() {
     const virtualModuleId = '~compiiile'
     const resolvedVirtualModuleId = '\0' + virtualModuleId

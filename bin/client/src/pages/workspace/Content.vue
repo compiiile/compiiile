@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<div v-html="$context.fileList.find(file => file.uuid === $route.name)?.toc"></div>
-		<div v-html="content" class="markdown-content"/>
+		<div v-html="file?.toc"></div>
+		<div v-html="file?.htmlContent" class="markdown-content"/>
 	</div>
 </template>
 
@@ -9,8 +9,19 @@
 	export default {
 		name: "Content",
 		computed: {
-			content() {
-				return this.$context.fileList.find(file => file.uuid === this.$route.name)?.htmlContent
+			fileIndex(){
+				return this.$context.fileList.findIndex(file => file.uuid === this.$route.name)
+			},
+			file(){
+				return this.fileIndex > -1 ?
+					this.$context.fileList[this.fileIndex]
+					: null
+			},
+			fileSiblings(){
+				return {
+					prev: this.$context.fileList[this.fileIndex - 1] ?? null,
+					next: this.$context.fileList[this.fileIndex + 1] ?? null
+				}
 			}
 		}
 	}

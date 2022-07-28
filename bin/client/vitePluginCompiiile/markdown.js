@@ -22,17 +22,21 @@ const md = new MarkdownIt({
     }
 });
 
+md.toc = []
+
 md.use(meta)
     .use(emoji)
     .use(externalLinks, {
         externalTarget: "_blank"
     })
     .use(anchor, {
-        callback(ah,eh){
-            console.log(ah)
-            console.log(eh)
-            md.toc = []
-            // TODO compute md.toc
+        callback(itemData, tocItem){
+            md.toc.push({
+                slug: tocItem.slug,
+                title: tocItem.title,
+                children: itemData.children,
+                level: itemData.markup.length - 1
+            })
         }
     })
 

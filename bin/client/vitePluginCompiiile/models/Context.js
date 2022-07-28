@@ -53,9 +53,11 @@ export default class {
                         fileListItem.toc = md.toc
                         this.fileList.push(fileListItem)
 
+                        md.toc = []
+
                         const filePathWithoutExtension = filePath.substring(0, filePath.lastIndexOf('.'));
                         const routePath = this.slugifyWithSlashes(filePathWithoutExtension)
-                        const routeListItem = new RouteListItem(routePath, uuid, { asSlides: fileListItem.meta.asSlides})
+                        const routeListItem = new RouteListItem(routePath, uuid, fileName, { asSlides: fileListItem.meta.asSlides})
                         this.routeList.push(routeListItem)
                     }
                 }
