@@ -6,12 +6,14 @@ import FileListItem from "./FileListItem.js";
 import FilesTreeItem from "./FilesTreeItem.js";
 import RouteListItem from "./RouteListItem.js";
 import slugify from "slugify"
+import lunr from 'lunr'
 
 export default class {
     constructor(directoryPath) {
         this.fileList = []
         this.filesTree = []
         this.routeList = []
+        this.searchIndex = {}
 
         this.filesTree = this.scanDirectoryRecursively(directoryPath)
     }
@@ -49,6 +51,7 @@ export default class {
                         const fileListItem = new FileListItem(uuid)
                         fileListItem.markdownContent = fs.readFileSync(filePath, {encoding:'utf8'})
                         fileListItem.htmlContent = md.render(fileListItem.markdownContent)
+                        fileListItem.title = fileName
                         fileListItem.meta = md.meta
                         fileListItem.toc = md.toc
                         this.fileList.push(fileListItem)
@@ -62,6 +65,18 @@ export default class {
                     }
                 }
             }
+        })
+
+        const fileList = this.fileList
+
+        this.searchIndex = lunr(function () {
+            this.ref('uuid')
+            this.field('title')
+            this.field('markdownContent')
+
+            this.metadataWhitelist = ['position']
+
+            fileList.forEach(doc => this.add(doc))
         })
 
         return fileArray

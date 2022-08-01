@@ -3,7 +3,7 @@ import Context from "./models/Context"
 const source = "."
 
 export default function compiiile() {
-    const virtualModuleId = '~compiiile'
+    const virtualModuleId = 'virtual:compiiile'
     const resolvedVirtualModuleId = '\0' + virtualModuleId
 
     return {
@@ -23,7 +23,8 @@ export default function compiiile() {
             return `const fileList = ${JSON.stringify(context.fileList)};\n\n
             const filesTree = ${JSON.stringify(context.filesTree)};\n\n
             const routeList = ${JSON.stringify(context.routeList)};\n\n
-            export { fileList, filesTree, routeList };`
+            const searchIndex = ${JSON.stringify(context.searchIndex)};\n\n
+            export { fileList, filesTree, routeList, searchIndex };`
         }
     }
 }

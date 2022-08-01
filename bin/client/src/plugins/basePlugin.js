@@ -1,4 +1,4 @@
-import * as context from "~compiiile"
+import * as context from "virtual:compiiile"
 
 export default {
     install(app, options) {

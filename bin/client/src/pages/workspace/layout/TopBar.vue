@@ -3,14 +3,18 @@
 		<div class="centered-layout">
 			<div class="top-bar-content">
 				<!--                <img :src="require('@/assets/images/logo&#45;&#45;dark-theme.png')" class="logo" />-->
+				<search-bar />
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+	import SearchBar from "../../../components/searchBar/SearchBar.vue";
+
 	export default {
-		name: "TopBar"
+		name: "TopBar",
+		components: {SearchBar}
 	}
 </script>
 

@@ -4,7 +4,7 @@ import SlidesPage from "../pages/slides/SlidesPage.vue";
 import SlidesContent from "../pages/slides/SlidesContent.vue";
 import Content from "../pages/workspace/Content.vue";
 
-import {routeList} from "~compiiile"
+import {routeList} from "virtual:compiiile"
 
 const workspaceRoutes = routeList
     .filter(route => !route.meta.asSlides)
