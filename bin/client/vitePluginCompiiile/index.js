@@ -23,7 +23,15 @@ export default function compiiile() {
             return `const fileList = ${JSON.stringify(context.fileList)};\n\n
             const filesTree = ${JSON.stringify(context.filesTree)};\n\n
             const routeList = ${JSON.stringify(context.routeList)};\n\n
-            const searchIndex = ${JSON.stringify(context.searchIndex)};\n\n
+            const searchIndex = ${JSON.stringify({
+                ...context.searchIndex,
+                search: context.searchIndex.search
+            }, function(key, val) {
+                if (typeof val === 'function') {
+                    return `(${val.toString()})()`;
+                }
+                return val;
+            })};\n\n
             export { fileList, filesTree, routeList, searchIndex };`
         }
     }

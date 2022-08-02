@@ -35,7 +35,6 @@
 
 <script>
 	import SearchResult from "./SearchResult.vue";
-
 	const RESULT_PREVIEW_CHARACTER_OFFSET = 120;
 
 	export default {
@@ -154,8 +153,9 @@
 		},
 		mounted(){
 			console.log(this.$context.searchIndex)
+			console.log(this.$context.searchIndex.search)
 
-			this.$context.searchIndex.search("purpose")
+			console.log((eval(this.$context.searchIndex.search))("purpose"))
 
 			document.onkeydown = (e) => {
 				const key = e.which || e.keyCode
