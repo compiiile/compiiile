@@ -1,14 +1,14 @@
 <template>
-	<router-link :to="{ path: searchResult.htmlPath }"
+	<router-link :to="{ name: searchResult.uuid }"
 	             class="search-result search-result-link">
 		<li @click="$emit('onSearchResultClick')">
-				<div class="search-result-header">
-					<h4 class="search-result-title" v-html="searchResult.title"></h4>
-					<p class="search-result-file-path text-sm">{{ searchResult.filePath }}</p>
-				</div>
+			<div class="search-result-header">
+				<h4 class="search-result-title" v-html="searchResult.title"></h4>
+				<p class="search-result-file-path text-sm">{{ searchResult.fullPath }}</p>
+			</div>
 
-				<p v-for="contentMatch in searchResult.contentMatches"
-				   v-html="contentMatch" class="search-result-match-preview"></p>
+			<p v-for="contentMatch in searchResult.contentMatches"
+			   v-html="contentMatch" class="search-result-match-preview"></p>
 		</li>
 	</router-link>
 </template>

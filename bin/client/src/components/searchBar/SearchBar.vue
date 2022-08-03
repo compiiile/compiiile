@@ -1,8 +1,8 @@
 <template>
-	<a class="fake-input" @click="openSearchModal" href="#">
+	<button class="fake-input" @click="openSearchModal">
 		<svg class="search-icon search-icon--fake-input" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><circle cx="116" cy="116" r="84" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle><line x1="175.39356" y1="175.40039" x2="223.99414" y2="224.00098" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line></svg>
 		<span class="search-shortcut">{{ searchShortcut }}</span>
-	</a>
+	</button>
 
 	<div class="search-bar-wrapper" v-if="searchModalOpened">
 		<div class="search-overlay" @click="searchModalOpened = false"></div>
@@ -21,7 +21,7 @@
 				       @keyup.esc="searchModalOpened = false"/>
 			</div>
 
-			<ul class="search-results"><!--  v-if="searchResults.length > 0 && displaySearchResults" -->
+			<ul class="search-results">
 				<search-result v-for="searchResult in searchResults"
 				               :searchResult="searchResult"
 				               @onSearchResultClick="onSearchResultSelected"
@@ -36,6 +36,7 @@
 <script>
 	import SearchResult from "./SearchResult.vue";
 	const RESULT_PREVIEW_CHARACTER_OFFSET = 120;
+	import { searchIndex } from "../../utils/searchIndex";
 
 	export default {
 		name: "SearchBar",
@@ -64,36 +65,36 @@
 		methods: {
 			search() {
 				if (this.searchValue.length > 0) {
-					const results = this.$context.searchIndex.search(`${this.searchValue}`)
+					const results = searchIndex.search(`${this.searchValue}~2`)
 
 					this.searchResults = results.map(result => {
-						const path = result.ref
-						const file = this.$site.documentsToIndexForSearch.find(document => document.htmlPath === path);
-						let {title, rawContent} = file;
+						const fileUuid = result.ref
+						const file = this.$context.fileList.find(file => file.uuid === fileUuid);
+						let {markdownContent} = file;
 
 						let contentMatches = [];
 
 						const matches = result.matchData.metadata;
 
 						Object.keys(matches).forEach(match => {
-							if (matches[match].rawContent) {
-								matches[match].rawContent.position.forEach(position => {
+							if (matches[match].markdownContent) {
+								matches[match].markdownContent.position.forEach(position => {
 									const matchEndIndex = position[0] + position[1];
 
-									let contentSlice = rawContent.slice(
+									let contentSlice = markdownContent.slice(
 										Math.max(position[0] - RESULT_PREVIEW_CHARACTER_OFFSET, 0),
 										position[0]
 									)
 
 									contentSlice += `<mark>`;
 
-									contentSlice += rawContent.slice(position[0], matchEndIndex);
+									contentSlice += markdownContent.slice(position[0], matchEndIndex);
 
 									contentSlice += `</mark>`;
 
-									contentSlice += rawContent.slice(
+									contentSlice += markdownContent.slice(
 										matchEndIndex,
-										Math.min(rawContent.length, matchEndIndex + RESULT_PREVIEW_CHARACTER_OFFSET)
+										Math.min(markdownContent.length, matchEndIndex + RESULT_PREVIEW_CHARACTER_OFFSET)
 									)
 
 									contentMatches.push(contentSlice);
@@ -102,9 +103,7 @@
 						})
 
 						return {
-							title,
-							htmlPath: file.htmlPath,
-							filePath: file.filePath,
+							...file,
 							contentMatches
 						}
 					})
@@ -152,11 +151,6 @@
 			}
 		},
 		mounted(){
-			console.log(this.$context.searchIndex)
-			console.log(this.$context.searchIndex.search)
-
-			console.log((eval(this.$context.searchIndex.search))("purpose"))
-
 			document.onkeydown = (e) => {
 				const key = e.which || e.keyCode
 
