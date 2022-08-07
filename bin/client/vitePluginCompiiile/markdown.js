@@ -35,9 +35,13 @@ md.use(meta)
                 slug: tocItem.slug,
                 title: tocItem.title,
                 children: itemData.children,
-                level: itemData.markup.length - 1
+                level: itemData.markup.length - 2
             })
-        }
+        },
+        permalink: anchor.permalink.ariaHidden({
+            placement: 'before'
+        }),
+        level: 2
     })
 
 export default md

@@ -7,9 +7,7 @@
 		<div class="centered-layout">
 			<div class="content-wrapper">
 				<router-view #default="{ Component }">
-					<transition name="slide-in-bottom" mode="out-in">
-						<component :is="Component"/>
-					</transition>
+					<component :is="Component" :key="$route.name" />
 				</router-view>
 			</div>
 		</div>
@@ -31,7 +29,6 @@
 	.content-wrapper {
 		margin-left: var(--nav-bar-width);
 		padding: var(--content-padding);
-		margin-right: var(--toc-width);
 		position: relative;
 	}
 

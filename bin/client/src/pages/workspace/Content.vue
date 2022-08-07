@@ -1,13 +1,16 @@
 <template>
 	<div>
-		<div v-html="file?.toc"></div>
+		<table-of-content :tableOfContent="file?.toc" />
 		<div v-html="file?.htmlContent" class="markdown-content"/>
 	</div>
 </template>
 
 <script>
+	import TableOfContent from "./TableOfContent.vue";
+
 	export default {
 		name: "Content",
+		components: {TableOfContent},
 		computed: {
 			fileIndex(){
 				return this.$context.fileList.findIndex(file => file.uuid === this.$route.name)
@@ -23,6 +26,15 @@
 					next: this.$context.fileList[this.fileIndex + 1] ?? null
 				}
 			}
+		},
+		mounted(){
+			// use anchors as vue-router and not as simple `a` tags
+			document.querySelectorAll('.header-anchor').forEach(a => {
+				a.addEventListener('click', (e) => {
+					e.preventDefault()
+					this.$router.push({ hash: a.attributes.href.value })
+				})
+			})
 		}
 	}
 </script>
@@ -30,6 +42,8 @@
 <style scoped lang="scss">
 
 	:deep(.markdown-content) {
+		margin-right: var(--toc-width);
+
 		h1 {
 			margin-bottom: 15px;
 		}
