@@ -1,4 +1,4 @@
-import {defineConfig} from 'vite'
+import {defineConfig,searchForWorkspaceRoot} from 'vite'
 import vue from '@vitejs/plugin-vue'
 import viteComponents from 'vite-plugin-components'
 import compiiile from "./vitePluginCompiiile";
@@ -12,5 +12,11 @@ export default defineConfig({
             globs: ["!(./node_modules/**)","!(**.git**)","**.md"],
         }),
         compiiile()
-    ]
+    ],
+    server: {
+        fs: {
+            strict: false,
+            allow: [searchForWorkspaceRoot(process.cwd()), "../../../../.."]
+        }
+    }
 })

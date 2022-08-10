@@ -29,6 +29,18 @@
 			Reveal.on('slidechanged', event => {
 				this.$router.replace({query: {...this.$route.query, slide: event.indexh}})
 			});
+
+			document.querySelectorAll('img').forEach(async image => {
+				console.log(image.attributes.src.value)
+				console.log(import.meta.url)
+				//const imageUrl = new URL(image.attributes.src.value, import.meta.url).href
+				//const imageUrl = new URL("../../../../../" + image.attributes.src.value, import.meta.url).href
+
+				const ah = (await import("../../../../../jazzercise.gif")).default
+
+				console.log(ah)
+				image.src = ah
+			})
 		}
 	}
 </script>

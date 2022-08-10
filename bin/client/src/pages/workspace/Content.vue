@@ -35,6 +35,18 @@
 					this.$router.push({ hash: a.attributes.href.value })
 				})
 			})
+
+			document.querySelectorAll('img').forEach(async image => {
+				console.log(image.attributes.src.value)
+				console.log(import.meta.url)
+				//const imageUrl = new URL(image.attributes.src.value, import.meta.url).href
+				const imageUrl = new URL("../../../../../" + image.attributes.src.value, import.meta.url).href
+
+				/*const imageUrl = (await import(`../../../../../${ image.attributes.src.value }`)).default
+
+				*/console.log(imageUrl)
+				image.src = imageUrl
+			})
 		}
 	}
 </script>
