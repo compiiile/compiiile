@@ -42,7 +42,7 @@
 <style scoped lang="scss">
 
 	:deep(.markdown-content) {
-		margin-right: var(--toc-width);
+		margin-right: calc(var(--toc-width) + 80px);
 
 		h1 {
 			margin-bottom: 15px;
@@ -76,11 +76,12 @@
 		}
 
 		blockquote {
-			padding: 0.5em 1em;
-			color: #6a737d;
-			margin: 10px 0;
-			border-left: .25em solid var(--blockquote-border-color);
 			background-color: var(--blockquote-background-color);
+			border: solid 1px var(--blockquote-border-color);
+			border-radius: 8px;
+			padding: 0.5em 1em;
+			color: #babfc4;
+			margin: 20px 0;
 
 			p {
 				margin-bottom: 0;
@@ -139,6 +140,27 @@
 
 		pre code {
 			margin-bottom: 1rem;
+		}
+
+		pre.hljs {
+			margin-bottom: 20px;
+		}
+
+		.header-anchor {
+			float: left;
+			margin-left: -0.87em;
+			padding-right: 0.23em;
+			font-weight: 500;
+			opacity: 0;
+			transition: opacity .25s;
+		}
+
+		h1:hover .header-anchor,
+		h2:hover .header-anchor,
+		h3:hover .header-anchor,
+		h4:hover .header-anchor,
+		.header-anchor:focus {
+			opacity: 1;
 		}
 	}
 

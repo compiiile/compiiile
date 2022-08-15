@@ -23,7 +23,7 @@
 		right: 0;
 		top: 100px;
 		float: right;
-		padding-left: 80px;
+		padding-left: 0px;
 	}
 
 </style>

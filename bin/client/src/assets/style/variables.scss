@@ -8,15 +8,16 @@
     /* Dark theme by default */
     --text-color-base: #f7fafc;
     --text-color-light: #9ca6b3;
-    --navbar-background-color: #1b2023;
+    --navbar-background-color: #1a1c1f;
     --layout-background-color: #1f2327;
     --separator-color: #333b42;
     --nav-list-item-color: #8e989e;
     --code-background-color: #2b303b;
     --code-color: #d2d7e0;
-    --blockquote-background-color: #171a1d;
-    --blockquote-border-color: #313844;
-    --link-color: #9985fe;
+    --highlight-color: #9985fe;
+    --link-color: var(--highlight-color);
+    --blockquote-background-color: rgba(153,133,254, 0.1);
+    --blockquote-border-color: var(--highlight-color);
     --table-border-color: var(--separator-color);
     --table-odd-lines-background-color: var(--code-background-color);
     --table-even-lines-background-color: #262a33;
@@ -32,7 +33,7 @@
     --code-background-color: #eeeeee;
     --blockquote-background-color: #f7f6f6;
     --blockquote-border-color: #dfe2e5;
-    --link-color: #564ce0;
+    --highlight-color: #564ce0;
     --table-border-color: #cccccc;
     --table-odd-lines-background-color: white;
     --table-even-lines-background-color: #f8f8f8;
