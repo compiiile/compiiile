@@ -49,6 +49,7 @@ export default class {
                     if (!isDirectory) {
                         const fileListItem = new FileListItem(uuid)
                         fileListItem.markdownContent = fs.readFileSync(filePath, {encoding:'utf8'})
+                        md.renderer.filePath = filePath
                         fileListItem.htmlContent = md.render(fileListItem.markdownContent)
                         fileListItem.title = fileName
                         fileListItem.meta = md.meta
