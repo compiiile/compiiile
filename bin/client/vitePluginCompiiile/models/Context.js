@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid'
 import FileListItem from "./FileListItem.js";
 import FilesTreeItem from "./FilesTreeItem.js";
 import RouteListItem from "./RouteListItem.js";
-import slugify from "slugify"
+import {config} from "../../config"
 
 export default class {
     constructor(directoryPath) {
@@ -15,10 +15,6 @@ export default class {
         this.searchIndex = {}
 
         this.filesTree = this.scanDirectoryRecursively(directoryPath)
-    }
-
-    slugifyWithSlashes = (str) => {
-        return str.split('/').map(val => slugify(val, { lower: true })).join('/')
     }
 
     scanDirectoryRecursively = (directoryPath) => {
@@ -59,8 +55,7 @@ export default class {
 
                         md.toc = []
 
-                        const filePathWithoutExtension = filePath.substring(0, filePath.lastIndexOf('.'));
-                        const routePath = this.slugifyWithSlashes(filePathWithoutExtension)
+                        const routePath = config.router.generateRoutePathFromFilePath(filePath)
                         const routeListItem = new RouteListItem(routePath, uuid, fileName, { asSlides: fileListItem.meta.asSlides})
                         this.routeList.push(routeListItem)
                     }

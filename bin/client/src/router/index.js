@@ -3,7 +3,6 @@ import WorkspacePage from "../pages/workspace/WorkspacePage.vue";
 import SlidesPage from "../pages/slides/SlidesPage.vue";
 import SlidesContent from "../pages/slides/SlidesContent.vue";
 import Content from "../pages/workspace/Content.vue";
-
 import {routeList} from "virtual:compiiile"
 
 const workspaceRoutes = routeList
@@ -24,7 +23,7 @@ export default createRouter({
     history: createWebHashHistory(),
     routes: [
         {
-            path: "/c",
+            path: `/c`,
             name: "workspace",
             component: WorkspacePage,
             children: workspaceRoutes

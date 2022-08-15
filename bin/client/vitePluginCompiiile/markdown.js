@@ -10,6 +10,8 @@ const {copyFileSync} = require("fs")
 const path = require("path")
 import { config } from "../config";
 
+const isLocalPathRegex = /^\.{1,2}\/.*/
+
 const md = new MarkdownIt({
     html: true,
     xhtmlOut: true,
@@ -30,44 +32,41 @@ const md = new MarkdownIt({
     }
 });
 
+const resolveFileFromRelativePath = (filePath, relativePath) => {
+    const parentDirectoryPathFromSourceDirectory = filePath.substring(0, filePath.lastIndexOf("/")) || ".";
+    let assetPath = new URL(`../../../${parentDirectoryPathFromSourceDirectory}/${relativePath}`, import.meta.url).pathname
+    return assetPath.replaceAll("%20", " ")
+}
 
 // Remember old renderer, if overridden, or proxy to default renderer
-var defaultRender = md.renderer.rules.link_open || function (tokens, idx, options, env, self) {
+const defaultRender = md.renderer.rules.link_open || function (tokens, idx, options, env, self) {
     return self.renderToken(tokens, idx, options);
 };
 
+// Set local links href to be the correct routes
 md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
-    // If you are sure other plugins can't add `target` - drop check below
-    var aIndex = tokens[idx].attrIndex('target');
+    var hrefAttributeIndex = tokens[idx].attrIndex('href');
 
-    /*console.log("ohohoh")
-    console.log(tokens[idx])
-    console.log(options)
-    console.log(env)
-    console.log(self)*/
-    if (aIndex < 0) {
-        tokens[idx].attrPush(['target', '_blank']); // add new attribute
-    } else {
-        tokens[idx].attrs[aIndex][1] = '_blank';    // replace value of existing attr
+    const href = tokens[idx].attrs[hrefAttributeIndex][1]
+
+    let targetPath = resolveFileFromRelativePath(self.filePath, href).replace(process.env.COMPIIILE_SOURCE, "")
+
+    if(isLocalPathRegex.test(href)){
+        tokens[idx].attrs[hrefAttributeIndex][1] = `#/${config.router.workspaceBasePath}${config.router.generateRoutePathFromFilePath(targetPath)}`
     }
 
     // pass token to default renderer.
     return defaultRender(tokens, idx, options, env, self);
 };
 
+// Set local assets' src to be well served by vite
 md.renderer.rules.image = function (tokens, idx, options, env, self) {
     var token = tokens[idx]
     token.attrs[token.attrIndex('alt')][1] = self.renderInlineAsText(token.children, options, env)
-    // this is the line of code responsible for an additional 'loading' attribute
 
     const src = token.attrs[token.attrIndex('src')][1]
-    const isLocalAssetRegex = /^\.{1,2}\/.*/
-    if (isLocalAssetRegex.test(src)) {
-        // Set local assets' src to be well served by vite
-
-        const parentDirectoryPathFromSourceDirectory = self.filePath.substring(0, self.filePath.lastIndexOf("/")) || ".";
-        let assetPath = new URL(`../../../${parentDirectoryPathFromSourceDirectory}/${src}`, import.meta.url).pathname
-        assetPath = assetPath.replaceAll("%20", " ")
+    if (isLocalPathRegex.test(src)) {
+        let assetPath = resolveFileFromRelativePath(self.filePath, src)
 
         if(process.env.NODE_ENV === "development"){
             token.attrs[token.attrIndex('src')][1] = `@fs${assetPath}`

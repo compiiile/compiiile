@@ -13,6 +13,7 @@ const { config } = require("./client/config")
     }
 
     process.env.NODE_ENV = "development"
+    process.env.COMPIIILE_SOURCE = process.cwd()
 
     const server = await createServer({
         configFile: "./bin/client/vite.config.js",
