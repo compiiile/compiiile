@@ -3,6 +3,7 @@ import meta from "markdown-it-meta"
 import emoji from "markdown-it-emoji"
 import externalLinks from "markdown-it-external-links"
 import anchor from "markdown-it-anchor"
+import checkbox from "markdown-it-task-checkbox"
 
 import hljs from "highlight.js"
 
@@ -89,6 +90,7 @@ md.toc = []
 
 md.use(meta)
     .use(emoji)
+    .use(checkbox)
     .use(externalLinks, {
         externalTarget: "_blank"
     })

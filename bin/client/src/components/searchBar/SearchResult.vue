@@ -8,7 +8,7 @@
 			</div>
 
 			<p v-for="contentMatch in searchResult.contentMatches"
-			   v-html="contentMatch" class="search-result-match-preview"></p>
+			   v-html="contentMatch" class="text-xs search-result-match-preview"></p>
 		</li>
 	</router-link>
 </template>
@@ -26,13 +26,13 @@
 <style scoped lang="scss">
 
 	.search-result, .search-result-header {
-		background-color: var(--search-result-background);
+		background-color: var(--search-background-color);
 
 		&:hover, &:focus {
-			background-color: var(--search-result-hover-background-color);
+			background-color: var(--search-background-color);
 
 			.search-result-header {
-				background-color: var(--search-result-hover-background-color);
+				background-color: var(--search-background-color);
 			}
 		}
 
@@ -48,14 +48,15 @@
 		color: inherit;
 		white-space: normal;
 		border-radius: 4px;
+		text-decoration: none;
 
 		+ .search-result {
 			margin-top: 10px;
 		}
 
 		&:last-child {
-			border-bottom-left-radius: var(--search-results-border-radius);
-			border-bottom-right-radius: var(--search-results-border-radius);
+			border-bottom-left-radius: 6px;
+			border-bottom-right-radius: 6px;
 		}
 	}
 
@@ -63,7 +64,8 @@
 		position: sticky;
 		top: -1px;
 		padding: 5px 0;
-		border-radius: 4px;
+		border-top-left-radius: 4px;
+		border-top-right-radius: 4px;
 	}
 
 	.search-result-title {
@@ -73,10 +75,11 @@
 	.search-result-file-path {
 		margin: 0;
 		color: var(--text-color-light);
+		line-height: 12px;
 	}
 
 	.search-result-match-preview {
-		background-color: var(--search-result-preview-background);
+		background-color: var(--darker-background-color);
 		padding: 3px 6px;
 		border-radius: 6px;
 		margin: 5px 0;

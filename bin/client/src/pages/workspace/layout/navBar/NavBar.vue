@@ -17,7 +17,7 @@
 
     nav {
         width: var(--nav-bar-width);
-        background-color: var(--navbar-background-color);
+        background-color: var(--darker-background-color);
         padding: 30px 8px 30px 30px;
         flex: 0 0 auto;
         position: fixed;

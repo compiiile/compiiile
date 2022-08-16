@@ -42,7 +42,7 @@
 
 	.nav-list-item {
 		padding: 5px 0;
-		color: var(--nav-list-item-color);
+		color: var(--dimmed-text-color);
 	}
 
 	.link {

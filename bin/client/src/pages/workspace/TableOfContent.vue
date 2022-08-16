@@ -28,7 +28,7 @@
 		top: 100px;
 		float: right;
 		padding-left: 15px;
-		color: var(--nav-list-item-color);
+		color: var(--dimmed-text-color);
 		list-style-type: none;
 		border-left: solid 1px var(--separator-color);
 	}

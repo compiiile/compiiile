@@ -1,7 +1,7 @@
 <template>
 	<button class="fake-input" @click="openSearchModal">
-		<svg class="search-icon search-icon--fake-input" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><circle cx="116" cy="116" r="84" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle><line x1="175.39356" y1="175.40039" x2="223.99414" y2="224.00098" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line></svg>
-		<span class="search-shortcut">{{ searchShortcut }}</span>
+		<ph-magnifying-glass :size="18" class="search-icon" />
+		<span class="search-shortcut"><ph-command class="command-icon" />k</span>
 	</button>
 
 	<div class="search-bar-wrapper" v-if="searchModalOpened">
@@ -9,8 +9,8 @@
 
 		<div class="search-bar">
 			<div class="search-input-wrapper">
-				<label for="search-input">
-					<svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><circle cx="116" cy="116" r="84" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle><line x1="175.39356" y1="175.40039" x2="223.99414" y2="224.00098" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line></svg>
+				<label for="search-input" class="search-label">
+					<ph-magnifying-glass :size="18" class="search-icon" />
 				</label>
 				<input @input="search"
 				       v-model="searchValue"
@@ -37,10 +37,11 @@
 	import SearchResult from "./SearchResult.vue";
 	const RESULT_PREVIEW_CHARACTER_OFFSET = 120;
 	import { searchIndex } from "../../utils/searchIndex";
+	import { PhMagnifyingGlass, PhCommand } from "phosphor-vue"
 
 	export default {
 		name: "SearchBar",
-		components: {SearchResult},
+		components: {SearchResult, PhMagnifyingGlass, PhCommand},
 		data() {
 			return {
 				searchValue: "",
@@ -184,11 +185,17 @@
 		left: 0;
 	}
 
+	.search-label {
+		position: absolute;
+		left: 10px;
+		top: 10px;
+	}
+
 	.search-bar {
 		position: relative;
 		width: min(80%, 600px);
 		padding: 10px ;
-		background-color: var(--search-background);
+		background-color: var(--search-background-color);
 		border-radius: 4px;
 
 		--shadow-color: 255deg 11% 7%;
@@ -203,38 +210,37 @@
 
 	.fake-input {
 		width: 100px;
-		box-sizing: border-box;
-		height: 100%;
 		border: solid 1px var(--search-input-border-color);
-		border-radius: var(--search-results-border-radius);
-		background-color: var(--search-bar-background);
+		border-radius: 8px;
+		background-color: var(--darker-background-color);
+		height: 35px;
 		cursor: pointer;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 10px;
 	}
 
 	.search-icon {
-		position: absolute;
-		top:0;
-		left: 10px;
-		height: 100%;
-		width: 25px;
-		stroke: hsl(210deg, 11%, 46%);
-
-		&.search-icon--fake-input {
-			width: 18px;
-			left: 30px;
-		}
+		color: var(--dimmed-text-color);
 	}
 
 	.search-input {
 		width: 100%;
 		box-sizing: border-box;
-		height: var(--search-input-height);
-		border: solid 1px var(--search-input-border-color);
-		border-radius: var(--search-results-border-radius);
-		background-color: var(--search-bar-background);
-		padding: 3px 6px 3px 50px;
+		height: 40px;
+		border-radius: 8px;
+		background-color: var(--darker-background-color);
+		padding: 10px 20px 10px 40px;
 		font-size: var(--text-md);
+		color: var(--text-color-light);
+		border:none;
 		display: block;
+		outline: none;
+
+		&:focus {
+			box-shadow: inset 0 0 2px 2px rgb(153 133 254 / 80%);;
+		}
 	}
 
 	.search-results {
@@ -247,9 +253,17 @@
 	}
 
 	.search-shortcut {
-		color: hsl(210deg, 11%, 46%);
+		color: var(--dimmed-text-color);
 		font-size: var(--text-sm);
-		margin-left: 30px;
+		display: flex;
+		align-items: center;
+		border: solid 1px var(--dimmed-text-color);
+		border-radius: 4px;
+		padding: 0 4px;
+	}
+
+	.command-icon {
+		margin-right: 3px;
 	}
 
 </style>

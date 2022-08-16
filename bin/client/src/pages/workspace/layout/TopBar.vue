@@ -2,7 +2,7 @@
 	<div class="top-bar no-print">
 		<div class="centered-layout">
 			<div class="top-bar-content">
-				<!--                <img :src="require('@/assets/images/logo&#45;&#45;dark-theme.png')" class="logo" />-->
+				<div></div>
 				<search-bar />
 			</div>
 		</div>
@@ -35,6 +35,7 @@
 		height: var(--top-bar-height);
 		display: flex;
 		align-items: center;
+		justify-content: space-between;
 	}
 
 	.logo {
