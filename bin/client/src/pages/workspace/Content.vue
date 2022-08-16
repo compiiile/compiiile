@@ -2,15 +2,32 @@
 	<div>
 		<table-of-content :tableOfContent="file?.toc" />
 		<div v-html="file?.htmlContent" class="markdown-content"/>
+
+		<div class="siblings" v-if="fileSiblings.prev || fileSiblings.next"
+		     :style="{ justifyContent: !fileSiblings.prev ? 'flex-end' : 'space-between'}">
+			<router-link class="sibling-link"
+			             v-if="fileSiblings.prev"
+			             :to="{ name: fileSiblings.prev.uuid }">
+				<ph-arrow-left />
+				{{ fileSiblings.prev.title }}</router-link>
+			<router-link class="sibling-link"
+			             v-if="fileSiblings.next"
+			             :to="{ name: fileSiblings.next.uuid }">
+				{{ fileSiblings.next.title }}
+				<ph-arrow-right />
+			</router-link>
+		</div>
 	</div>
 </template>
 
 <script>
+
 	import TableOfContent from "./TableOfContent.vue";
+	import { PhArrowLeft, PhArrowRight } from "phosphor-vue";
 
 	export default {
 		name: "Content",
-		components: {TableOfContent},
+		components: {TableOfContent, PhArrowLeft, PhArrowRight},
 		computed: {
 			fileIndex(){
 				return this.$context.fileList.findIndex(file => file.uuid === this.$route.name)
@@ -153,6 +170,7 @@
 			font-weight: 500;
 			opacity: 0;
 			transition: opacity .25s;
+			text-decoration: none;
 		}
 
 		h1:hover .header-anchor,
@@ -161,6 +179,17 @@
 		h4:hover .header-anchor,
 		.header-anchor:focus {
 			opacity: 1;
+		}
+	}
+
+	.siblings {
+		display: flex;
+		margin-right: calc(var(--toc-width) + 80px);
+		color: var(--link-color);
+		margin-top: 80px;
+
+		.sibling-link {
+			text-decoration: none;
 		}
 	}
 

@@ -50,7 +50,7 @@
 		color: inherit;
 	}
 
-	.nuxt-link-exact-active {
+	.router-link-exact-active {
 		font-weight: bold;
 		color: var(--text-color-base);
 	}
