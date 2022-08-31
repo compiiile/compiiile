@@ -9,8 +9,8 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Archivo Black', sans-serif;
-    font-weight: 400;
+    font-family: 'archivo', sans-serif;
+    font-variation-settings: 'wght' 900, 'wdth' 125;
     letter-spacing: -0.03em;
     font-size: 24px;
     border: none !important;
@@ -30,6 +30,26 @@
     background-color: #333333;
     padding: 2px;
     border-radius: 3px;
+  }
+
+  blockquote {
+    background-color: var(--blockquote-background-color);
+    border: solid 1px var(--blockquote-border-color);
+    border-radius: 8px;
+    padding: 0.5em 1em;
+  }
+
+  .header-anchor {
+    display: none;
+  }
+
+  ul {
+    width: 70%;
+  }
+
+  .slides a {
+    color: var(--link-color) !important;
+    text-decoration: underline;
   }
 }
 

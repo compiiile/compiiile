@@ -13,15 +13,15 @@ That's what compiiile does. And it does it hassle-free ! :ok_woman:
 
 ## Features
 
-- 📦 No config required, everything just works out of the box, without changing your files
-- :link: Quick access to your files via the navbar and links to the previous and next file
-- :tv: Display some files as slides
-- :mag: Quick search with content preview
-- :bulb: Can serve as knowledge base
-- :rainbow: A light and a dark theme, that can be customized
-- :lock: Basic auth available with 2 environment variables
-- :wrench: Customizable by env variables or config file, it's up to you
-- :star2: You get it, it simply does the job, period.
+- [x] 📦 No config required, everything just works out of the box, without changing your files
+- [x] :link: Quick access to your files via the navbar and links to the previous and next file
+- [x] :tv: Display some files as slides
+- [x] :mag: Quick search with content preview
+- [x] :bulb: Can serve as knowledge base
+- [x] :rainbow: A light and a dark theme, that can be customized
+- [x] :lock: Basic auth available with 2 environment variables
+- [x] :wrench: Customizable by env variables or config file, it's up to you
+- [x] :star2: You get it, it simply does the job, period.
 
 > Compiiile is based on [vuepress 2](https://github.com/vuepress/vuepress-next) coupled with [vitejs](https://github.com/vitejs/vite)
 
@@ -212,3 +212,12 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md).
 This project is licensed under the terms of the GNU General Public License v3.0.
 
 See [LICENCE.md](./LICENSE.md).
+
+
+
+
+TODO:
+responsive
+toc style
+404 page
+search style

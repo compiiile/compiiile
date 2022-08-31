@@ -1,4 +1,53 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+/*@font-face {
+    font-family: 'archivo-expanded-black';
+    font-weight: normal;
+    src: url('/fonts/Archivo_Expanded-Black.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'archivo-black';
+    font-weight: normal;
+    src: url('/fonts/Archivo-Black.ttf') format('truetype');
+}*/
+
+@font-face {
+    font-family: 'archivo';
+    font-weight: normal;
+    src: url('/fonts/Archivo-VariableFont_wdth,wght.ttf') format('truetype');
+}
+
+/*@font-face {
+    font-family: 'archivo';
+    font-style: italic;
+    src: url('/fonts/Archivo-Italic-VariableFont_wdth,wght.ttf') format('truetype');
+}*/
+
+@font-face {
+    font-family: 'DM Sans';
+    font-weight: normal;
+    font-style: normal;
+    src: url('/fonts/DMSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'DM Sans';
+    font-weight: normal;
+    font-style: italic;
+    src: url('/fonts/DMSans-Italic.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'DM Sans';
+    font-weight: bold;
+    font-style: normal;
+    src: url('/fonts/DMSans-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'DM Sans';
+    font-weight: bold;
+    font-style: italic;
+    src: url('/fonts/DMSans-BoldItalic.ttf') format('truetype');
+}
 
 html {
     font-family: 'DM Sans', sans-serif;

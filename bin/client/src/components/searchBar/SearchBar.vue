@@ -66,7 +66,7 @@
 		methods: {
 			search() {
 				if (this.searchValue.length > 0) {
-					const results = searchIndex.search(`${this.searchValue}~2`)
+					const results = searchIndex.search(`${this.searchValue}`)
 
 					this.searchResults = results.map(result => {
 						const fileUuid = result.ref
