@@ -36,7 +36,10 @@ export default createRouter({
         }
     ],
     scrollBehavior (to, from, savedPosition) {
-        if (to.hash) {
+        const withScroll = to.params.withScroll ?? true
+        // We parse the value because a boolean false value is stored as a string here and needs to be parsed.
+        // This is used when scrolling and replacing the current route hash
+        if (to.hash && JSON.parse(withScroll)) {
             return { el: to.hash }
         } else if (savedPosition) {
             return savedPosition;

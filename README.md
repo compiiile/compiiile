@@ -18,12 +18,8 @@ That's what compiiile does. And it does it hassle-free ! :ok_woman:
 - [x] :tv: Display some files as slides
 - [x] :mag: Quick search with content preview
 - [x] :bulb: Can serve as knowledge base
-- [x] :rainbow: A light and a dark theme, that can be customized
-- [x] :lock: Basic auth available with 2 environment variables
 - [x] :wrench: Customizable by env variables or config file, it's up to you
 - [x] :star2: You get it, it simply does the job, period.
-
-> Compiiile is based on [vuepress 2](https://github.com/vuepress/vuepress-next) coupled with [vitejs](https://github.com/vitejs/vite)
 
 ## Preview
 
@@ -105,13 +101,11 @@ The home page of compiiile (`/`) points to a `README.md` file located at the roo
 
 ## Custom configuration
 
-As said earlier, compiiile uses vuepress 2.
-You can find vuepress config parameters [here](https://v2.vuepress.vuejs.org/reference/config.html).
-You can override the vuepress config in 2 ways :
+You can override the default config in 2 ways :
 
 ### Script arguments
 
-Vuepress config parameters can be passed by script arguments.
+Config parameters can be passed by script arguments.
 
 For example, if you want to change the title, just run compiiile like so:
 
@@ -119,14 +113,9 @@ For example, if you want to change the title, just run compiiile like so:
 compiiile dev --title="My knowledge base 🚀"
 ```
 
-> ⚠️ This doesn't work for things that should be parsed like arrays. In that case, use the config file to set
-parameters.
-
-For nested parameters, you can use the dot notation.
-
 ### Config file
 
-Another way to set vuepress config parameters is to set them in a dedicated file named `compiiile.config.js` in the
+Another way to set default config parameters is to set them in a dedicated file named `compiiile.config.js` in the
 root of your folder.
 
 This should export an object, like in this example that shows common use cases :
@@ -134,18 +123,7 @@ This should export an object, like in this example that shows common use cases :
 ```js
 module.exports = {
     // Setting the title
-    title: "Compiiile",
-    // Setting the favicon
-    head: [['link', { rel: 'icon', href: '/favicon.svg' }]],
-    // Using a custom css file to override styles
-    plugins: [
-        [
-            '@vuepress/plugin-palette',
-            {
-                userPaletteFile: "./custom-style.css"
-            },
-        ],
-    ]
+    title: "Compiiile"
 }
 ```
 
@@ -159,24 +137,6 @@ Built files are located in `.compiiile/dist`. You can override this by changing 
 
 ```bash
 compiiile build --dest="./custom-dist"
-```
-
-You can put your public files il the `compiiile/public` folder (create it if needed).
-
-For example, you can set the favicon by placing your file in the public directory and change vuepress' `head`
-parameter :
-
-```js
-// compiiile.config.js
-module.exports = {
-    head: [['link', { rel: 'icon', href: '/favicon.png' }]]
-}
-```
-
-And do the same for the logo display in the top bar (this time, using script arguments):
-
-```bash
-compiiile dev --themeConfig.logo="/favicon.png"
 ```
 
 ## Environment variables

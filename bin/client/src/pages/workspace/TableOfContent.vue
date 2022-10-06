@@ -3,8 +3,8 @@
 		<li v-for="tocItem in tableOfContent" :style="{ marginLeft: `${ 20 * tocItem.level }px`}"
 		    class="toc-item">
 			<router-link :to="`#${ tocItem.slug }`"
-			             :data-slug="tocItem.slug"
 			             class="toc-link"
+			             :data-slug="`#${ tocItem.slug }`"
 			             :class="{ active: `#${tocItem.slug}` === $route.hash}">{{ tocItem.title }}
 			</router-link>
 		</li>
@@ -18,52 +18,20 @@
 			tableOfContent: Array
 		},
 		mounted(){
-			// Track all sections that have an `id` applied
-			/*document.querySelectorAll('.markdown-content [id]').forEach((section) => {
-				(new IntersectionObserver(entries => {
-					entries.forEach(entry => {
-						const id = entry.target.getAttribute('id');
-						if (entry.intersectionRatio > 0) {
-							document.querySelector(`.toc a[data-slug="${id}"]`).classList.add('active');
-						} else {
-							document.querySelector(`.toc a[data-slug="${id}"]`).classList.remove('active');
-						}
-					});
-				})).observe(section);
-			});*/
+			const tocItems = [...document.querySelectorAll(".toc a")];
+			const anchors = [...document.querySelectorAll(".header-anchor")];
 
-			/*window.addEventListener("scroll", () => {
+			window.addEventListener("scroll", () => {
 				const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
 
-				const tocItems = [...document.querySelectorAll(".toc a")];
-
-				for(const tocItem of tocItems){
-					tocItem.classList.remove("active")
-				}
-
-				//@TODO start from the end
-				//https://stackoverflow.com/questions/65954297/highlighting-item-in-table-of-contents-when-section-is-active-on-page-as-scrolli
-				//https://css-tricks.com/sticky-table-of-contents-with-scrolling-active-states/
-				for(const tocItem of tocItems){
-					console.log(tocItem.getBoundingClientRect().top)
-					if(scrollTop > tocItem.getBoundingClientRect().top - 75){
-						tocItem.classList.add("active")
+				// Iterate backwards, on the first match highlight it and break
+				for (let i = tocItems.length - 1; i >= 0; i--){
+					if (scrollTop > anchors[i].offsetTop) {
+						this.$router.replace({ hash: anchors[i].attributes.href.value, params: {withScroll: false} })
 						break;
 					}
 				}
-				/!*!// highlight the last scrolled-to: set everything inactive first
-				for (let i = 0; i < th.length; i++){
-					$('nav ul li a[href="#' + $(anchors[i]).attr('id') + '"]').removeClass('active');
-				}
-
-				// then iterate backwards, on the first match highlight it and break
-				for (var i = anchors.length-1; i >= 0; i--){
-					if (scrollTop > $(anchors[i]).offset().top - 75) {
-						$('nav ul li a[href="#' + $(anchors[i]).attr('id') + '"]').addClass('active');
-						break;
-					}
-				}*!/
-			})*/
+			})
 		}
 	}
 </script>

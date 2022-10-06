@@ -7,6 +7,9 @@
     "build": "vite build",
     "preview": "vite preview"
   },
+  "bin": {
+    "compiiile": "bin/cli.js"
+  },
   "dependencies": {
     "@vueuse/head": "^0.7.5",
     "highlight.js": "^11.4.0",
@@ -23,7 +26,8 @@
     "slugify": "^1.6.5",
     "uuid": "^8.3.2",
     "vue": "^3.2.37",
-    "vue-router": "4"
+    "vue-router": "4",
+    "yargs": "^17.6.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.0.1",
