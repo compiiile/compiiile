@@ -57,9 +57,9 @@
 					return ""
 				}
 
-				const isMac = navigator.platform.toUpperCase().includes('MAC');
+				const isMac = /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)
 
-				const modifier =  isMac ? 'Cmd' : 'Ctrl'
+				const modifier =  isMac ? '⌘' : 'Ctrl'
 				return `${ modifier } + k`
 			}
 		},

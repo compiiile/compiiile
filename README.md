@@ -43,9 +43,9 @@ npm install compiiile # install as a project dependency with npm
 
 Once installed, 3 commands are available to see your beautiful markdown files :eyes: :
 
-- `compiiile dev` : creates a web server with hot reload to check your markdown files
+- `compiiile dev` : creates a web server to check your markdown files
 - `compiiile build` : builds all the files for you to serve them production-ready
-- `compiiile preview` : builds the files and preview your production-ready build
+- `compiiile preview` : preview your production-ready build
 
 To use these commands inside a project, you just have to add these commands to the `scripts` section of your
 `package.json` file like so:
@@ -81,10 +81,10 @@ asSlides: true
 If you are not acquainted with frontmatter, it's just some file-specific parameters that you can put at the very
 beginning of your file to be processed.
 
-By adding the frontmatter parameter, you will see a link : `View in presentation mode` at the top of your page in
-compiiile opens a new page with your slides.
+By adding the frontmatter parameter, the page will directly open up as slides.
 
 To separate your slides, just separate the content of your markdown with:
+
 ```md
 
 ---

@@ -72,6 +72,8 @@ const IS_PREVIEW = argv._.includes('preview')
 
         server.printUrls()
     } else if(IS_BUILD) {
+        process.env.NODE_ENV = "production"
+
         const publicImagesDirectory = path.resolve(__dirname, `./client/public/${ config.publicImagesDirectoryName }`)
         if(existsSync(publicImagesDirectory)){
             readdirSync(publicImagesDirectory).forEach(f => rmSync(`${publicImagesDirectory}/${f}`));
@@ -81,6 +83,8 @@ const IS_PREVIEW = argv._.includes('preview')
 
         await build(viteConfig)
     } else if(IS_PREVIEW){
+        process.env.NODE_ENV = "production"
+
         await preview(viteConfig)
     }
 })()
