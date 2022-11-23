@@ -3,7 +3,7 @@
 		<div class="cursor" ref="cursor"></div>
 		<li v-for="tocItem in tableOfContent" :style="{ marginLeft: `${ 20 * tocItem.level }px`}"
 		    class="toc-item">
-			<router-link :to="`#${ tocItem.slug }`"
+			<router-link :to="`#${ encodeSlug(tocItem.slug) }`"
 			             class="toc-link"
 			             :data-slug="`#${ tocItem.slug }`"
 			             :class="{ active: `#${tocItem.slug}` === $route.hash}">{{ tocItem.title }}
@@ -19,6 +19,9 @@
 			tableOfContent: Array
 		},
 		methods: {
+			encodeSlug(slug){
+				return encodeURI(slug)
+			},
 			async onScroll(){
 				const tocItems = [...document.querySelectorAll(".toc a")];
 				const anchors = [...document.querySelectorAll(".header-anchor")];

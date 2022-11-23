@@ -40,11 +40,12 @@ export default createRouter({
         // We parse the value because a boolean false value is stored as a string here and needs to be parsed.
         // This is used when scrolling and replacing the current route hash
         if (to.hash && JSON.parse(withScroll)) {
-            return { el: to.hash }
+            // Minus 1 to keep the same toc and hash
+            return { el: to.hash, top: document.querySelector(".top-bar-content").clientHeight - 1 }
         } else if (savedPosition) {
             return savedPosition;
-        } else {
-            return { x: 0, y: 0 }
+        } else if(to.name !== from.name) {
+            return { top: 0 }
         }
     }
 });
