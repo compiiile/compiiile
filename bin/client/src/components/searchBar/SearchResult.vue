@@ -69,7 +69,7 @@
 	}
 
 	.search-result-title {
-		margin: 0;
+		margin: 0 0 6px 0;
 	}
 
 	.search-result-file-path {

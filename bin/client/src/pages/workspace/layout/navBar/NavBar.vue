@@ -23,7 +23,8 @@
         position: fixed;
         top: calc(var(--top-bar-height) + 1px);
         left:0;
-        height: 100vh;
+        height: calc(100vh - var(--top-bar-height) + 1px);
+	    overflow: auto;
     }
 
 </style>

@@ -61,10 +61,6 @@
 	:deep(.markdown-content) {
 		margin-right: calc(var(--toc-width) + 80px);
 
-		h1 {
-			margin-bottom: 15px;
-		}
-
 		h2, h3, h4 {
 			margin: 10px 0;
 		}

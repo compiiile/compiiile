@@ -4,14 +4,18 @@
     --toc-width: 200px;
     --content-padding: 40px;
     --top-bar-height: 60px;
+    --ease-in-out-quart: cubic-bezier(0.770, 0.000, 0.175, 1.000);
 
     /* Dark theme by default */
     --text-color-base: #f7fafc;
     --text-color-light: #9ca6b3;
     --darker-background-color: #1a1c1f;
     --layout-background-color: #1f2327;
+    --layout-background-color: #1A1B25;
+    --darker-background-color: #16161D;
     --search-background-color: #292e33;
     --separator-color: #333b42;
+    --separator-color: #101014;
     --dimmed-text-color: #8e989e;
     --code-background-color: #2b303b;
     --code-color: #d2d7e0;
