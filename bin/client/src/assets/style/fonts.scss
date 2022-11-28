@@ -1,26 +1,8 @@
-/*@font-face {
-    font-family: 'archivo-expanded-black';
-    font-weight: normal;
-    src: url('/fonts/Archivo_Expanded-Black.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'archivo-black';
-    font-weight: normal;
-    src: url('/fonts/Archivo-Black.ttf') format('truetype');
-}*/
-
 @font-face {
     font-family: 'archivo';
     font-weight: normal;
     src: url('/fonts/Archivo-VariableFont_wdth,wght.ttf') format('truetype');
 }
-
-/*@font-face {
-    font-family: 'archivo';
-    font-style: italic;
-    src: url('/fonts/Archivo-Italic-VariableFont_wdth,wght.ttf') format('truetype');
-}*/
 
 @font-face {
     font-family: 'DM Sans';
@@ -47,6 +29,12 @@
     font-weight: bold;
     font-style: italic;
     src: url('/fonts/DMSans-BoldItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'jetbrains';
+    font-weight: normal;
+    src: url('/fonts/JetBrainsMono[wght].ttf') format('truetype');
 }
 
 html {

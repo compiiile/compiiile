@@ -27,9 +27,10 @@
   }
 
   p code {
-    background-color: #333333;
-    padding: 2px;
+    background-color: var(--layout-background-color);
+    padding: 2px 4px;
     border-radius: 3px;
+    font-size: 18px;
   }
 
   blockquote {
@@ -58,13 +59,13 @@
 }
 
 .reveal-viewport {
-  background-color: #121113 !important;
+  background-color: var(--darker-background-color) !important;
 }
 
 .reveal .controls {
-  color: #eeaa6f !important;
+  color: var(--slides-controls) !important;
 }
 
 .reveal .progress {
-  color: #eeaa6f !important;
+  color: var(--slides-controls) !important;
 }

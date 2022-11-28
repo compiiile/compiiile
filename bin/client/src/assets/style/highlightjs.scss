@@ -1,8 +1,4 @@
 /* HLJS CUSTOM THEME */
-.hljs {
-    position: relative;
-}
-
 .hljs-comment,
 .hljs-quote {
     color: #8999a9;
@@ -65,6 +61,12 @@
     padding: 20px;
     border-radius: 8px;
     line-height: 1.3rem;
+    position: relative;
+    font-family: "jetbrains", monospace;
+
+    code {
+        font-family: "jetbrains", monospace;
+    }
 }
 
 .hljs-emphasis {

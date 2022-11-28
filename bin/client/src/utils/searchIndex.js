@@ -1,18 +1,29 @@
-import lunr from "lunr";
+import {fileList} from "virtual:compiiile"
+import {Fzf} from 'fzf'
 
 
-import { fileList } from "virtual:compiiile"
+const fileParagraphs = fileList.reduce((accumulator, currentValue) => {
+    const splitter = "\n";
+    const paragraphs = currentValue.markdownContent.split(splitter)
 
-export const searchIndex = lunr(function () {
+    let currentIndex = 0
 
-    this.ref('uuid')
-    this.field('title')
-    this.field('markdownContent')
+    for (const paragraph of paragraphs) {
+        accumulator.push({
+            uuid: currentValue.uuid,
+            paragraph,
+            startIndex: currentIndex,
+            endIndex: currentIndex + paragraph.length
+        })
 
-    // Fix issue with wildcard
-    this.pipeline.remove(lunr.trimmer)
 
-    this.metadataWhitelist = ['position']
+        currentIndex += paragraph.length + splitter.length
+    }
+    return accumulator
+}, []).filter(paragraph => paragraph.paragraph)
 
-    fileList.forEach(doc => this.add(doc))
+
+export const searchIndex = new Fzf(fileParagraphs, {
+    selector: (item) => item.paragraph,
+    fuzzy: false
 })

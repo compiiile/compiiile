@@ -65,51 +65,46 @@
 		},
 		methods: {
 			search() {
-				if (this.searchValue.length > 0) {
-					const searchValue = this.searchValue.trim().split(" ").map(term => `+${ term }*`).join(" ")
+				if (this.searchValue.trim().length > 1) {
+					const results = searchIndex.find(this.searchValue.trim())
 
-					const results = searchIndex.search(`${ searchValue }`)
+					const formattedResults = {}
 
-					this.searchResults = results.map(result => {
-						const fileUuid = result.ref
-						const file = this.$context.fileList.find(file => file.uuid === fileUuid);
-						let {markdownContent} = file;
+					for(const result of results){
+						const uuid = result.item.uuid;
 
-						let contentMatches = [];
-
-						const matches = result.matchData.metadata;
-
-						Object.keys(matches).forEach(match => {
-							if (matches[match].markdownContent) {
-								matches[match].markdownContent.position.forEach(position => {
-									const matchEndIndex = position[0] + position[1];
-
-									let contentSlice = markdownContent.slice(
-										Math.max(position[0] - RESULT_PREVIEW_CHARACTER_OFFSET, 0),
-										position[0]
-									)
-
-									contentSlice += `<mark>`;
-
-									contentSlice += markdownContent.slice(position[0], matchEndIndex);
-
-									contentSlice += `</mark>`;
-
-									contentSlice += markdownContent.slice(
-										matchEndIndex,
-										Math.min(markdownContent.length, matchEndIndex + RESULT_PREVIEW_CHARACTER_OFFSET)
-									)
-
-									contentMatches.push(contentSlice);
-								})
+						if(!formattedResults[uuid]){
+							const file = this.$context.fileList.find(file => file.uuid === uuid);
+							formattedResults[uuid] = {
+								...file,
+								contentMatches: []
 							}
-						})
-
-						return {
-							...file,
-							contentMatches
 						}
-					})
+
+						let {markdownContent} = formattedResults[uuid];
+
+						const matchEndIndex = result.item.startIndex + result.end;
+
+						let contentSlice = markdownContent.slice(
+							Math.max(result.item.startIndex + result.start - RESULT_PREVIEW_CHARACTER_OFFSET, 0),
+							result.item.startIndex + result.start
+						)
+
+						contentSlice += `<mark>`;
+
+						contentSlice += markdownContent.slice(result.item.startIndex + result.start, matchEndIndex);
+
+						contentSlice += `</mark>`;
+
+						contentSlice += markdownContent.slice(
+							matchEndIndex,
+							Math.min(markdownContent.length, matchEndIndex + RESULT_PREVIEW_CHARACTER_OFFSET)
+						)
+
+						formattedResults[uuid].contentMatches.push(contentSlice)
+					}
+
+					this.searchResults = Object.values(formattedResults)
 				} else {
 					this.searchResults = []
 				}

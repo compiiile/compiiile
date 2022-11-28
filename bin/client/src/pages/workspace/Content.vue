@@ -66,10 +66,12 @@
 		}
 
 		p code, li code {
-			padding: 2px;
+			padding: 2px 4px;
 			border-radius: 3px;
 			background-color: var(--code-background-color);
 			color: var(--code-color);
+			font-family: var(--monospace);
+			font-size: 0.85rem;
 		}
 
 		p, ul {
@@ -157,6 +159,7 @@
 
 		pre.hljs {
 			margin-bottom: 20px;
+			font-size: 0.85rem;
 		}
 
 		.header-anchor {
