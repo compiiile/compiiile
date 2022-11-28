@@ -10,7 +10,7 @@
 			             :to="{ name: fileSiblings.prev.uuid }">
 				<ph-arrow-left />
 				{{ fileSiblings.prev.title }}</router-link>
-			<router-link class="sibling-link"
+			<router-link class="sibling-link sibling-link--next"
 			             v-if="fileSiblings.next"
 			             :to="{ name: fileSiblings.next.uuid }">
 				{{ fileSiblings.next.title }}
@@ -186,9 +186,16 @@
 		margin-right: calc(var(--toc-width) + 80px);
 		color: var(--link-color);
 		margin-top: 80px;
+		gap: 20px;
+		flex-wrap: wrap;
 
 		.sibling-link {
 			text-decoration: none;
+		}
+
+		.sibling-link--next {
+			text-align:right;
+			margin-left: auto;
 		}
 	}
 
