@@ -5,6 +5,8 @@ import SlidesContent from "../pages/slides/SlidesContent.vue";
 import Content from "../pages/workspace/Content.vue";
 import {routeList} from "virtual:compiiile"
 
+export const NOT_FOUND = "NOT_FOUND"
+
 const workspaceRoutes = routeList
     .filter(route => !route.meta.asSlides)
     .map(route => {
@@ -33,7 +35,12 @@ export default createRouter({
             name: "slides",
             component: SlidesPage,
             children: slidesRoutes
-        }
+        },
+        {
+            path: `/:pathMatch(.*)*`,
+            name: NOT_FOUND,
+            component: WorkspacePage
+        },
     ],
     scrollBehavior (to, from, savedPosition) {
         const withScroll = to.params.withScroll ?? true

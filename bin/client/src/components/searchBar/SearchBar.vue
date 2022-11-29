@@ -175,8 +175,8 @@
 
 	.search-overlay {
 		background-color: rgba(0, 0, 0, 0.3);
-		width: 100%;
-		height: 100%;
+		width: 100vw;
+		height: 100vh;
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -190,7 +190,7 @@
 
 	.search-bar {
 		position: relative;
-		width: min(80%, 600px);
+		width: min(95%, 600px);
 		padding: 10px ;
 		background-color: var(--search-background-color);
 		border-radius: 4px;
@@ -216,6 +216,7 @@
 		justify-content: space-between;
 		align-items: center;
 		padding: 0 10px;
+		margin-left: auto;
 	}
 
 	.search-icon {

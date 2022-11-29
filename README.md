@@ -177,7 +177,14 @@ See [LICENCE.md](./LICENSE.md).
 
 
 TODO:
-responsive
-toc style
-404 page
-search style
+Update dependencies
+hamburger
+logo + title
+SEO
+Marketing messages
+theme switcher
+css external
+thanking libs
+What it is, what it isn't (vuepress / vitepress, docusaurus)
+GIF
+git flow + npm

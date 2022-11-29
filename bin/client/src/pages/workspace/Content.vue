@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<table-of-content :tableOfContent="file?.toc" />
+		<table-of-content :tableOfContent="file?.toc"/>
 		<div v-html="file?.htmlContent" class="markdown-content"/>
 
 		<div class="siblings" v-if="fileSiblings.prev || fileSiblings.next"
@@ -8,13 +8,14 @@
 			<router-link class="sibling-link"
 			             v-if="fileSiblings.prev"
 			             :to="{ name: fileSiblings.prev.uuid }">
-				<ph-arrow-left />
-				{{ fileSiblings.prev.title }}</router-link>
+				<ph-arrow-left/>
+				{{ fileSiblings.prev.title }}
+			</router-link>
 			<router-link class="sibling-link sibling-link--next"
 			             v-if="fileSiblings.next"
 			             :to="{ name: fileSiblings.next.uuid }">
 				{{ fileSiblings.next.title }}
-				<ph-arrow-right />
+				<ph-arrow-right/>
 			</router-link>
 		</div>
 	</div>
@@ -22,34 +23,34 @@
 
 <script>
 
-	import TableOfContent from "./TableOfContent.vue";
-	import { PhArrowLeft, PhArrowRight } from "phosphor-vue";
+	import TableOfContent from "./TableOfContent.vue"
+	import {PhArrowLeft, PhArrowRight} from "phosphor-vue"
 
 	export default {
 		name: "Content",
 		components: {TableOfContent, PhArrowLeft, PhArrowRight},
 		computed: {
-			fileIndex(){
+			fileIndex() {
 				return this.$context.fileList.findIndex(file => file.uuid === this.$route.name)
 			},
-			file(){
+			file() {
 				return this.fileIndex > -1 ?
 					this.$context.fileList[this.fileIndex]
 					: null
 			},
-			fileSiblings(){
+			fileSiblings() {
 				return {
 					prev: this.$context.fileList[this.fileIndex - 1] ?? null,
 					next: this.$context.fileList[this.fileIndex + 1] ?? null
 				}
 			}
 		},
-		mounted(){
+		mounted() {
 			// use anchors as vue-router and not as simple `a` tags
 			document.querySelectorAll('.header-anchor').forEach(a => {
 				a.addEventListener('click', (e) => {
 					e.preventDefault()
-					this.$router.push({ hash: a.attributes.href.value })
+					this.$router.push({hash: a.attributes.href.value})
 				})
 			})
 		}
@@ -194,7 +195,7 @@
 		}
 
 		.sibling-link--next {
-			text-align:right;
+			text-align: right;
 			margin-left: auto;
 		}
 	}

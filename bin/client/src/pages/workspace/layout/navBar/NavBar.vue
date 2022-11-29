@@ -1,30 +1,42 @@
 <template>
-    <nav class="no-print">
-        <files-tree />
-    </nav>
+	<nav class="no-print">
+		<files-tree/>
+	</nav>
 </template>
 
 <script>
-    import FilesTree from "./FilesTree.vue";
+	import FilesTree from "./FilesTree.vue"
 
-    export default {
-        name: "NavBar",
-        components: {FilesTree},
-    }
+	export default {
+		name: "NavBar",
+		components: {FilesTree},
+	}
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
-    nav {
-        width: var(--nav-bar-width);
-        background-color: var(--darker-background-color);
-        padding: 30px 8px 30px 30px;
-        flex: 0 0 auto;
-        position: fixed;
-        top: calc(var(--top-bar-height) + 1px);
-        left:0;
-        height: calc(100vh - var(--top-bar-height) + 1px);
-	    overflow: auto;
-    }
+	nav {
+		width: var(--nav-bar-width);
+		background-color: var(--darker-background-color);
+		padding: 30px 8px 30px 30px;
+		flex: 0 0 auto;
+		position: fixed;
+		top: calc(var(--top-bar-height) + 1px);
+		left: 0;
+		height: calc(100vh - var(--top-bar-height) + 1px);
+		overflow: auto;
+		z-index: 1;
+		transition: width .3s var(--ease-in-out-quart), transform .1s ease;
+
+		@media screen and (max-width: 900px){
+			width: 0;
+			transform: translateX(-100%);
+
+			&.navbar--opened {
+				width: 100vw;
+				transform: translateX(0);
+			}
+		}
+	}
 
 </style>

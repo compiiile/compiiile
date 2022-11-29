@@ -2,7 +2,7 @@
 	<div class="top-bar no-print">
 		<div class="centered-layout">
 			<div class="top-bar-content">
-				<div></div>
+				<hamburger-button />
 				<search-bar />
 			</div>
 		</div>
@@ -11,10 +11,11 @@
 
 <script>
 	import SearchBar from "../../../components/searchBar/SearchBar.vue";
+	import HamburgerButton from "./HamburgerButton.vue"
 
 	export default {
 		name: "TopBar",
-		components: {SearchBar}
+		components: {HamburgerButton, SearchBar}
 	}
 </script>
 
@@ -27,7 +28,7 @@
 		width: 100%;
 		border-bottom: solid 1px var(--separator-color);
 		background-color: var(--layout-background-color);
-		z-index: 1;
+		z-index: 3;
 	}
 
 	.top-bar-content {

@@ -9,6 +9,8 @@
 				<router-view #default="{ Component }">
 					<component :is="Component" :key="$route.name" />
 				</router-view>
+
+				<p v-if="$route.name === notFoundRoute" class="text-center not-found">404</p>
 			</div>
 		</div>
 	</div>
@@ -17,10 +19,16 @@
 <script>
 	import NavBar from "./layout/navBar/NavBar.vue";
 	import TopBar from "./layout/TopBar.vue";
+	import { NOT_FOUND } from "../../router/index.js"
 
 	export default {
 		name: "WorkspacePage",
-		components: {TopBar, NavBar}
+		components: {TopBar, NavBar},
+		computed: {
+			notFoundRoute(){
+				return NOT_FOUND
+			}
+		}
 	}
 </script>
 
@@ -34,6 +42,13 @@
 
 	.centered-layout {
 		margin-top: var(--top-bar-height);
+	}
+
+	.not-found {
+		font-weight: bold;
+		font-family: var(--monospace);
+		font-size: 4rem;
+		margin-top: 60px;
 	}
 
 	@media screen and (min-width: 1100px) {

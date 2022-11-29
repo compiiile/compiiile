@@ -46,6 +46,15 @@
 		props: {
 			item: {}
 		},
+		watch: {
+			"$route.name": function(){
+				const navBar = document.querySelector("nav")
+				const hamburger = document.querySelector(".hamburger")
+
+				navBar.classList.remove("navbar--opened")
+				hamburger.classList.remove("hamburger--opened")
+			}
+		},
 		computed: {
 			route() {
 				return this.$context.routeList.find(route => route.name === this.item.uuid)
