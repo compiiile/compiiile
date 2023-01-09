@@ -1,14 +1,16 @@
 {
-  "name": "compiiile-vite",
-  "private": true,
-  "version": "0.0.0",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
+  "name": "compiiile",
+  "private": false,
+  "version": "1.0.0",
+  "description": "The most convenient way to render a folder containing markdown files. Previewing and searching markdown files has never been that easy.",
+  "author": "AlbanCrepel <alban.crepel@gmail.com>",
+  "license": "GPL-3.0-only",
   "bin": {
     "compiiile": "bin/cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlbanCrepel/compiiile.git"
   },
   "dependencies": {
     "@vueuse/head": "^0.7.5",
@@ -33,5 +35,23 @@
     "@vitejs/plugin-vue": "^3.2.0",
     "sass": "^1.49.9",
     "vite": "^4.0.3"
-  }
+  },
+  "keywords": [
+    "markdown",
+    "cli",
+    "preview",
+    "slides",
+    "vite",
+    "search"
+  ],
+  "funding": [
+    {
+      "type" : "github",
+      "url" : "https://github.com/sponsors/AlbanCrepel"
+    },
+    {
+      "type" : "ko-fi",
+      "url" : "https://ko-fi.com/alban_crepel"
+    }
+  ]
 }
