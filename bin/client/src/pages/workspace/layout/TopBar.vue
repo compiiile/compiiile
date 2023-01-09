@@ -2,20 +2,30 @@
 	<div class="top-bar no-print">
 		<div class="centered-layout">
 			<div class="top-bar-content">
-				<hamburger-button />
-				<search-bar />
+				<hamburger-button/>
+				<img src="/favicon.png" :width="30" :height="30" class="logo" v-if="isLogoDefined"/>
+				<h1 class="title">{{ title }}</h1>
+				<search-bar/>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-	import SearchBar from "../../../components/searchBar/SearchBar.vue";
+	import SearchBar from "../../../components/searchBar/SearchBar.vue"
 	import HamburgerButton from "./HamburgerButton.vue"
 
 	export default {
 		name: "TopBar",
-		components: {HamburgerButton, SearchBar}
+		components: {HamburgerButton, SearchBar},
+		computed: {
+			title() {
+				return import.meta.env.VITE_COMPIIILE_TITLE
+			},
+			isLogoDefined(){
+				return import.meta.env.VITE_COMPIIILE_LOGO !== 'null'
+			}
+		}
 	}
 </script>
 
@@ -32,16 +42,21 @@
 	}
 
 	.top-bar-content {
-		padding: 20px var(--content-padding);
+		padding: 20px var(--layout-padding);
 		height: var(--top-bar-height);
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 	}
 
+	.title {
+		margin: 0;
+		font-size: 1.5rem;
+	}
+
 	.logo {
-		width: 120px;
-		flex: 0 0 auto;
+		margin-right: 10px;
+		border-radius: 2px;
 	}
 
 </style>

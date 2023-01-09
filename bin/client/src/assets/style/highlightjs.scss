@@ -4,7 +4,6 @@
     color: #8999a9;
 }
 
-/* Ocean Red */
 .hljs-variable,
 .hljs-template-variable,
 .hljs-tag,
@@ -13,10 +12,9 @@
 .hljs-selector-class,
 .hljs-regexp,
 .hljs-deletion {
-    color: #ec6875; //#bf616a;
+    color: #ec6875;
 }
 
-/* Ocean Orange */
 .hljs-number,
 .hljs-built_in,
 .hljs-builtin-name,
@@ -25,15 +23,13 @@
 .hljs-params,
 .hljs-meta,
 .hljs-link {
-    color: #ffb36f; //#e59e5f;  /*d08770*/
+    color: #ffb36f;
 }
 
-/* Ocean Yellow */
 .hljs-attribute {
     color: #ebcb8b;
 }
 
-/* Ocean Green */
 .hljs-string,
 .hljs-symbol,
 .hljs-bullet,
@@ -41,22 +37,21 @@
     color: #9bea93; //#7fcf77;
 }
 
-/* Ocean Blue */
 .hljs-title,
 .hljs-section {
     color: #8fa1b3;
 }
 
-/* Ocean Purple */
 .hljs-keyword,
 .hljs-selector-tag {
-    color: #9a84ff; //#9382e3;
+    color: #9a84ff;
 }
 
 .hljs {
     display: block;
     overflow-x: auto;
     background: var(--code-background-color);
+    border: solid 1px var(--code-background-color); /* same color, useful when printing without background graphics */
     color: var(--code-color);
     padding: 20px;
     border-radius: 8px;

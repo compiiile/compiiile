@@ -1,16 +1,16 @@
 #! /usr/bin/env node
 
-const { createServer, build, preview } = require('vite')
-const {readdirSync, rmSync, mkdirSync, existsSync} = require("fs")
+const {createServer, build, preview} = require('vite')
+const {readdirSync, rmSync, mkdirSync, existsSync, copyFileSync} = require("fs")
 const path = require("path")
-const { config } = require("./client/config")
+const {config} = require("./client/config")
 
 const source = process.cwd()
 const DEST_FOLDER = '.compiiile'
 const CONFIG_FILE = 'compiiile.config.js'
 
 const yargs = require('yargs/yargs')
-const { hideBin } = require('yargs/helpers')
+const {hideBin} = require('yargs/helpers')
 
 const devCommandDescription = "launch development server"
 
@@ -46,8 +46,8 @@ const IS_PREVIEW = argv._.includes('preview')
     process.env.COMPIIILE_SOURCE = source
 
     const viteConfig = {
-        configFile: "./bin/client/vite.config.js",
-        root: "./bin/client",
+        configFile: path.resolve(__dirname, "client/vite.config.js"),
+        root: path.resolve(__dirname, "client"),
         server: {
             port: 3000
         },
@@ -63,7 +63,27 @@ const IS_PREVIEW = argv._.includes('preview')
         }
     }
 
-    if(IS_DEV){
+    process.env.VITE_COMPIIILE_TITLE = argv.title ?? ''
+    process.env.VITE_COMPIIILE_DESCRIPTION = argv.description ?? ''
+
+    // Handling logo and favicon
+    process.env.VITE_COMPIIILE_LOGO = null
+    if(argv.logo)  {
+        try {
+            copyFileSync(path.resolve(source, argv.logo), path.resolve(__dirname, "./client/public/favicon.png"))
+            // Set the logo to be displayed on the top bar if we were able to copy
+            process.env.VITE_COMPIIILE_LOGO = argv.logo
+        } catch (e) {
+            console.log(e)
+            console.error("Could not load provided logo: set a relative url from the current folder")
+        }
+    } else {
+        // Using default favicon if a logo is not provided
+        copyFileSync(path.resolve(__dirname, "./client/src/assets/logo.png"), path.resolve(__dirname, "./client/public/favicon.png"))
+    }
+
+
+    if (IS_DEV) {
         process.env.NODE_ENV = "development"
 
         const server = await createServer(viteConfig)
@@ -71,18 +91,18 @@ const IS_PREVIEW = argv._.includes('preview')
         await server.listen()
 
         server.printUrls()
-    } else if(IS_BUILD) {
+    } else if (IS_BUILD) {
         process.env.NODE_ENV = "production"
 
-        const publicImagesDirectory = path.resolve(__dirname, `./client/public/${ config.publicImagesDirectoryName }`)
-        if(existsSync(publicImagesDirectory)){
-            readdirSync(publicImagesDirectory).forEach(f => rmSync(`${publicImagesDirectory}/${f}`));
+        const publicImagesDirectory = path.resolve(__dirname, `./client/public/${config.publicImagesDirectoryName}`)
+        if (existsSync(publicImagesDirectory)) {
+            readdirSync(publicImagesDirectory).forEach(f => rmSync(`${publicImagesDirectory}/${f}`))
         } else {
-            mkdirSync(publicImagesDirectory);
+            mkdirSync(publicImagesDirectory)
         }
 
         await build(viteConfig)
-    } else if(IS_PREVIEW){
+    } else if (IS_PREVIEW) {
         process.env.NODE_ENV = "production"
 
         await preview(viteConfig)

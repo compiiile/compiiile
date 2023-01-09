@@ -3,7 +3,7 @@ import {Fzf} from 'fzf'
 
 
 const fileParagraphs = fileList.reduce((accumulator, currentValue) => {
-    const splitter = "\n";
+    const splitter = "\n"
     const paragraphs = currentValue.markdownContent.split(splitter)
 
     let currentIndex = 0

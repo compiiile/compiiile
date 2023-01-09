@@ -1,10 +1,54 @@
 @media print {
-    .no-print {
-        display: none;
+    :root {
+        --toc-width: 0;
+        --content-padding: 0;
+        --nav-bar-width: 0;
+        --top-bar-height: 20px;
+    }
+
+    .no-print, .header-anchor {
+        display: none !important;
     }
 
     .content-wrapper {
         margin: 0 !important;
         padding: 0 !important;
     }
+
+    table {
+        page-break-inside: auto
+    }
+    tr {
+        page-break-inside: avoid;
+        page-break-after: auto
+    }
+    thead {
+        display: table-header-group;
+    }
+    tfoot {
+        display: table-footer-group;
+    }
+
+    /* Overriding revealJs stuff */
+    html:not(.print-pdf), body:not(.print-pdf), html {
+        background-color: var(--layout-background-color) !important;
+    }
+
+    html:not(.print-pdf) {
+        .markdown-content {
+            li, p, td, th {
+                font-size: 12pt !important;
+            }
+
+            h1, h2, h3, h4, h5, p, li, td, th {
+                color: white !important;
+                -webkit-print-color-adjust: economy;
+            }
+
+            a {
+                color: var(--link-color) !important;
+            }
+        }
+    }
+    /* ------------- */
 }

@@ -1,13 +1,13 @@
 <template>
 	<div class="page">
-		<top-bar />
+		<top-bar/>
 
-		<nav-bar />
+		<nav-bar/>
 
 		<div class="centered-layout">
 			<div class="content-wrapper">
 				<router-view #default="{ Component }">
-					<component :is="Component" :key="$route.name" />
+					<component :is="Component" :key="$route.name"/>
 				</router-view>
 
 				<p v-if="$route.name === notFoundRoute" class="text-center not-found">404</p>
@@ -17,15 +17,15 @@
 </template>
 
 <script>
-	import NavBar from "./layout/navBar/NavBar.vue";
-	import TopBar from "./layout/TopBar.vue";
-	import { NOT_FOUND } from "../../router/index.js"
+	import NavBar from "./layout/navBar/NavBar.vue"
+	import TopBar from "./layout/TopBar.vue"
+	import {NOT_FOUND} from "../../router/index.js"
 
 	export default {
 		name: "WorkspacePage",
 		components: {TopBar, NavBar},
 		computed: {
-			notFoundRoute(){
+			notFoundRoute() {
 				return NOT_FOUND
 			}
 		}

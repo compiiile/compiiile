@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<router-view />
+		<router-view/>
 	</div>
 </template>
 
@@ -9,7 +9,3 @@
 		name: "SlidesPage"
 	}
 </script>
-
-<style scoped>
-
-</style>

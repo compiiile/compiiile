@@ -11,24 +11,24 @@
 	export default {
 		name: "SlidesContent",
 		computed: {
-			slides(){
+			slides() {
 				return this.$context.fileList.find(file => file.uuid === this.$route.name).htmlContent.split("\n<hr />\n")
 			}
 		},
 		async mounted() {
 			const Reveal = (await import("reveal.js")).default(document.querySelector('.deck'), {
 				embedded: true
-			});
+			})
 
 			await Reveal.initialize({
 				slideNumber: 'c/t',
-			});
+			})
 
-			Reveal.slide(this.$route.query.slide || 0);
+			Reveal.slide(this.$route.query.slide || 0)
 
 			Reveal.on('slidechanged', event => {
 				this.$router.replace({query: {...this.$route.query, slide: event.indexh}})
-			});
+			})
 		}
 	}
 </script>

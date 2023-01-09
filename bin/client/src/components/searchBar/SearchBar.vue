@@ -1,7 +1,7 @@
 <template>
 	<button class="fake-input" @click="openSearchModal">
-		<ph-magnifying-glass :size="18" class="search-icon" />
-		<span class="search-shortcut"><ph-command class="command-icon" />k</span>
+		<ph-magnifying-glass :size="18" class="search-icon"/>
+		<span class="search-shortcut"><ph-command class="command-icon"/>k</span>
 	</button>
 
 	<div class="search-bar-wrapper" v-if="searchModalOpened">
@@ -10,7 +10,7 @@
 		<div class="search-bar">
 			<div class="search-input-wrapper">
 				<label for="search-input" class="search-label">
-					<ph-magnifying-glass :size="18" class="search-icon" />
+					<ph-magnifying-glass :size="18" class="search-icon"/>
 				</label>
 				<input @input="search"
 				       v-model="searchValue"
@@ -34,10 +34,11 @@
 </template>
 
 <script>
-	import SearchResult from "./SearchResult.vue";
-	const RESULT_PREVIEW_CHARACTER_OFFSET = 120;
-	import { searchIndex } from "../../utils/searchIndex";
-	import { PhMagnifyingGlass, PhCommand } from "phosphor-vue"
+	import SearchResult from "./SearchResult.vue"
+	import {searchIndex} from "../../utils/searchIndex"
+	import {PhCommand, PhMagnifyingGlass} from "phosphor-vue"
+
+	const RESULT_PREVIEW_CHARACTER_OFFSET = 120
 
 	export default {
 		name: "SearchBar",
@@ -50,17 +51,17 @@
 			}
 		},
 		computed: {
-			searchShortcut(){
-				const isSmallScreen = window.innerWidth <= 800  && window.innerHeight <= 600
+			searchShortcut() {
+				const isSmallScreen = window.innerWidth <= 800 && window.innerHeight <= 600
 
-				if(isSmallScreen){
+				if (isSmallScreen) {
 					return ""
 				}
 
 				const isMac = /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)
 
-				const modifier =  isMac ? '⌘' : 'Ctrl'
-				return `${ modifier } + k`
+				const modifier = isMac ? '⌘' : 'Ctrl'
+				return `${modifier} + k`
 			}
 		},
 		methods: {
@@ -70,31 +71,31 @@
 
 					const formattedResults = {}
 
-					for(const result of results){
-						const uuid = result.item.uuid;
+					for (const result of results) {
+						const uuid = result.item.uuid
 
-						if(!formattedResults[uuid]){
-							const file = this.$context.fileList.find(file => file.uuid === uuid);
+						if (!formattedResults[uuid]) {
+							const file = this.$context.fileList.find(file => file.uuid === uuid)
 							formattedResults[uuid] = {
 								...file,
 								contentMatches: []
 							}
 						}
 
-						let {markdownContent} = formattedResults[uuid];
+						let {markdownContent} = formattedResults[uuid]
 
-						const matchEndIndex = result.item.startIndex + result.end;
+						const matchEndIndex = result.item.startIndex + result.end
 
 						let contentSlice = markdownContent.slice(
 							Math.max(result.item.startIndex + result.start - RESULT_PREVIEW_CHARACTER_OFFSET, 0),
 							result.item.startIndex + result.start
 						)
 
-						contentSlice += `<mark>`;
+						contentSlice += `<mark>`
 
-						contentSlice += markdownContent.slice(result.item.startIndex + result.start, matchEndIndex);
+						contentSlice += markdownContent.slice(result.item.startIndex + result.start, matchEndIndex)
 
-						contentSlice += `</mark>`;
+						contentSlice += `</mark>`
 
 						contentSlice += markdownContent.slice(
 							matchEndIndex,
@@ -120,8 +121,8 @@
 
 				await this.$nextTick()
 
-				const searchInput = document.querySelector("#search-input");
-				searchInput.focus();
+				const searchInput = document.querySelector("#search-input")
+				searchInput.focus()
 			},
 			focusFirstSearchResult() {
 				const firstSearchResult = document.querySelector(".search-results .search-result")
@@ -132,7 +133,7 @@
 				lastSearchResult.focus()
 			},
 			onSearchResultDownKeyPress(e) {
-				let nextSearchResult = e.target.nextElementSibling;
+				let nextSearchResult = e.target.nextElementSibling
 				if (nextSearchResult) {
 					nextSearchResult.focus()
 				} else {
@@ -148,14 +149,14 @@
 				}
 			}
 		},
-		mounted(){
+		mounted() {
 			document.onkeydown = (e) => {
 				const key = e.which || e.keyCode
 
 				if ((e.ctrlKey || e.metaKey) && key === 75) {
 					this.openSearchModal()
 				}
-			};
+			}
 		}
 	}
 </script>
@@ -191,7 +192,7 @@
 	.search-bar {
 		position: relative;
 		width: min(95%, 600px);
-		padding: 10px ;
+		padding: 10px;
 		background-color: var(--search-background-color);
 		border-radius: 4px;
 
@@ -232,7 +233,7 @@
 		padding: 10px 20px 10px 40px;
 		font-size: var(--text-md);
 		color: var(--text-color-light);
-		border:none;
+		border: none;
 		display: block;
 		outline: none;
 

@@ -36,6 +36,7 @@
 		height: 13px;
 		width: 20px;
 		cursor: pointer;
+		margin-right: 10px;
 
 		.hamburger-line {
 			display: block;
@@ -62,7 +63,7 @@
 		}
 
 		&.hamburger--opened {
-			.hamburger-line:nth-child(1),.hamburger-line:nth-child(3) {
+			.hamburger-line:nth-child(1), .hamburger-line:nth-child(3) {
 				opacity: 1;
 				width: 87.5%;
 			}
@@ -82,7 +83,7 @@
 			}
 		}
 
-		@media screen and (min-width: 900px){
+		@media screen and (min-width: 900px) {
 			display: none;
 		}
 	}

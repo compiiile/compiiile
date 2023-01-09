@@ -19,39 +19,39 @@
 			tableOfContent: Array
 		},
 		methods: {
-			encodeSlug(slug){
+			encodeSlug(slug) {
 				return encodeURI(slug)
 			},
-			async onScroll(){
-				const tocItems = [...document.querySelectorAll(".toc a")];
-				const anchors = [...document.querySelectorAll(".header-anchor")];
+			async onScroll() {
+				const tocItems = [...document.querySelectorAll(".toc a")]
+				const anchors = [...document.querySelectorAll(".header-anchor")]
 
 				const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
 
 				// Iterate backwards, on the first match highlight it and break
-				for (let i = tocItems.length - 1; i >= 0; i--){
+				for (let i = tocItems.length - 1; i >= 0; i--) {
 					if (scrollTop > anchors[i].offsetTop) {
-						this.$router.replace({ hash: anchors[i].attributes.href.value, params: {withScroll: false} })
+						this.$router.replace({hash: anchors[i].attributes.href.value, params: {withScroll: false}})
 
 						await this.$nextTick()
 
 						const activeTocItem = document.querySelector(".toc-link.active")
-						if(activeTocItem && this.$refs.cursor){
+						if (activeTocItem && this.$refs.cursor) {
 							const activeTocItemBounds = activeTocItem.getBoundingClientRect()
 
 							const tocWrapperTop = this.$refs.tocWrapper?.getBoundingClientRect()?.top
 							this.$refs.cursor.style.height = `${activeTocItemBounds.height}px`
-							this.$refs.cursor.style.transform = `translateY(${ activeTocItemBounds.top - tocWrapperTop }px)`
+							this.$refs.cursor.style.transform = `translateY(${activeTocItemBounds.top - tocWrapperTop}px)`
 						}
-						break;
+						break
 					}
 				}
 			}
 		},
-		mounted(){
+		mounted() {
 			window.addEventListener("scroll", this.onScroll)
 		},
-		beforeRouteUpdate(){
+		beforeRouteUpdate() {
 			window.removeEventListener("scroll", this.onScroll)
 		}
 	}

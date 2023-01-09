@@ -1,9 +1,11 @@
 <template>
 	<div>
-		<table-of-content :tableOfContent="file?.toc"/>
+		<table-of-content :tableOfContent="file?.toc" class="no-print"/>
+
 		<div v-html="file?.htmlContent" class="markdown-content"/>
 
-		<div class="siblings" v-if="fileSiblings.prev || fileSiblings.next"
+		<div class="siblings no-print"
+		     v-if="fileSiblings.prev || fileSiblings.next"
 		     :style="{ justifyContent: !fileSiblings.prev ? 'flex-end' : 'space-between'}">
 			<router-link class="sibling-link"
 			             v-if="fileSiblings.prev"
@@ -25,10 +27,29 @@
 
 	import TableOfContent from "./TableOfContent.vue"
 	import {PhArrowLeft, PhArrowRight} from "phosphor-vue"
+	import {useHead} from "@vueuse/head"
+	import {useRoute} from "vue-router"
 
 	export default {
 		name: "Content",
 		components: {TableOfContent, PhArrowLeft, PhArrowRight},
+		setup(){
+			const titleTemplate = import.meta.env.VITE_COMPIIILE_TITLE ? ` | ${ import.meta.env.VITE_COMPIIILE_TITLE }` : ''
+			const description = useRoute().meta.description || import.meta.env.VITE_COMPIIILE_DESCRIPTION
+
+			const title = useRoute().meta.title
+
+			useHead({
+				title,
+				titleTemplate: `%s${ titleTemplate }`,
+				meta: [
+					{ name: 'og:title', content: title + titleTemplate },
+					{ name: 'description', content: description },
+					{ name: 'og:description', content: description },
+					{ name: 'og:image', content: `${window.location.host}/favicon.png` },
+				],
+			})
+		},
 		computed: {
 			fileIndex() {
 				return this.$context.fileList.findIndex(file => file.uuid === this.$route.name)
@@ -66,10 +87,15 @@
 			margin: 10px 0;
 		}
 
+		h2 {
+			margin-top: 40px;
+		}
+
 		p code, li code {
 			padding: 2px 4px;
 			border-radius: 3px;
 			background-color: var(--code-background-color);
+			border: solid 1px var(--code-background-color); /* same color, useful when printing without background graphics */
 			color: var(--code-color);
 			font-family: var(--monospace);
 			font-size: 0.85rem;
@@ -108,6 +134,7 @@
 			max-width: 100%;
 			margin: 0 auto;
 			display: block;
+			object-fit: contain;
 		}
 
 		a {

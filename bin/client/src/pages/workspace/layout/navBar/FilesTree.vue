@@ -1,28 +1,28 @@
 <template>
-    <ul class="files-tree text-xs">
-        <nav-list-item v-for="navItem in $context.filesTree"
-                       :key="navItem.uuid"
-                       :item="navItem" />
-    </ul>
+	<ul class="files-tree text-xs">
+		<nav-list-item v-for="navItem in $context.filesTree"
+		               :key="navItem.uuid"
+		               :item="navItem"/>
+	</ul>
 </template>
 
 <script>
-    import NavListItem from "./NavListItem.vue";
+	import NavListItem from "./NavListItem.vue"
 
-    export default {
-        name: "FilesTree",
-        components: {NavListItem}
-    }
+	export default {
+		name: "FilesTree",
+		components: {NavListItem}
+	}
 </script>
 
 <style scoped>
 
-    .files-tree {
-        list-style-type: none;
-    }
+	.files-tree {
+		list-style-type: none;
+	}
 
-    .files-tree {
-        padding-left: 0;
-    }
+	.files-tree {
+		padding-left: 0;
+	}
 
 </style>

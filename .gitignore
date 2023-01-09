@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+*.md
+bin/client/public/favicon.png
+bin/client/public/images
+
 # Editor directories and workspace
 .vscode/*
 !.vscode/extensions.json

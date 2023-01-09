@@ -18,7 +18,7 @@
 	nav {
 		width: var(--nav-bar-width);
 		background-color: var(--darker-background-color);
-		padding: 30px 8px 30px 30px;
+		padding: 30px 8px 30px var(--layout-padding);
 		flex: 0 0 auto;
 		position: fixed;
 		top: calc(var(--top-bar-height) + 1px);
@@ -28,7 +28,7 @@
 		z-index: 1;
 		transition: width .3s var(--ease-in-out-quart), transform .1s ease;
 
-		@media screen and (max-width: 900px){
+		@media screen and (max-width: 900px) {
 			width: 0;
 			transform: translateX(-100%);
 

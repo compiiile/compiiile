@@ -2,6 +2,7 @@
     --content-max-width: 1400px;
     --nav-bar-width: 220px;
     --toc-width: 200px;
+    --layout-padding: 20px;
     --content-padding: 40px;
     --top-bar-height: 60px;
     --ease-in-out-quart: cubic-bezier(0.770, 0.000, 0.175, 1.000);
@@ -20,7 +21,7 @@
     --code-color: #d2d7e0;
     --highlight-color: #9985fe;
     --link-color: var(--highlight-color);
-    --blockquote-background-color: rgba(153,133,254, 0.1);
+    --blockquote-background-color: rgba(153, 133, 254, 0.1);
     --blockquote-border-color: var(--highlight-color);
     --table-border-color: var(--separator-color);
     --table-odd-lines-background-color: var(--code-background-color);
