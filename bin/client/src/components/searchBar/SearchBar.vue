@@ -1,7 +1,9 @@
 <template>
 	<button class="fake-input" @click="openSearchModal">
-		<ph-magnifying-glass :size="18" class="search-icon"/>
-		<span class="search-shortcut"><ph-command class="command-icon"/>k</span>
+		<svg class="ph-icon search-icon" xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><circle cx="116" cy="116" r="84" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle><line x1="175.4" y1="175.4" x2="224" y2="224" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line></svg>
+		<span class="search-shortcut">
+			<svg class="command-icon ph-icon" xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><path d="M180,48h0a28,28,0,0,1,28,28v0a28,28,0,0,1-28,28H152a0,0,0,0,1,0,0V76a28,28,0,0,1,28-28Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path><path d="M48,48H76a28,28,0,0,1,28,28v0a28,28,0,0,1-28,28h0A28,28,0,0,1,48,76V48A0,0,0,0,1,48,48Z" transform="translate(152 152) rotate(180)" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path><path d="M152,152h28a28,28,0,0,1,28,28v0a28,28,0,0,1-28,28h0a28,28,0,0,1-28-28V152A0,0,0,0,1,152,152Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path><path d="M76,152h0a28,28,0,0,1,28,28v0a28,28,0,0,1-28,28H48a0,0,0,0,1,0,0V180A28,28,0,0,1,76,152Z" transform="translate(152 360) rotate(-180)" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path><rect x="104" y="104" width="48" height="48" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></rect></svg>k
+		</span>
 	</button>
 
 	<div class="search-bar-wrapper" v-if="searchModalOpened">
@@ -10,7 +12,7 @@
 		<div class="search-bar">
 			<div class="search-input-wrapper">
 				<label for="search-input" class="search-label">
-					<ph-magnifying-glass :size="18" class="search-icon"/>
+					<svg class="ph-icon search-icon" xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><circle cx="116" cy="116" r="84" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle><line x1="175.4" y1="175.4" x2="224" y2="224" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line></svg>
 				</label>
 				<input @input="search"
 				       v-model="searchValue"
@@ -36,13 +38,12 @@
 <script>
 	import SearchResult from "./SearchResult.vue"
 	import {searchIndex} from "../../utils/searchIndex"
-	import {PhCommand, PhMagnifyingGlass} from "phosphor-vue"
 
 	const RESULT_PREVIEW_CHARACTER_OFFSET = 120
 
 	export default {
 		name: "SearchBar",
-		components: {SearchResult, PhMagnifyingGlass, PhCommand},
+		components: {SearchResult},
 		data() {
 			return {
 				searchValue: "",
@@ -222,6 +223,8 @@
 
 	.search-icon {
 		color: var(--dimmed-text-color);
+		width: 18px;
+		height: 18px;
 	}
 
 	.search-input {
