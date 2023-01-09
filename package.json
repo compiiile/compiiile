@@ -8,6 +8,11 @@
   "bin": {
     "compiiile": "bin/cli.js"
   },
+  "scripts": {
+    "dev": "node ./bin/cli.js dev",
+    "build": "node ./bin/cli.js build",
+    "preview": "node ./bin/cli.js preview"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/AlbanCrepel/compiiile.git"
@@ -29,9 +34,7 @@
     "uuid": "^8.3.2",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6",
-    "yargs": "^17.6.0"
-  },
-  "devDependencies": {
+    "yargs": "^17.6.0",
     "@vitejs/plugin-vue": "^3.2.0",
     "sass": "^1.49.9",
     "vite": "^4.0.3"
@@ -46,12 +49,12 @@
   ],
   "funding": [
     {
-      "type" : "github",
-      "url" : "https://github.com/sponsors/AlbanCrepel"
+      "type": "github",
+      "url": "https://github.com/sponsors/AlbanCrepel"
     },
     {
-      "type" : "ko-fi",
-      "url" : "https://ko-fi.com/alban_crepel"
+      "type": "ko-fi",
+      "url": "https://ko-fi.com/alban_crepel"
     }
   ]
 }
