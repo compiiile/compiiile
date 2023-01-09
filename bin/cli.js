@@ -4,7 +4,7 @@ const {createServer, build, preview} = require('vite')
 const {readdirSync, rmSync, mkdirSync, existsSync, copyFileSync} = require("fs")
 const path = require("path")
 const {config} = require("./client/config")
-
+const dns = require('dns')
 const source = process.cwd()
 const DEST_FOLDER = '.compiiile'
 const CONFIG_FILE = 'compiiile.config.js'
@@ -14,6 +14,7 @@ const {hideBin} = require('yargs/helpers')
 
 const devCommandDescription = "launch development server"
 
+dns.setDefaultResultOrder('verbatim')
 /*
  Order of options by priority:
  1. command arguments
@@ -49,7 +50,8 @@ const IS_PREVIEW = argv._.includes('preview')
         configFile: path.resolve(__dirname, "client/vite.config.js"),
         root: path.resolve(__dirname, "client"),
         server: {
-            port: 3000
+            port: 3000,
+            host: 'localhost'
         },
 
         build: {

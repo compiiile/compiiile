@@ -5,7 +5,7 @@ has never been that easy (it's really just a command away !) :sparkles:
 
 ## Preview
 
-![Demo](./demo.gif)
+![Demo](https://i.imgur.com/AE1LuS0.gif)
 
 > Check the live demo here: https://compiiile.me/
 
