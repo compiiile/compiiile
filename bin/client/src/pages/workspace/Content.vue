@@ -10,14 +10,14 @@
 			<router-link class="sibling-link"
 			             v-if="fileSiblings.prev"
 			             :to="{ name: fileSiblings.prev.uuid }">
-				<ph-arrow-left/>
+				<svg class="ph-icon" xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><line x1="216" y1="128" x2="40" y2="128" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line><polyline points="112 56 40 128 112 200" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline></svg>
 				{{ fileSiblings.prev.title }}
 			</router-link>
 			<router-link class="sibling-link sibling-link--next"
 			             v-if="fileSiblings.next"
 			             :to="{ name: fileSiblings.next.uuid }">
 				{{ fileSiblings.next.title }}
-				<ph-arrow-right/>
+				<svg class="ph-icon" xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line><polyline points="144 56 216 128 144 200" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline></svg>
 			</router-link>
 		</div>
 	</div>
@@ -26,12 +26,11 @@
 <script>
 
 	import TableOfContent from "./TableOfContent.vue"
-	import {PhArrowLeft, PhArrowRight} from "phosphor-vue"
 	import {setUpUseHead} from "../../utils/setUpUseHead.js"
 
 	export default {
 		name: "Content",
-		components: {TableOfContent, PhArrowLeft, PhArrowRight},
+		components: {TableOfContent},
 		setup(){
 			setUpUseHead()
 		},

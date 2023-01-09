@@ -64,3 +64,12 @@ body {
 .no-wrap {
     white-space: nowrap;
 }
+
+.ph-icon {
+    width: 12px;
+    height: 12px;
+
+    line, polyline, circle, path, rect:not(:first-child) {
+        stroke: currentColor;
+    }
+}
