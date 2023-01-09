@@ -5,7 +5,14 @@
 </template>
 
 <script>
+
+	import {setUpUseHead} from "../../utils/setUpUseHead.js"
+
 	export default {
-		name: "SlidesPage"
+		name: "SlidesPage",
+		setup(){
+			setUpUseHead()
+		}
 	}
+
 </script>

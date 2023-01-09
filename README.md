@@ -1,7 +1,7 @@
 # Compiiile
 
 > Compiiile is the most convenient way to render a folder containing markdown files. Previewing and searching markdown files
-has never been that easy (it's really just a command away !)
+has never been that easy (it's really just a command away !) :sparkles: 
 
 ## Preview
 
@@ -9,8 +9,8 @@ has never been that easy (it's really just a command away !)
 
 ## Purpose
 
-I document everything in markdown and have always been frustrated not having a simple tool to just preview a whole
-folder, being able to search through it, make slides out of it, and get a production-ready build of all the files as a knowledge base. On
+I document everything in markdown and have always been frustrated not having a simple tool to just **preview** a whole
+folder, being able to **search** through it, make **slides** out of it, and get a **production-ready** build of all the files as a knowledge base. On
 top of that, finding a tool with a sweet and simple UI is not that easy.
 
 That's what compiiile does. And it does it hassle-free !
@@ -31,7 +31,7 @@ That's what compiiile does. And it does it hassle-free !
 
 - It's not a markdown editor, there are already plenty available, just choose the one that works best for you, even the simplest text editor will do.
 - It's not like VuePress, VitePress, Docusaurus or Notion. Compiiile's goal is to stay simple and stupidly easy without any configuration 
- (I don't get how there are so many JS frameworks, and not a single solution like compiiile, or maybe I missed something...).
+ (I don't get how there are so many JS frameworks, and not a single solution for that, or maybe I missed something...).
 
 > The goal is to help people rely purely on a **language** (*markdown*), not on *any* platform.
 
@@ -63,7 +63,7 @@ npm install compiiile # install as a project dependency with npm
 
 Once installed, 3 commands are available to see your beautiful markdown files :eyes::
 
-- `compiiile dev` : creates a web server to check your markdown files
+- `compiiile dev` : creates a web server to check your markdown files (alias to only `compiiile`)
 - `compiiile build` : builds all the files for you to serve them production-ready
 - `compiiile preview` : preview your production-ready build
 
@@ -177,18 +177,18 @@ module.exports = {
 
 ## Contributing
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md).
+Contributions are welcome after discussing the object of your contribution in the `Issues` pages (because the goal is to keep this project really simple and straightforward).
 
-Roadmap and feature ideas for incoming releases:
-- [ ] being able to resize the navbar
-- [ ] handling HMR (Hot Module Reloading) when running the `dev` command to refresh the markdown content and any added file
-- [ ] tag files with frontmatter and search files having specific tags
-- [ ] use custom vue components in markdown (like `MDX`)
-- [ ] Make a theme switcher and make custom themes available to others (load external CSS)
-- [ ] rewrite the whole thing in typescript and use tailwind if I am ever motivated
-- [ ] add some markdown-it plugins (mermaid ? Any ideas from you ?)
+You can read more about it and the roadmap in the [dedicated contributing guide](./CONTRIBUTING.md).
 
 ## Support
+
+Open-source is a wonderful thing, so please if you found this project useful or use it as a part of a commercial project, consider making a donation.
+You can do it either via github donations or via [my ko-fi page](https://ko-fi.com/alban_crepel) where you can make a one-time or monthly donation by paypal or card.
+This allows you to use Compiiile as a pay-what-you-want service if you are not part of a non-profit project.
+You can always contact me for a custom use of this project and any licence issue.
+
+Thank you :heart:
 
 ## Licence
 
