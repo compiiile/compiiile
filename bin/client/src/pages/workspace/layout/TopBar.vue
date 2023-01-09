@@ -3,8 +3,10 @@
 		<div class="centered-layout">
 			<div class="top-bar-content">
 				<hamburger-button/>
-				<img src="/favicon.png" :width="30" :height="30" class="logo" v-if="isLogoDefined"/>
-				<h1 class="title">{{ title }}</h1>
+				<router-link to="/" class="home-link">
+					<img src="/favicon.png" :width="30" :height="30" class="logo" v-if="isLogoDefined"/>
+					<h1 class="title">{{ title }}</h1>
+				</router-link>
 				<search-bar/>
 			</div>
 		</div>
@@ -47,6 +49,11 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+	}
+
+	.home-link {
+		color: var(--text-color-base) !important;
+		text-decoration: none;
 	}
 
 	.title {
