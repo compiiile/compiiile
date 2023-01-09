@@ -7,6 +7,8 @@ has never been that easy (it's really just a command away !) :sparkles:
 
 ![Demo](./demo.gif)
 
+> Check the live demo here: https://compiiile.me/
+
 ## Purpose
 
 I document everything in markdown and have always been frustrated not having a simple tool to just **preview** a whole
