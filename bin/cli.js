@@ -14,7 +14,9 @@ const {hideBin} = require('yargs/helpers')
 
 const devCommandDescription = "launch development server"
 
+// This allows us to serve to localhost by default instead of 127.0.0.1
 dns.setDefaultResultOrder('verbatim')
+
 /*
  Order of options by priority:
  1. command arguments
@@ -64,6 +66,8 @@ const IS_PREVIEW = argv._.includes('preview')
             open: true
         }
     }
+
+    process.env.VITE_COMPIIILE_SITE_URL = argv.siteUrl ?? ''
 
     process.env.VITE_COMPIIILE_TITLE = argv.title ?? ''
     process.env.VITE_COMPIIILE_DESCRIPTION = argv.description ?? ''
