@@ -24,6 +24,22 @@ export default function compiiile() {
             const filesTree = ${JSON.stringify(context.filesTree)};\n\n
             const routeList = ${JSON.stringify(context.routeList)};\n\n
             export { fileList, filesTree, routeList };`
+        },
+        transformIndexHtml: {
+            order: 'post',
+            handler: (html) => {
+                return html
+                    .replaceAll(
+                        /<%- title %>/g,
+                        process.env.VITE_COMPIIILE_TITLE
+                    ).replaceAll(
+                        /<%- description %>/g,
+                        process.env.VITE_COMPIIILE_DESCRIPTION
+                    ).replaceAll(
+                        /<%- image %>/g,
+                        `${process.env.VITE_COMPIIILE_SITE_URL}/favicon.png`
+                    )
+            }
         }
     }
 }

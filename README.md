@@ -1,7 +1,6 @@
 # Compiiile
 
-> Compiiile is the most convenient way to render a folder containing markdown files. Previewing and searching markdown files
-has never been that easy (it's really just a command away !) :sparkles: 
+> Compiiile is the most convenient way to render a folder containing markdown files. Previewing and searching markdown files has never been that easy (it's really just a command away !) :sparkles:
 
 ## Preview
 
@@ -20,20 +19,18 @@ That's what compiiile does. And it does it hassle-free !
 ## Features
 
 - [x]  📦  **No config required, everything just works out of the box, without changing your files** (resolves images and relative links (cross-references), print-ready rendering)
-- [x]  🌱  Available everywhere with static files deployment: just host it somewhere and access it in any browser on your computer, phone or whatever you are using
+- [x]  🌱 Available everywhere with static files deployment: just host it somewhere and access it in any browser on your computer, phone or whatever you are using
 - [x] :link: Quick access to your files via the navbar and links to the previous and next file (with table of content generation)
 - [x] :tv: Display some files as slides
 - [x] :mag: **Full-text quick search with content preview**
 - [x] :bulb: Can serve as knowledge base
 - [x] :wrench: Customizable by env variables or config file, it's up to you
-- [x] :star2: You get it, it simply does the job, period. Yes it's *'blazing fast'* (:vomiting_face:), no it's not on the edge, no it doesn't use 
-    some machine learning or blockchain or whatever. It only aims to help people with their markdown files.
+- [x] :star2: You get it, it simply does the job, period.
 
 ### What compiiile isn't
 
 - It's not a markdown editor, there are already plenty available, just choose the one that works best for you, even the simplest text editor will do.
-- It's not like VuePress, VitePress, Docusaurus or Notion. Compiiile's goal is to stay simple and stupidly easy without any configuration 
- (I don't get how there are so many JS frameworks, and not a single solution for that, or maybe I missed something...).
+- It's not like VuePress, VitePress, Docusaurus or Notion. Compiiile's goal is to stay simple and stupidly easy without any configuration.
 
 > The goal is to help people rely purely on a **language** (*markdown*), not on *any* platform.
 
@@ -87,7 +84,7 @@ To use these commands inside a javascript project, you just have to add these co
 You can run these scripts by running `yarn <script>` or `npm run <script>` in your terminal (replacing `<script>`
 with your script name).
 
-The build command builds your files in a `.compiiile/dist` folder at the root of your current directory by default. 
+The build command builds your files in a `.compiiile/dist` folder at the root of your current directory by default.
 You can override this parameter (see below on how to use a custom configuration).
 
 ## Write some markdown (compiiile-specific parameters)
@@ -123,6 +120,7 @@ To separate your slides, just separate the content of your markdown with:
 > There must be an empty line before and after the `---`
 
 Other frontmatter keys will be handled:
+
 - `title`: set the title to be displayed in the navbar and for SEO
 - `description`: set the description for SEO
 
@@ -134,12 +132,13 @@ The home page of compiiile (`/`) points to a `README.md` file located at the roo
 
 Here is the list of parameters that you can set to customize Compiiile (none are required):
 
-| Parameter     | Type    | Description                                                           |
-|---------------|---------|-----------------------------------------------------------------------|
-| `title`       | `string` | The title to display on the top-left of the User Interface            |
-| `description` | `string` | The description that is rendered by default for the SEO               |
-| `logo`        | `string` | The relative path of the logo to display in the TopBar and as favicon |
-| `dest`        | `string` | The folder in which to build files, defaults to `./.compiiile/dist`   |
+| Parameter     | Type    | Description                                                                                       |
+|---------------|---------|---------------------------------------------------------------------------------------------------|
+| `title`       | `string` | The title to display on the top-left of the User Interface                                        |
+| `description` | `string` | The description that is rendered by default for the SEO                                           |
+| `logo`        | `string` | The relative path of the logo to display in the TopBar and as favicon                             |
+| `dest`        | `string` | The folder in which to build files, defaults to `./.compiiile/dist`                               |
+| `siteUrl`        | `string` | The url of the website in production (without trailing slash), used for the SEO tag `og:image` |
 
 You can use these parameters in 2 ways:
 
