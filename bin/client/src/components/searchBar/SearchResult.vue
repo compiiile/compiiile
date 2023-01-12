@@ -1,7 +1,8 @@
 <template>
 	<router-link :to="{ name: searchResult.uuid }"
-	             class="search-result search-result-link">
-		<li @click.stop.prevent="$emit('onSearchResultClick')">
+	             class="search-result search-result-link"
+	             @click.stop.prevent="$emit('onSearchResultClick')">
+		<li>
 			<div class="search-result-header">
 				<h4 class="search-result-title" v-html="searchResult.title"></h4>
 				<p class="search-result-file-path text-sm">{{ searchResult.fullPath }}</p>

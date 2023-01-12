@@ -58,6 +58,20 @@ yarn add compiiile # install as a project dependency with yarn
 npm install compiiile # install as a project dependency with npm
 ```
 
+## Quick start
+
+To make yourself an idea and quickly get started using compiiile, here are some commands that you can run in your terminal to get Compiiile running with a couple of markdown files as tests:
+
+```bash
+mkdir test-compiiile && cd test-compiiile # creating a new folder and go into this folder
+yarn global add compiiile # installing compiiile as global dependency using yarn
+echo '# Test Compiiile\n\n> Here is a blockquote for you\n\n## Your markdown awaits below' > README.md # a first test file
+echo '---\nasSlides: true\n---\n\n# Slide 1\n\n---\n\n# And this is slide 2' > slides.md # a second test file as slides
+compiiile --title="📚 Compiiile" # running Compiiile for these 2 files
+```
+
+Et voilà, you should be able to preview your files in your browser :tada:.
+
 ## Usage
 
 Once installed, 3 commands are available to see your beautiful markdown files :eyes::
@@ -195,4 +209,4 @@ Thank you :heart:
 
 This project is licensed under the terms of the GNU General Public License v3.0.
 
-See [LICENCE.md](./LICENSE.md).
+See [LICENCE.md](./LICENCE.md).
