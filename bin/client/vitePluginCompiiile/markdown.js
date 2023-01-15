@@ -39,7 +39,7 @@ const resolveFileFromRelativePath = (filePath, relativePath) => {
     const url = new URL(`../../../${parentDirectoryPathFromSourceDirectory}/${relativePath}`, import.meta.url)
 
     return {
-        path: url.pathname.replaceAll("%20", " "),
+        path: decodeURI(url.pathname).replaceAll("%20", " "),
         hash: url.hash
     }
 }
