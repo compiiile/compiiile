@@ -14,8 +14,8 @@ Here is the current roadmap and feature ideas for incoming releases:
 - [ ] tag files with frontmatter and search files having specific tags
 - [ ] use custom vue components in markdown (like `MDX`)
 - [ ] Make a theme switcher and make custom themes available to others (load external CSS)
-- [ ] rewrite the whole thing in typescript and use tailwind if I am ever motivated
-- [ ] add some markdown-it plugins (mermaid ? Any ideas from you ?)
+- [ ] rewrite the whole thing in TypeScript and use Tailwind if I am ever motivated
+- [ ] add some markdown-it plugins (Mermaid ? Any ideas from you ?)
 
 If a fix needs to be done or your contributing idea is part of this roadmap, it will most likely be taken into account.
 

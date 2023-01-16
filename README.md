@@ -14,7 +14,7 @@ I document everything in markdown and have always been frustrated not having a s
 folder, being able to **search** through it, make **slides** out of it, and get a **production-ready** build of all the files as a knowledge base. On
 top of that, finding a tool with a sweet and simple UI is not that easy.
 
-That's what compiiile does. And it does it hassle-free !
+That's what Compiiile does. And it does it hassle-free !
 
 ## Features
 
@@ -27,7 +27,7 @@ That's what compiiile does. And it does it hassle-free !
 - [x] :wrench: Customizable by env variables or config file, it's up to you
 - [x] :star2: You get it, it simply does the job, period.
 
-### What compiiile isn't
+### What Compiiile isn't
 
 - It's not a markdown editor, there are already plenty available, just choose the one that works best for you, even the simplest text editor will do.
 - It's not like VuePress, VitePress, Docusaurus or Notion. Compiiile's goal is to stay simple and stupidly easy without any configuration.
@@ -36,7 +36,7 @@ That's what compiiile does. And it does it hassle-free !
 
 ## Installation
 
-You can install compiiile either globally or per-project:
+You can install Compiiile either globally or per-project:
 
 ### Globally
 
@@ -60,7 +60,7 @@ npm install compiiile # install as a project dependency with npm
 
 ## Quick start
 
-To make yourself an idea and quickly get started using compiiile, here are some commands that you can run in your terminal to get Compiiile running with a couple of markdown files as tests:
+To make yourself an idea and quickly get started using Compiiile, here are some commands that you can run in your terminal to get Compiiile running with a couple of markdown files as tests:
 
 ```bash
 mkdir test-compiiile && cd test-compiiile # creating a new folder and go into this folder
@@ -101,7 +101,7 @@ with your script name).
 The build command builds your files in a `.compiiile/dist` folder at the root of your current directory by default.
 You can override this parameter (see below on how to use a custom configuration).
 
-## Write some markdown (compiiile-specific parameters)
+## Write some markdown (Compiiile-specific parameters)
 
 The goal of this project is to get it running **without changing any markdown files already written**.
 Yet, there are some things to consider to configure some files:
@@ -140,7 +140,7 @@ Other frontmatter keys will be handled:
 
 ### Routing
 
-The home page of compiiile (`/`) points to a `README.md` file located at the root of your folder.
+The home page of Compiiile (`/`) points to a `README.md` file located at the root of your folder.
 
 ## Custom configuration
 
@@ -160,7 +160,7 @@ You can use these parameters in 2 ways:
 
 Config parameters can be passed by script arguments.
 
-For example, if you want to change the title, just run compiiile like so:
+For example, if you want to change the title, just run Compiiile like so:
 
 ```bash
 compiiile dev --title="My knowledge base 📚"
@@ -188,7 +188,7 @@ module.exports = {
 - [markdown-it](https://github.com/markdown-it/markdown-it) for making markdown processing a nice experience
 - [fzf-for-js](https://github.com/ajitid/fzf-for-js) for the search feature
 - [reveal.js](https://revealjs.com/) for displaying markdown files as slides
-- [vitejs](https://vitejs.dev/) for helping modern frontend developers keep their mental health sane :heart:
+- [Vite](https://vitejs.dev/) for helping modern frontend developers keep their mental health sane :heart:
 
 ## Contributing
 
