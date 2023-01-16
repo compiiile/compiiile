@@ -36,7 +36,7 @@ const md = (new MarkdownIt({
 
 const resolveFileFromRelativePath = (filePath, relativePath) => {
     const parentDirectoryPathFromSourceDirectory = filePath.substring(0, filePath.lastIndexOf("/")) || "."
-    const url = new URL(`../../../${parentDirectoryPathFromSourceDirectory}/${relativePath}`, import.meta.url)
+    const url = new URL(`${process.env.COMPIIILE_SOURCE}/${parentDirectoryPathFromSourceDirectory}/${relativePath}`, import.meta.url)
 
     return {
         path: decodeURI(url.pathname).replaceAll("%20", " "),
