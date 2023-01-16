@@ -55,7 +55,7 @@ md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
 
     const href = tokens[idx].attrs[hrefAttributeIndex][1]
 
-    let file = resolveFileFromRelativePath(self.filePath, href)
+    let file = resolveFileFromRelativePath(self.filePath, encodeURI(href.toString().replaceAll(/%/g,'%25')))
     file.path = file.path.replace(process.env.COMPIIILE_SOURCE, "")
 
     if (isLocalPathRegex.test(href)) {
