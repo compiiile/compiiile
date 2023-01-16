@@ -59,7 +59,8 @@ md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
     file.path = file.path.replace(process.env.COMPIIILE_SOURCE, "")
 
     if (isLocalPathRegex.test(href)) {
-        tokens[idx].attrs[hrefAttributeIndex][1] = `#/${config.router.workspaceBasePath}${config.router.generateRoutePathFromFilePath(file.path, file.hash)}`
+        const decodedFilePath = decodeURIComponent(decodeURIComponent(file.path));
+        tokens[idx].attrs[hrefAttributeIndex][1] = `#/${config.router.workspaceBasePath}${config.router.generateRoutePathFromFilePath(decodedFilePath, file.hash)}`
     }
 
     // pass token to default renderer.
