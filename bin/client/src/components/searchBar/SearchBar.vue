@@ -219,6 +219,7 @@
 		align-items: center;
 		padding: 0 10px;
 		margin-left: auto;
+		flex: 0 0 auto;
 	}
 
 	.search-icon {

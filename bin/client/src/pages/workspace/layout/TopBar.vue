@@ -54,11 +54,21 @@
 	.home-link {
 		color: var(--text-color-base) !important;
 		text-decoration: none;
+		display: flex;
+		align-items: center;
 	}
 
 	.title {
 		margin: 0;
 		font-size: 1.5rem;
+		max-width: 100%;
+		display: inline-block;
+		-webkit-box-orient: vertical;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: normal;
 	}
 
 	.logo {
