@@ -37,6 +37,7 @@
 		width: 20px;
 		cursor: pointer;
 		margin-right: 10px;
+		flex: 0 0 auto;
 
 		.hamburger-line {
 			display: block;
