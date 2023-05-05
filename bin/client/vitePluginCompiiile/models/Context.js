@@ -27,6 +27,7 @@ export default class {
                 const isDirectory = fs.statSync(filePath).isDirectory()
                 const uuid = uuidv4()
                 const fileName = path.parse(filePath).name
+                const isReadmeFile = !isDirectory && filePath.toLowerCase() === "readme.md"
 
                 let filesTreeItem = new FilesTreeItem(
                     uuid,
@@ -39,7 +40,11 @@ export default class {
                 }
 
                 if (path.extname(file) === '.md' || filesTreeItem?.children.length > 0) {
-                    fileArray.push(filesTreeItem)
+                    if(isReadmeFile){
+                        fileArray.unshift(filesTreeItem)
+                    } else {
+                        fileArray.push(filesTreeItem)
+                    }
 
                     if (!isDirectory) {
                         const fileListItem = new FileListItem(uuid)
@@ -51,7 +56,12 @@ export default class {
                         fileListItem.meta.title = fileListItem.meta.title || fileListItem.title
                         fileListItem.toc = md.toc
                         fileListItem.fullPath = filePath
-                        this.fileList.push(fileListItem)
+
+                        if(isReadmeFile){
+                            this.fileList.unshift(fileListItem)
+                        } else {
+                            this.fileList.push(fileListItem)
+                        }
 
                         md.toc = []
                         md.meta = {}
