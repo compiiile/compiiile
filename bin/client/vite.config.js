@@ -1,4 +1,4 @@
-import {defineConfig} from 'vite'
+import {defineConfig,searchForWorkspaceRoot} from 'vite'
 import vue from '@vitejs/plugin-vue'
 import compiiile from "./vitePluginCompiiile"
 
@@ -8,5 +8,13 @@ export default defineConfig({
         vue(),
         compiiile()
     ],
-    base: "./"
+    base: "./",
+    server: {
+        fs: {
+            allow: [
+                searchForWorkspaceRoot(process.cwd()),
+                '.'
+            ],
+        },
+    },
 })
