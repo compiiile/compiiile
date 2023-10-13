@@ -26,6 +26,7 @@
 		"@babel/core": "^7.0.0-0",
 		"@babel/eslint-parser": "^7.22.15",
 		"astro": "^3.3.0",
+		"astro-decap-cms-oauth": "^0.2.6",
 		"astro-seo": "^0.8.0",
 		"eslint": "^8.51.0",
 		"eslint-config-prettier": "^9.0.0",
