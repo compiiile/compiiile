@@ -5,7 +5,10 @@ import NavBar from "../components/layout/navBar/NavBar.vue";
 import ClientScript from "../components/ClientScript.vue";
 
 const { title, description } = Astro.props
-const currentPath = Astro.url.pathname
+let currentPath = Astro.url.pathname
+if(currentPath.length > 1 && currentPath.endsWith("/")){
+    currentPath = currentPath.slice(0, -1)
+}
 ---
 
 
