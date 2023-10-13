@@ -34,7 +34,7 @@ export default function rehypeImagePlugin() {
 			}
 		})
 		visit(tree, "mdxJsxFlowElement", function (node) {
-			if (node.name === "__AstroImage__") {
+			if (node.name === "astro-image") {
 				const alt = node.attributes?.find((attr) => attr.name === "alt")
 				const parsedAltValue = processImageNode(alt?.value)
 				if (parsedAltValue) {
