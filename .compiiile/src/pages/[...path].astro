@@ -4,6 +4,8 @@ import ContentWrapper from "../components/ContentWrapper.vue"
 import { routeList } from "virtual:compiiile"
 import SlidesLayout from "../layouts/SlidesLayout.astro";
 
+export const prerender = true;
+
 export async function getStaticPaths() {
     const markdownFiles = await Astro.glob('@source/**/*.{md,mdx}')
 
