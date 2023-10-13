@@ -1,0 +1,55 @@
+---
+import BaseLayout from "./BaseLayout.astro"
+import TopBar from "../components/layout/TopBar.vue";
+import NavBar from "../components/layout/navBar/NavBar.vue";
+import ClientScript from "../components/ClientScript.vue";
+
+const { title, description, isNotFoundPage } = Astro.props
+const currentPath = Astro.url.pathname
+---
+
+
+<BaseLayout title={ title } description={ description } isNotFoundPage={ true }>
+    <div class="page">
+        <TopBar client:load />
+
+        <NavBar currentPath={ currentPath }/>
+
+        <div class="centered-layout">
+            <div class="content-wrapper">
+                <slot></slot>
+            </div>
+        </div>
+
+        <ClientScript client:load />
+    </div>
+</BaseLayout>
+
+<style>
+
+    .content-wrapper {
+        margin-left: var(--nav-bar-width);
+        padding: var(--content-padding);
+        position: relative;
+    }
+
+    .centered-layout {
+        margin-top: var(--top-bar-height);
+    }
+
+    .not-found {
+        font-weight: bold;
+        font-family: var(--monospace);
+        font-size: 4rem;
+        margin-top: 60px;
+    }
+
+    @media screen and (min-width: 1100px) {
+        .centered-layout {
+            max-width: var(--content-max-width);
+            margin: var(--top-bar-height) auto 0;
+        }
+    }
+
+</style>
+

@@ -1,0 +1,12 @@
+---
+import SlidesContent from "../components/SlidesContent.vue";
+import BaseLayout from "./BaseLayout.astro";
+const { title, description } = Astro.props
+---
+
+<BaseLayout title={ title } description={ description } isNotFoundPage={ false }>
+    <SlidesContent client:load>
+        <slot></slot>
+    </SlidesContent>
+</BaseLayout>
+

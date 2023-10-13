@@ -1,0 +1,36 @@
+@import "fonts";
+@import "variables";
+@import "texts";
+@import "layouts";
+@import "print";
+@import "code-theme";
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+}
+
+html {
+	font-size: 16px;
+	line-height: 1.618rem;
+	word-spacing: 1px;
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	box-sizing: border-box;
+	background-color: var(--layout-background-color);
+}
+
+#__nuxt,
+#__layout,
+#default-layout,
+.page {
+	height: 100%;
+}
+
+body {
+	overflow-x: hidden;
+}

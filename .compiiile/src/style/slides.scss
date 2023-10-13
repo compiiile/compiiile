@@ -1,0 +1,79 @@
+.reveal {
+	height: 100vh;
+	width: 100vw;
+
+	pre code {
+		padding: 20px !important;
+		border-radius: 8px;
+		max-height: 80vh !important;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: "archivo", sans-serif;
+		font-variation-settings:
+			"wght" 900,
+			"wdth" 125;
+		letter-spacing: -0.03em;
+		font-size: 24px;
+		border: none !important;
+	}
+
+	font-family: "DM Sans", sans-serif !important;
+
+	p,
+	li {
+		font-size: 24px !important;
+	}
+
+	.hljs {
+		font-size: 18px !important;
+	}
+
+	p code {
+		background-color: var(--layout-background-color);
+		padding: 2px 4px;
+		border-radius: 3px;
+		font-size: 18px;
+	}
+
+	blockquote {
+		background-color: var(--blockquote-background-color);
+		border: solid 1px var(--blockquote-border-color);
+		border-radius: 8px;
+		padding: 0.5em 1em;
+	}
+
+	.header-anchor {
+		display: none;
+	}
+
+	ul {
+		width: 70%;
+	}
+
+	.slides a {
+		color: var(--link-color) !important;
+		text-decoration: underline;
+	}
+
+	img {
+		object-fit: contain;
+	}
+}
+
+.reveal-viewport {
+	background-color: var(--darker-background-color) !important;
+}
+
+.reveal .controls {
+	color: var(--slides-controls) !important;
+}
+
+.reveal .progress {
+	color: var(--slides-controls) !important;
+}

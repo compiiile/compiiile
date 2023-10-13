@@ -1,0 +1,30 @@
+:root {
+	--astro-code-color-text: #eeeeee;
+	--astro-code-color-background: var(--code-background-color);
+	--astro-code-token-constant: #ec6875;
+	--astro-code-token-string: var(--code-color);
+	--astro-code-token-comment: #8999a9;
+	--astro-code-token-keyword: var(--code-color);
+	--astro-code-token-parameter: #ffb36f;
+	--astro-code-token-function: #ffb36f;
+	--astro-code-token-string-expression: #9bea93;
+	--astro-code-token-punctuation: var(--code-color);
+	--astro-code-token-link: #9a84ff;
+}
+
+.astro-code {
+	display: block;
+	overflow-x: auto;
+	background: var(--code-background-color);
+	border: solid 1px var(--code-background-color); /* same color, useful when printing without background graphics */
+	color: var(--code-color);
+	padding: 20px;
+	border-radius: 8px;
+	line-height: 1.3rem;
+	position: relative;
+	font-family: "jetbrains", monospace;
+
+	code {
+		font-family: "jetbrains", monospace;
+	}
+}

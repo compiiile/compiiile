@@ -1,0 +1,17 @@
+---
+import WorkspaceLayout from "../layouts/WorkspaceLayout.astro";
+---
+<WorkspaceLayout isNotFoundPage={ true }>
+    <p class="text-center not-found">404</p>
+</WorkspaceLayout>
+
+<style>
+
+    .not-found {
+        font-weight: bold;
+        font-family: var(--monospace);
+        font-size: 4rem;
+        margin-top: 60px;
+    }
+
+</style>
