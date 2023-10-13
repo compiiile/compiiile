@@ -1,21 +1,20 @@
 #! /usr/bin/env node
 
-const {createServer, build, preview} = require('vite')
-const {readdirSync, rmSync, mkdirSync, existsSync, copyFileSync} = require("fs")
-const path = require("path")
-const {config} = require("./client/config")
-const dns = require('dns')
+import { build, dev, preview } from "astro"
+import vue from "@astrojs/vue"
+import compiiile from "./vitePluginCompiiile/index.js"
+import mdx from "@astrojs/mdx"
+import path from "node:path"
+import { copyFileSync, cpSync } from "node:fs"
+import markdownConfig from "./vitePluginCompiiile/markdownConfig.js"
+
 const source = process.cwd()
-const DEST_FOLDER = '.compiiile'
-const CONFIG_FILE = 'compiiile.config.js'
+process.env.COMPIIILE_SOURCE = source
 
-const yargs = require('yargs/yargs')
-const {hideBin} = require('yargs/helpers')
+const CONFIG_FILE = "compiiile.config.js"
 
-const devCommandDescription = "launch development server"
-
-// This allows us to serve to localhost by default instead of 127.0.0.1
-dns.setDefaultResultOrder('verbatim')
+import yargs from "yargs/yargs"
+import { hideBin } from "yargs/helpers"
 
 /*
  Order of options by priority:
@@ -23,94 +22,79 @@ dns.setDefaultResultOrder('verbatim')
  2. user-defined config in dedicated file
  3. default config as fallback
  */
+let configFromFile = {}
+try {
+	configFromFile = (await import(path.join(source, CONFIG_FILE))).default
+} catch {
+	// This means that no config file was provided: getting parameters from script parameters instead
+}
+
 const argv = yargs(hideBin(process.argv))
-    .parserConfiguration({
-        'deep-merge-config': true
-    })
-    .config({
-        extends: path.join(source, CONFIG_FILE)
-    })
-    .config({
-        dest: `${DEST_FOLDER}/dist`,
-    })
-    .command("dev", devCommandDescription)
-    .command("build", "build")
-    .command("preview", "preview")
-    .help()
-    .argv
+	.parserConfiguration({
+		"deep-merge-config": true
+	})
+	.config(configFromFile)
+	.command("dev", "launch development server")
+	.command("build", "build")
+	.command("preview", "preview")
+	.help().argv
 
+const IS_DEV = argv._.length === 0 || argv._.includes("dev")
+const IS_BUILD = argv._.includes("build")
+const IS_PREVIEW = argv._.includes("preview")
 
-const IS_DEV = argv._.length === 0 || argv._.includes('dev')
-const IS_BUILD = argv._.includes('build')
-const IS_PREVIEW = argv._.includes('preview')
+process.env.VITE_COMPIIILE_SITE_URL = argv.siteUrl ?? ""
 
+process.env.VITE_COMPIIILE_TITLE = argv.title ?? ""
+process.env.VITE_COMPIIILE_DESCRIPTION = argv.description ?? ""
 
-;(async () => {
-    process.env.COMPIIILE_SOURCE = source
+// Handling logo and favicon
+process.env.VITE_COMPIIILE_LOGO = null
 
-    const viteConfig = {
-        configFile: path.resolve(__dirname, "client/vite.config.js"),
-        root: path.resolve(__dirname, "client"),
-        server: {
-            port: 3000,
-            host: 'localhost'
-        },
+const publicDir = path.resolve(source, "./.compiiile/public")
 
-        build: {
-            outDir: path.join(source, argv.dest),
-            emptyOutDir: true
-        },
+if (argv.logo) {
+	try {
+		cpSync(new URL("../.compiiile/public", import.meta.url).pathname, publicDir, { recursive: true })
+		copyFileSync(path.resolve(source, argv.logo), path.resolve(publicDir, "favicon.png"))
+		// Set the logo to be displayed on the top bar if we were able to copy
+		process.env.VITE_COMPIIILE_LOGO = argv.logo
+	} catch (e) {
+		console.log(e)
+		console.error("Could not load provided logo: set a relative url from the current folder")
+	}
+}
 
-        preview: {
-            port: 8080,
-            open: true
-        }
-    }
+const astroConfig = {
+	root: new URL("../.compiiile", import.meta.url).pathname,
+	srcDir: new URL("../.compiiile/src", import.meta.url).pathname,
+	outDir: path.join(source, argv.dest || ".compiiile/dist"),
+	...(argv.logo ? { publicDir } : {}),
+	integrations: [vue({ appEntrypoint: "/src/app.js" }), mdx()],
+	vite: {
+		plugins: [compiiile()],
+		resolve: {
+			alias: {
+				"@source": source
+			}
+		}
+	},
+	markdown: markdownConfig
+}
 
-    process.env.VITE_COMPIIILE_SITE_URL = argv.siteUrl ?? ''
+const NODE_ENV_DEVELOPMENT = "development"
+const NODE_ENV_PRODUCTION = "production"
 
-    process.env.VITE_COMPIIILE_TITLE = argv.title ?? ''
-    process.env.VITE_COMPIIILE_DESCRIPTION = argv.description ?? ''
+if (IS_DEV) {
+	process.env.NODE_ENV = NODE_ENV_DEVELOPMENT
 
-    // Handling logo and favicon
-    process.env.VITE_COMPIIILE_LOGO = null
-    if(argv.logo)  {
-        try {
-            copyFileSync(path.resolve(source, argv.logo), path.resolve(__dirname, "./client/public/favicon.png"))
-            // Set the logo to be displayed on the top bar if we were able to copy
-            process.env.VITE_COMPIIILE_LOGO = argv.logo
-        } catch (e) {
-            console.log(e)
-            console.error("Could not load provided logo: set a relative url from the current folder")
-        }
-    } else {
-        // Using default favicon if a logo is not provided
-        copyFileSync(path.resolve(__dirname, "./client/src/assets/logo.png"), path.resolve(__dirname, "./client/public/favicon.png"))
-    }
+	await dev(astroConfig)
+} else if (IS_BUILD) {
+	process.env.NODE_ENV = NODE_ENV_PRODUCTION
 
+	await build(astroConfig)
+} else if (IS_PREVIEW) {
+	process.env.NODE_ENV = NODE_ENV_PRODUCTION
 
-    if (IS_DEV) {
-        process.env.NODE_ENV = "development"
-
-        const server = await createServer(viteConfig)
-
-        await server.listen()
-
-        server.printUrls()
-    } else if (IS_BUILD) {
-        process.env.NODE_ENV = "production"
-
-        const publicImagesDirectory = path.resolve(__dirname, `./client/public/${config.publicImagesDirectoryName}`)
-        if (existsSync(publicImagesDirectory)) {
-            readdirSync(publicImagesDirectory).forEach(f => rmSync(`${publicImagesDirectory}/${f}`))
-        } else {
-            mkdirSync(publicImagesDirectory)
-        }
-
-        await build(viteConfig)
-    } else if (IS_PREVIEW) {
-        process.env.NODE_ENV = "production"
-
-        await preview(viteConfig)
-    }
-})()
+	await preview(astroConfig)
+}

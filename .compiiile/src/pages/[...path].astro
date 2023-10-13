@@ -1,0 +1,55 @@
+---
+import WorkspaceLayout from "../layouts/WorkspaceLayout.astro"
+import ContentWrapper from "../components/ContentWrapper.vue"
+import { routeList } from "virtual:compiiile"
+import SlidesLayout from "../layouts/SlidesLayout.astro";
+
+export async function getStaticPaths() {
+    const markdownFiles = await Astro.glob('@source/**/*.{md,mdx}')
+
+    return routeList.map(route => {
+        const md = markdownFiles.find(post => post.file === `${process.cwd()}/${route.fullPath}`)
+
+        return {
+            params: {
+                path: route.path === "/" ? undefined : route.path
+            },
+            props: {
+                name: route.name,
+                md,
+                asSlides: !!route.meta.asSlides,
+                uuid: route.name,
+                title: route.meta.title,
+                description: route.meta.description || ""
+            }
+        }
+    })
+}
+
+const {path} = Astro.params;
+const {name, title, description} = Astro.props
+
+const {Content} = Astro.props.md
+const {asSlides} = Astro.props
+
+const tableOfContent = Astro.props.md.getHeadings()
+---
+
+{asSlides ?
+<SlidesLayout title={ title } description={ description }>
+    <div class="slides-content">
+        <Content />
+    </div>
+</SlidesLayout>
+
+    :
+
+<WorkspaceLayout title={ title } description={ description } isNotFoundPage={ false }>
+    <ContentWrapper name={name} tableOfContent={tableOfContent}>
+        <Content/>
+    </ContentWrapper>
+</WorkspaceLayout>
+    }
+
+
+

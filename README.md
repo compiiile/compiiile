@@ -18,21 +18,23 @@ That's what Compiiile does. And it does it hassle-free !
 
 ## Features
 
-- [x]  📦  **No config required, everything just works out of the box, without changing your files** (resolves images and relative links (cross-references), print-ready rendering)
-- [x]  🌱 Available everywhere with static files deployment: just host it somewhere and access it in any browser on your computer, phone or whatever you are using
-- [x] :link: Quick access to your files via the navbar and links to the previous and next file (with table of content generation)
-- [x] :tv: Display some files as slides
-- [x] :mag: **Full-text quick search with content preview**
-- [x] :bulb: Can serve as knowledge base
-- [x] :wrench: Customizable by env variables or config file, it's up to you
-- [x] :star2: You get it, it simply does the job, period.
+-   [x] 📦 **No config required, everything just works out of the box, without changing your files** (resolves images and relative links (cross-references), print-ready rendering)
+-   [x] 🌱 Available everywhere with static files deployment: just host it somewhere and access it in any browser on your computer, phone or whatever you are using
+-   [x] :link: Quick access to your files via the navbar and links to the previous and next file (with table of content generation)
+-   [x] :tv: Display some files as slides
+-   [x] :mag: **Full-text quick search with content preview**
+-   [x] :zap: Hot-reload content preview as you edit it
+-   [x] :tada: Supports MDX files
+-   [x] :bulb: Can serve as knowledge base
+-   [x] :wrench: Customizable by env variables or config file, it's up to you
+-   [x] :star2: You get it, it simply does the job, period.
 
 ### What Compiiile isn't
 
-- It's not a markdown editor, there are already plenty available, just choose the one that works best for you, even the simplest text editor will do.
-- It's not like VuePress, VitePress, Docusaurus or Notion. Compiiile's goal is to stay simple and stupidly easy without any configuration.
+-   It's not a markdown editor, there are already plenty available, just choose the one that works best for you, even the simplest text editor will do.
+-   It's not like VuePress, VitePress, Docusaurus or Notion. Compiiile's goal is to stay simple and stupidly easy without any configuration.
 
-> The goal is to help people rely purely on a **language** (*markdown*), not on *any* platform.
+> The goal is to help people rely purely on a **language** (_markdown_), not on _any_ platform.
 
 ## Installation
 
@@ -76,9 +78,9 @@ Et voilà, you should be able to preview your files in your browser :tada:.
 
 Once installed, 3 commands are available to see your beautiful markdown files :eyes::
 
-- `compiiile dev` : creates a web server to check your markdown files (alias to only `compiiile`)
-- `compiiile build` : builds all the files for you to serve them production-ready
-- `compiiile preview` : preview your production-ready build
+-   `compiiile dev` : creates a web server to check your markdown files (alias to only `compiiile`)
+-   `compiiile build` : builds all the files for you to serve them production-ready
+-   `compiiile preview` : preview your production-ready build
 
 You can run the command you want in your terminal while being in the desired folder.
 
@@ -87,11 +89,11 @@ To use these commands inside a javascript project, you just have to add these co
 
 ```json
 {
-  "scripts": {
-    "dev": "compiiile dev",
-    "build": "compiiile build",
-    "preview": "compiiile preview"
-  }
+	"scripts": {
+		"dev": "compiiile dev",
+		"build": "compiiile build",
+		"preview": "compiiile preview"
+	}
 }
 ```
 
@@ -115,7 +117,6 @@ file:
 ---
 asSlides: true
 ---
-
 ```
 
 If you are not acquainted with frontmatter, it's just some file-specific parameters that you can put at the very
@@ -126,17 +127,17 @@ By adding the frontmatter parameter, the page will directly open up as slides.
 To separate your slides, just separate the content of your markdown with:
 
 ```md
-
 ---
-
 ```
 
 > There must be an empty line before and after the `---`
 
+:star2: You can make your slides print-ready by adding the `print-pdf` query parameter to your page, like: `https://compiiile.me/s/slides-preview?print-pdf`.
+
 Other frontmatter keys will be handled:
 
-- `title`: set the title to be displayed in the navbar and for SEO
-- `description`: set the description for SEO
+-   `title`: set the title to be displayed in the navbar and for SEO
+-   `description`: set the description for SEO
 
 ### Routing
 
@@ -146,13 +147,13 @@ The home page of Compiiile (`/`) points to a `README.md` file located at the roo
 
 Here is the list of parameters that you can set to customize Compiiile (none are required):
 
-| Parameter     | Type    | Description                                                                                       |
-|---------------|---------|---------------------------------------------------------------------------------------------------|
-| `title`       | `string` | The title to display on the top-left of the User Interface                                        |
-| `description` | `string` | The description that is rendered by default for the SEO                                           |
-| `logo`        | `string` | The relative path of the logo to display in the TopBar and as favicon                             |
-| `dest`        | `string` | The folder in which to build files, defaults to `./.compiiile/dist`                               |
-| `siteUrl`        | `string` | The url of the website in production (without trailing slash), used for the SEO tag `og:image` |
+| Parameter     | Type     | Description                                                                                    |
+| ------------- | -------- | ---------------------------------------------------------------------------------------------- |
+| `title`       | `string` | The title to display on the top-left of the User Interface                                     |
+| `description` | `string` | The description that is rendered by default for the SEO                                        |
+| `logo`        | `string` | The relative path of the logo to display in the TopBar and as favicon                          |
+| `dest`        | `string` | The folder in which to build files, defaults to `./.compiiile/dist`                            |
+| `siteUrl`     | `string` | The url of the website in production (without trailing slash), used for the SEO tag `og:image` |
 
 You can use these parameters in 2 ways:
 
@@ -174,21 +175,78 @@ root of your folder.
 This should export an object, like in this example that shows common use cases :
 
 ```js
-module.exports = {
-    title: "Compiiile",
-    logo: "./my-logo.png",
-    dest: "my-custom-build-folder"
+export default {
+	title: "Compiiile",
+	logo: "./my-logo.png",
+	dest: "my-custom-build-folder"
 }
 ```
 
 > ⚠️ You should bear in mind that script arguments have priority over config file parameters.
 
+## Use MDX
+
+v2 of Compiiile allows you to use MDX files with Vue components.
+
+For it to work, you should install some dependencies in your project folder: `yarn add vue astro fzf` (or `npm install vue astro fzf`).
+
+Let's say we have Vue a component `Test.vue` making an API request and listing results:
+
+```vue
+<template>
+	<div>
+		<h2>Random users fetched from an API:</h2>
+		<ul>
+			<li v-for="user in users">
+				{{ user.name.first }} <span class="uppercase">{{ user.name.last }}</span>
+			</li>
+		</ul>
+	</div>
+</template>
+
+<script>
+	export default {
+		name: "Test",
+		data() {
+			return {
+				users: []
+			}
+		},
+		methods: {
+			async loadUsers() {
+				const res = await fetch("https://randomuser.me/api/?results=10")
+				this.users = (await res.json()).results
+			}
+		},
+		async mounted() {
+			await this.loadUsers()
+		}
+	}
+</script>
+
+<style scoped>
+	.uppercase {
+		text-transform: uppercase;
+	}
+</style>
+```
+
+You can use it your MDX file like so:
+
+```
+import Test from "./Test.vue"
+
+<Test client:load />
+```
+
+You should use [Astro's client directives](https://docs.astro.build/en/reference/directives-reference/#client-directives) to load your component's script.
+
 ## Special thanks
 
-- [markdown-it](https://github.com/markdown-it/markdown-it) for making markdown processing a nice experience
-- [fzf-for-js](https://github.com/ajitid/fzf-for-js) for the search feature
-- [reveal.js](https://revealjs.com/) for displaying markdown files as slides
-- [Vite](https://vitejs.dev/) for helping modern frontend developers keep their mental health sane :heart:
+-   [Astro](https://github.com/withastro/astro) for enabling us developers to make lightweight websites
+-   [fzf-for-js](https://github.com/ajitid/fzf-for-js) for the search feature
+-   [reveal.js](https://revealjs.com/) for displaying markdown files as slides
+-   [Vite](https://vitejs.dev/) for helping modern frontend developers keep their mental health sane :heart:
 
 ## Contributing
 
@@ -198,9 +256,9 @@ You can read more about it and the roadmap in the [dedicated contributing guide]
 
 ## Support
 
-Open-source is a wonderful thing, so please if you found this project useful or use it as a part of a commercial project, consider making a donation.
-You can do it either via github donations or via [my ko-fi page](https://ko-fi.com/alban_crepel) where you can make a one-time or monthly donation by paypal or card.
-This allows you to use Compiiile as a pay-what-you-want service if you are not part of a non-profit project.
+Open-source is a wonderful thing, so please if you found this project useful or use it as a part of a commercial project, **consider making a donation**.
+You can do it either via [GitHub donations](https://github.com/sponsors/AlbanCrepel) or via [my ko-fi page](https://ko-fi.com/alban_crepel) where you can make a one-time or monthly donation by PayPal or card.
+This allows you to use Compiiile as a **pay-what-you-want** service if you are not part of a non-profit project. But if you are **making any revenue** using this project or even use it as a trainer, **making a donation would be expected**.
 You can always contact me for a custom use of this project and any licence issue.
 
 Thank you :heart:
