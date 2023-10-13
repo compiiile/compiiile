@@ -30,9 +30,7 @@
 		"reveal.js": "^4.6.1",
 		"vite": "^4.0.0",
 		"vue": "^3.3.4",
-		"yargs": "^17.7.2"
-	},
-	"devDependencies": {
+		"yargs": "^17.7.2",
 		"@babel/core": "^7.0.0-0",
 		"@babel/eslint-parser": "^7.22.15",
 		"eslint": "^8.51.0",
