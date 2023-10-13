@@ -35,7 +35,7 @@
 		</template>
 
 		<template v-else>
-			<a :href="route.path" class="link" :class="{ 'link-active': route.path === currentPath }">
+			<a :href="route.path" class="link" :class="[{ 'link-active': route.path === currentPath }, currentPath, route.path]">
 				<svg
 					v-if="!route.meta.asSlides"
 					class="file-icon"
