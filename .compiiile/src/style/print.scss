@@ -6,6 +6,18 @@
 		--top-bar-height: 20px;
 	}
 
+	body {
+		padding:1cm !important;
+	}
+
+	html.print-pdf body {
+		padding: 0cm !important;
+	}
+
+	@page {
+		margin: 0 !important;
+	}
+
 	.no-print,
 	.header-anchor {
 		display: none !important;
