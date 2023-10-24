@@ -68,7 +68,7 @@ export default class {
 				const isDirectory = fs.statSync(filePath).isDirectory()
 				const uuid = uuidv4()
 				const fileName = path.parse(filePath).name
-				const isReadmeFile = !isDirectory && filePath.toLowerCase() === "readme.md"
+				const isReadmeFile = !isDirectory && filePath.toLowerCase().match(/^readme\.mdx?$/)
 
 				let filesTreeItem = new FilesTreeItem(uuid, fileName)
 
