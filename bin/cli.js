@@ -84,11 +84,14 @@ const astroConfig = {
 		}
 	},
 	markdown: markdownConfig,
+	output: "static",
 	...(configFromFile.astroConfig ?? {})
 }
 
 const NODE_ENV_DEVELOPMENT = "development"
 const NODE_ENV_PRODUCTION = "production"
+
+process.env.VITE_COMPIIILE_OUTPUT = astroConfig.output
 
 if (IS_DEV) {
 	process.env.NODE_ENV = NODE_ENV_DEVELOPMENT

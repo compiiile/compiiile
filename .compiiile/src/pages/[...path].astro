@@ -4,8 +4,6 @@ import ContentWrapper from "../components/ContentWrapper.vue"
 import { routeList } from "virtual:compiiile"
 import SlidesLayout from "../layouts/SlidesLayout.astro";
 
-//export const prerender = true;
-
 export async function getStaticPaths() {
     const markdownFiles = await Astro.glob('@source/**/*.{md,mdx}')
 
@@ -28,13 +26,47 @@ export async function getStaticPaths() {
     })
 }
 
-const {path} = Astro.params;
-const {name, title, description} = Astro.props
+let { path } = Astro.params;
 
-const {Content} = Astro.props.md
-const {asSlides} = Astro.props
+let props = Astro.props
 
-const tableOfContent = Astro.props.md.getHeadings()
+// If the server output is used (in the case of a custom compiiile config), we have to generate routes another way because `getStaticPaths` will be ignored.
+if(import.meta.env.VITE_COMPIIILE_OUTPUT !== "static"){
+    if(path){
+        path = `/${ path }`
+    }
+
+    const markdownFiles = await Astro.glob('@source/**/*.{md,mdx}')
+
+    const routes = routeList.map(route => {
+        const md = markdownFiles.find(post => post.file === `${process.cwd()}/${route.fullPath}`)
+
+        return {
+            params: {
+                path: route.path === "/" ? undefined : route.path
+            },
+            props: {
+                name: route.name,
+                md,
+                asSlides: !!route.meta.asSlides,
+                uuid: route.name,
+                title: route.meta.title,
+                description: route.meta.description || ""
+            }
+        }
+    })
+
+    const page = routes.find((route) => route.params.path === path);
+    if (!page) return Astro.redirect("/404");
+    props = page.props
+}
+
+const {name, title, description} = props
+
+const {Content} = props.md
+const {asSlides} = props
+
+const tableOfContent = props.md.getHeadings()
 ---
 
 {asSlides ?
