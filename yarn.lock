@@ -628,6 +628,21 @@
   resolved "https://registry.npmjs.org/@eslint/js/-/js-8.51.0.tgz"
   integrity sha512-HxjQ8Qn+4SI3/AFv6sOrDB+g6PpUTDwSJiQqOrnneEk8L71161srI9gjzzZvYVbzHiVg/BvcH95+cK/zfIt4pg==
 
+"@fontsource-variable/archivo@^5.0.16":
+  version "5.0.16"
+  resolved "https://registry.yarnpkg.com/@fontsource-variable/archivo/-/archivo-5.0.16.tgz#6c94e9d91113ddc70487ce865c60840a87351ecc"
+  integrity sha512-VHo9pAKfpUHM0VcrbgAh77U6CaDT+4yqGXg3NHjK/psMABZsev3zAe/krrcssJmXPs/XvEFj4AGp0TdJ6RbjMA==
+
+"@fontsource-variable/dm-sans@^5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@fontsource-variable/dm-sans/-/dm-sans-5.0.3.tgz#4c1f6f7e4188ffa90c14b951640360d17a314f4a"
+  integrity sha512-MrdN9qZ95gVqcSuOXMnbCuYS2TtL1mOiUqTaslP05rkZUi9LzrvbXsEGBCODVjJi9MH27HuKKJjOdWK0OeuIlw==
+
+"@fontsource-variable/jetbrains-mono@^5.0.18":
+  version "5.0.18"
+  resolved "https://registry.yarnpkg.com/@fontsource-variable/jetbrains-mono/-/jetbrains-mono-5.0.18.tgz#313aeb714af9a8af2550fbf3dc7ef5a77f3d9fd0"
+  integrity sha512-8qyD5zmaB4X9EQsGViwHGcQPjOGsHGxyJ+DuAxkXVyP+/Mzb5B9kYuG8+8a3vX/y0mZ81CUpbUWp0ik89c3dQw==
+
 "@humanwhocodes/config-array@^0.11.11":
   version "0.11.11"
   resolved "https://registry.npmjs.org/@humanwhocodes/config-array/-/config-array-0.11.11.tgz"

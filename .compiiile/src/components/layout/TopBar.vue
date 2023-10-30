@@ -3,8 +3,15 @@
 		<div class="centered-layout">
 			<div class="top-bar-content">
 				<hamburger-button />
-				<a href="/" class="home-link">
-					<img v-if="isLogoDefined" src="/favicon.png" :width="30" :height="30" class="logo" alt="logo" />
+				<a :href="base" class="home-link">
+					<img
+						v-if="isLogoDefined"
+						:src="`${base}/favicon.png`"
+						:width="30"
+						:height="30"
+						class="logo"
+						alt="logo"
+					/>
 					<h1 class="title">{{ title }}</h1>
 				</a>
 				<search-bar />
@@ -27,6 +34,9 @@
 			},
 			isLogoDefined() {
 				return site.logo !== undefined
+			},
+			base() {
+				return import.meta.env.BASE_URL
 			}
 		}
 	}

@@ -1,10 +1,8 @@
 ---
 import WorkspaceLayout from "../layouts/WorkspaceLayout.astro"
 import ContentWrapper from "../components/ContentWrapper.vue"
-import { routeList } from "virtual:compiiile"
+import {routeList} from "virtual:compiiile"
 import SlidesLayout from "../layouts/SlidesLayout.astro";
-
-export const prerender = true;
 
 export async function getStaticPaths() {
     const markdownFiles = await Astro.glob('@source/**/*.{md,mdx}')
@@ -12,9 +10,15 @@ export async function getStaticPaths() {
     return routeList.map(route => {
         const md = markdownFiles.find(post => post.file === `${process.cwd()}/${route.fullPath}`)
 
+        let routePath = route.path
+
+        if (routePath !== import.meta.env.BASE_URL) {
+            routePath = routePath.substring(import.meta.env.BASE_URL.length)
+        }
+
         return {
             params: {
-                path: route.path === "/" ? undefined : route.path
+                path: routePath === import.meta.env.BASE_URL ? undefined : routePath
             },
             props: {
                 name: route.name,
@@ -28,25 +32,25 @@ export async function getStaticPaths() {
     })
 }
 
-const {path} = Astro.params;
-const {name, title, description} = Astro.props
+let {path} = Astro.params;
+
+const {name, title, description, asSlides} = Astro.props
 
 const {Content} = Astro.props.md
-const {asSlides} = Astro.props
 
 const tableOfContent = Astro.props.md.getHeadings()
 ---
 
 {asSlides ?
-<SlidesLayout title={ title } description={ description }>
+<SlidesLayout title={title} description={description}>
     <div class="slides-content">
-        <Content />
+        <Content/>
     </div>
 </SlidesLayout>
 
     :
 
-<WorkspaceLayout title={ title } description={ description } isNotFoundPage={ false }>
+<WorkspaceLayout title={title} description={description} isNotFoundPage={false}>
     <ContentWrapper name={name} tableOfContent={tableOfContent}>
         <Content/>
     </ContentWrapper>
