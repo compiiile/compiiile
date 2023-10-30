@@ -80,7 +80,11 @@ const astroConfig = {
 		},
 		server: {
 			fs: {
-				allow: [source, new URL("../", import.meta.url).pathname]
+				allow: [
+					source,
+					new URL("../", import.meta.url).pathname,
+					...(configFromFile["vite.server.fs.allow"] ?? [])
+				]
 			}
 		}
 	},
