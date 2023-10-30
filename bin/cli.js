@@ -70,11 +70,7 @@ const astroConfig = {
 	srcDir: new URL("../.compiiile/src", import.meta.url).pathname,
 	outDir: path.join(source, argv.dest || ".compiiile/dist"),
 	...(argv.logo ? { publicDir } : {}),
-	integrations: [
-		vue({ appEntrypoint: "/src/app.js" }),
-		mdx(),
-		...(configFromFile.integrations ?? [])
-	],
+	integrations: [vue({ appEntrypoint: "/src/app.js" }), mdx(), ...(configFromFile.integrations ?? [])],
 	vite: {
 		plugins: [compiiile()],
 		resolve: {
@@ -84,11 +80,19 @@ const astroConfig = {
 		}
 	},
 	markdown: markdownConfig,
+	output: "static",
+	base: "/",
+	trailingSlash: "never",
 	...(configFromFile.astroConfig ?? {})
 }
 
 const NODE_ENV_DEVELOPMENT = "development"
 const NODE_ENV_PRODUCTION = "production"
+
+process.env.VITE_COMPIIILE_BASE = astroConfig.base
+if (process.env.VITE_COMPIIILE_BASE !== "/" && process.env.VITE_COMPIIILE_BASE.endsWith("/")) {
+	process.env.VITE_COMPIIILE_BASE = process.env.VITE_COMPIIILE_BASE.slice(0, -1)
+}
 
 if (IS_DEV) {
 	process.env.NODE_ENV = NODE_ENV_DEVELOPMENT
