@@ -1,7 +1,7 @@
 {
 	"name": "compiiile",
 	"private": false,
-	"version": "2.0.10-beta.1",
+	"version": "2.1.0",
 	"description": "The most convenient way to render a folder containing markdown files. Previewing and searching markdown files has never been that easy.",
 	"author": "AlbanCrepel <alban.crepel@gmail.com>",
 	"license": "GPL-3.0-only",
