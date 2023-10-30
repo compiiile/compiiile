@@ -24,7 +24,8 @@ export default class {
 			description:
 				process.env.VITE_COMPIIILE_DESCRIPTION !== "" ? process.env.VITE_COMPIIILE_DESCRIPTION : undefined,
 			logo: process.env.VITE_COMPIIILE_LOGO !== "null" ? process.env.VITE_COMPIIILE_LOGO : undefined,
-			siteUrl: process.env.VITE_COMPIIILE_SITE_URL !== "" ? process.env.VITE_COMPIIILE_SITE_URL : undefined
+			siteUrl: process.env.VITE_COMPIIILE_SITE_URL !== "" ? process.env.VITE_COMPIIILE_SITE_URL : undefined,
+			base: process.env.VITE_COMPIIILE_BASE
 		}
 	}
 
@@ -34,10 +35,19 @@ export default class {
 			.split("/")
 			.map((val) => slugify(val, { lower: true }))
 			.join("/")
+
 		if (sluggifiedPath === "readme") {
+			if (process.env.VITE_COMPIIILE_BASE !== "/") {
+				return process.env.VITE_COMPIIILE_BASE
+			}
+
 			return "/"
 		}
-		return `/${asSlides ? this.SLIDES_BASE_PATH : this.WORKSPACE_BASE_PATH}/${sluggifiedPath}${hash}`
+		return `${
+			process.env.VITE_COMPIIILE_BASE.endsWith("/")
+				? process.env.VITE_COMPIIILE_BASE.slice(0, -1)
+				: process.env.VITE_COMPIIILE_BASE
+		}/${asSlides ? this.SLIDES_BASE_PATH : this.WORKSPACE_BASE_PATH}/${sluggifiedPath}${hash}`
 	}
 
 	async scanDirectoryRecursively(directoryPath) {

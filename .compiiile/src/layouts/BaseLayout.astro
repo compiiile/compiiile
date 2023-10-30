@@ -1,17 +1,19 @@
 ---
-import '../style/index.scss';
-import {SEO} from "astro-seo";
+import '../utils/styles.js'
+import {SEO} from "astro-seo"
 const {title, description, isNotFoundPage} = Astro.props
 import { site } from "virtual:compiiile"
 const titleTemplate = site.title ? `%s | ${ site.title }` : ''
 const siteUrl = site.siteUrl || Astro.url.origin
+const faviconBaseUrl = `${ site.base }/favicon.png`
+const faviconAbsoluteUrl = `${ siteUrl }/${ faviconBaseUrl }`
 ---
 
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="/favicon.png"/>
+    <link rel="icon" type="image/png" href={ faviconBaseUrl }/>
     {isNotFoundPage ? '' :
     <SEO title={title}
          description={description}
@@ -21,7 +23,7 @@ const siteUrl = site.siteUrl || Astro.url.origin
                  title: title,
                  type: "website",
                  description: description,
-                 image: `${ siteUrl }/favicon.png`,
+                 image: faviconAbsoluteUrl,
              }
          }}
     />}

@@ -11,7 +11,7 @@
 	},
 	"scripts": {
 		"dev": "node ./bin/cli.js dev",
-		"build": "node ./bin/cli.js build",
+		"build": "node ./bin/cli.js build && node ./build.js",
 		"preview": "node ./bin/cli.js preview",
 		"lint": "eslint --ext .js,.vue,.ts --ignore-path .gitignore --fix .compiiile bin",
 		"format": "prettier . --write"
@@ -25,6 +25,9 @@
 		"@astrojs/vue": "^3.0.1",
 		"@babel/core": "^7.0.0-0",
 		"@babel/eslint-parser": "^7.22.15",
+		"@fontsource-variable/archivo": "^5.0.16",
+		"@fontsource-variable/dm-sans": "^5.0.3",
+		"@fontsource-variable/jetbrains-mono": "^5.0.18",
 		"astro": "^3.3.0",
 		"astro-decap-cms-oauth": "^0.2.6",
 		"astro-seo": "^0.8.0",
