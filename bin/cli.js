@@ -77,6 +77,11 @@ const astroConfig = {
 			alias: {
 				"@source": source
 			}
+		},
+		server: {
+			fs: {
+				allow: [source, new URL("../", import.meta.url).pathname]
+			}
 		}
 	},
 	markdown: markdownConfig,
