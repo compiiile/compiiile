@@ -5,7 +5,11 @@ const {title, description, isNotFoundPage} = Astro.props
 import { site } from "virtual:compiiile"
 const titleTemplate = site.title ? `%s | ${ site.title }` : ''
 const siteUrl = site.siteUrl || Astro.url.origin
-const faviconBaseUrl = `${ site.base }/favicon.png`
+let siteBase = site.base
+if(!siteBase.endsWith("/")){
+    siteBase += "/"
+}
+const faviconBaseUrl = `${ siteBase }favicon.png`
 const faviconAbsoluteUrl = `${ siteUrl }/${ faviconBaseUrl }`
 ---
 
@@ -15,18 +19,18 @@ const faviconAbsoluteUrl = `${ siteUrl }/${ faviconBaseUrl }`
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href={ faviconBaseUrl }/>
     {isNotFoundPage ? '' :
-    <SEO title={title}
-         description={description}
-         titleTemplate={titleTemplate}
-         openGraph={{
-             basic: {
-                 title: title,
-                 type: "website",
-                 description: description,
-                 image: faviconAbsoluteUrl,
-             }
-         }}
-    />}
+            <SEO title={title}
+                 description={description}
+                 titleTemplate={titleTemplate}
+                 openGraph={{
+                     basic: {
+                         title: title,
+                         type: "website",
+                         description: description,
+                         image: faviconAbsoluteUrl,
+                     }
+                 }}
+            />}
 </head>
 <body>
 <slot></slot>
