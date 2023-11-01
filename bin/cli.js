@@ -16,6 +16,9 @@ const CONFIG_FILE = "compiiile.config.js"
 import yargs from "yargs/yargs"
 import { hideBin } from "yargs/helpers"
 
+import { readFile } from "fs/promises"
+const packageJSON = JSON.parse(await readFile(new URL("../package.json", import.meta.url)))
+
 /*
  Order of options by priority:
  1. command arguments
@@ -33,11 +36,13 @@ const argv = yargs(hideBin(process.argv))
 	.parserConfiguration({
 		"deep-merge-config": true
 	})
+	.alias("v", "version")
 	.config(configFromFile)
 	.command("dev", "launch development server")
 	.command("build", "build")
 	.command("preview", "preview")
-	.help().argv
+	.help()
+	.version(packageJSON.version).argv
 
 const IS_DEV = argv._.length === 0 || argv._.includes("dev")
 const IS_BUILD = argv._.includes("build")

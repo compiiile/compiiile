@@ -6,7 +6,7 @@
 				<a :href="base" class="home-link">
 					<img
 						v-if="isLogoDefined"
-						:src="`${base}/favicon.png`"
+						:src="`${base}favicon.png`"
 						:width="30"
 						:height="30"
 						class="logo"
@@ -36,7 +36,13 @@
 				return site.logo !== undefined
 			},
 			base() {
-				return import.meta.env.BASE_URL
+				let base = import.meta.env.BASE_URL
+
+				if (!base.endsWith("/")) {
+					base += "/"
+				}
+
+				return base
 			}
 		}
 	}
