@@ -70,6 +70,17 @@ if (argv.logo) {
 	}
 }
 
+// Making sure fonts are accessible by vite's server
+import { createRequire } from "node:module"
+const require = createRequire(import.meta.url)
+const pathName = require.resolve("@fontsource-variable/archivo")
+import { packageDirectory } from "pkg-dir"
+const viteServerFsAllowList = [source, new URL("../", import.meta.url).pathname, path.resolve(pathName, "../../")]
+const packageDir = await packageDirectory()
+if (packageDir) {
+	viteServerFsAllowList.push(packageDir)
+}
+
 const astroConfig = {
 	root: new URL("../.compiiile", import.meta.url).pathname,
 	srcDir: new URL("../.compiiile/src", import.meta.url).pathname,
@@ -85,11 +96,7 @@ const astroConfig = {
 		},
 		server: {
 			fs: {
-				allow: [
-					source,
-					new URL("../", import.meta.url).pathname,
-					...(configFromFile["vite.server.fs.allow"] ?? [])
-				]
+				allow: [...viteServerFsAllowList, ...(configFromFile["vite.server.fs.allow"] ?? [])]
 			}
 		}
 	},
