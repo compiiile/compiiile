@@ -84,7 +84,7 @@ export default class {
 
 				if (isDirectory) {
 					filesTreeItem.isDirectory = true
-					filesTreeItem.children = this.scanDirectoryRecursively(filePath)
+					filesTreeItem.children = await this.scanDirectoryRecursively(filePath)
 				}
 
 				if (path.extname(file).match(/^\.mdx?$/) || filesTreeItem?.children.length > 0) {
