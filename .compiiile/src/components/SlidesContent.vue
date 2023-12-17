@@ -1,5 +1,5 @@
 <template>
-	<div v-show="loaded">
+	<div ref="slidesDeckWrapper" class="slides-deck-wrapper">
 		<slot></slot>
 	</div>
 </template>
@@ -30,6 +30,8 @@
 				slideNumber: "c/t"
 			})
 
+			this.$refs.slidesDeckWrapper.style.opacity = 1
+
 			Reveal.slide(new URLSearchParams(window.location.search).get("slide") || 0)
 
 			Reveal.on("slidechanged", (event) => {
@@ -46,5 +48,9 @@
 
 	:global(#app) {
 		height: 100%;
+	}
+
+	.slides-deck-wrapper {
+		opacity: 0;
 	}
 </style>

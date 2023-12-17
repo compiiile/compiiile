@@ -134,8 +134,10 @@
 
 		h2,
 		h3,
-		h4 {
-			margin: 10px 0;
+		h4,
+		h5,
+		h6 {
+			margin: 20px 0 10px;
 		}
 
 		h2 {
