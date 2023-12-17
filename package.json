@@ -7,7 +7,7 @@
 	"license": "GPL-3.0-only",
 	"type": "module",
 	"bin": {
-		"compiiile-test": "bin/cli.js"
+		"compiiile": "bin/cli.js"
 	},
 	"scripts": {
 		"dev": "node ./bin/cli.js dev",
