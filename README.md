@@ -45,9 +45,9 @@ You can install Compiiile either globally or per-project:
 Open a terminal and type one of these commands, whether using [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/) depending on which package manager you are using:
 
 ```bash
-yarn global add compiiile # install globally with yarn
+yarn global add @compiiile/compiiile # install globally with yarn
 # or
-npm install -g compiiile # install globally with npm
+npm install -g @compiiile/compiiile # install globally with npm
 ```
 
 ### Per-project
@@ -55,9 +55,9 @@ npm install -g compiiile # install globally with npm
 Open a terminal inside the folder containing your markdown files. Then, add Compiiile as a local command using yarn or npm:
 
 ```bash
-yarn add compiiile # install as a project dependency with yarn
+yarn add @compiiile/compiiile # install as a project dependency with yarn
 # or
-npm install compiiile # install as a project dependency with npm
+npm install @compiiile/compiiile # install as a project dependency with npm
 ```
 
 ## Quick start
@@ -66,7 +66,7 @@ To make yourself an idea and quickly get started using Compiiile, here are some 
 
 ```bash
 mkdir test-compiiile && cd test-compiiile # creating a new folder and go into this folder
-yarn global add compiiile # installing compiiile as global dependency using yarn
+yarn global add @compiiile/compiiile # installing compiiile as global dependency using yarn
 echo '# Test Compiiile\n\n> Here is a blockquote for you\n\n## Your markdown awaits below' > README.md # a first test file
 echo '---\nasSlides: true\n---\n\n# Slide 1\n\n---\n\n# And this is slide 2' > slides.md # a second test file as slides
 compiiile --title="📚 Compiiile" # running Compiiile for these 2 files
@@ -152,6 +152,7 @@ Here is the list of parameters that you can set to customize Compiiile (none are
 | `title`                | `string`   | The title to display on the top-left of the User Interface                                      |
 | `description`          | `string`   | The description that is rendered by default for the SEO                                         |
 | `logo`                 | `string`   | The relative path of the logo to display in the TopBar and as favicon                           |
+| `logoUrl`              | `string`   | The url to go to when clicking on the logo, defaults to the home page if not set                |
 | `dest`                 | `string`   | The folder in which to build files, defaults to `./.compiiile/dist`                             |
 | `siteUrl`              | `string`   | The url of the website in production (without trailing slash), used for the SEO tag `og:image`  |
 | `astroConfig`          | `Object`   | Override [default Astro config](https://docs.astro.build/en/reference/configuration-reference/) |

@@ -3,17 +3,22 @@
 		<div class="centered-layout">
 			<div class="top-bar-content">
 				<hamburger-button />
-				<a :href="base" class="home-link">
-					<img
-						v-if="isLogoDefined"
-						:src="`${base}favicon.png`"
-						:width="30"
-						:height="30"
-						class="logo"
-						alt="logo"
-					/>
-					<h1 class="title">{{ title }}</h1>
-				</a>
+				<span class="home-link-wrapper">
+					<a :href="logoUrl">
+						<img
+							v-if="isLogoDefined"
+							:src="`${base}favicon.png`"
+							:width="30"
+							:height="30"
+							class="logo"
+							alt="logo"
+						/>
+					</a>
+
+					<a :href="base" class="home-link">
+						<h1 class="title">{{ title }}</h1>
+					</a>
+				</span>
 				<search-bar />
 			</div>
 		</div>
@@ -43,6 +48,9 @@
 				}
 
 				return base
+			},
+			logoUrl() {
+				return site.logoUrl ?? this.base
 			}
 		}
 	}
@@ -67,11 +75,14 @@
 		justify-content: space-between;
 	}
 
+	.home-link-wrapper {
+		display: flex;
+		align-items: center;
+	}
+
 	.home-link {
 		color: var(--text-color-base) !important;
 		text-decoration: none;
-		display: flex;
-		align-items: center;
 	}
 
 	.title {
@@ -90,5 +101,6 @@
 	.logo {
 		margin-right: 10px;
 		border-radius: 2px;
+		display: block;
 	}
 </style>
