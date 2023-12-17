@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid"
 import FileListItem from "./FileListItem.js"
 import FilesTreeItem from "./FilesTreeItem.js"
 import RouteListItem from "./RouteListItem.js"
-import { renderMarkdown } from "@astrojs/markdown-remark"
+import { createMarkdownProcessor } from "@astrojs/markdown-remark"
 import markdownConfig from "../markdownConfig.js"
 import { unemojify } from "node-emoji"
 import slugify from "slugify"
@@ -100,16 +100,16 @@ export default class {
 						const markdownContent = fs.readFileSync(filePath, {
 							encoding: "utf8"
 						})
-						const renderedMarkdown = await renderMarkdown(markdownContent, {
-							...markdownConfig,
-							remarkPlugins: []
-						})
+
+						const markdownProcessor = await createMarkdownProcessor(markdownConfig)
+						const renderedMarkdown = await markdownProcessor.render(markdownContent)
+
 						fileListItem.textContent = unemojify(
-							renderedMarkdown.metadata.html
+							renderedMarkdown.code
 								.replace(/<a.*aria-hidden.*>.*?<\/a>|<[^>]*>?/gi, "")
 								.replace(/[\r\n]{2,}/g, "\n")
 						)
-						const meta = renderedMarkdown.vfile.data.matter
+						const meta = renderedMarkdown.metadata.frontmatter
 						fileListItem.title = meta.title || fileName
 						fileListItem.meta = meta
 						fileListItem.meta.title = fileListItem.meta.title || fileListItem.title

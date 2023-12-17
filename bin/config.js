@@ -100,6 +100,9 @@ const astroConfig = {
 	output: "static",
 	base: "/",
 	trailingSlash: "never",
+	devToolbar: {
+		enabled: false
+	},
 	...(configFromFile.astroConfig ?? {})
 }
 
@@ -118,7 +121,8 @@ const run = async (astroConfig) => {
 	if (IS_DEV) {
 		process.env.NODE_ENV = NODE_ENV_DEVELOPMENT
 
-		await dev(astroConfig)
+		const devServer = await dev(astroConfig)
+		devServer.watcher.add([source])
 	} else if (IS_BUILD) {
 		process.env.NODE_ENV = NODE_ENV_PRODUCTION
 
