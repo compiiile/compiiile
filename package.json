@@ -1,5 +1,5 @@
 {
-	"name": "compiiile",
+	"name": "@compiiile/compiiile",
 	"private": false,
 	"version": "2.1.5",
 	"description": "The most convenient way to render a folder containing markdown files. Previewing and searching markdown files has never been that easy.",
@@ -7,7 +7,7 @@
 	"license": "GPL-3.0-only",
 	"type": "module",
 	"bin": {
-		"compiiile": "bin/cli.js"
+		"compiiile-test": "bin/cli.js"
 	},
 	"scripts": {
 		"dev": "node ./bin/cli.js dev",
@@ -18,7 +18,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/AlbanCrepel/compiiile.git"
+		"url": "git+https://github.com/AlbanCrepel/compiiile.git"
 	},
 	"dependencies": {
 		"@astrojs/mdx": "^1.1.2",
@@ -36,6 +36,7 @@
 		"eslint-plugin-vue": "^9.17.0",
 		"fzf": "^0.5.2",
 		"hastscript": "^8.0.0",
+		"mermaid": "^11.0.0-alpha.6",
 		"node-emoji": "^2.1.0",
 		"pkg-dir": "^7.0.0",
 		"prettier": "^3.0.3",
@@ -72,5 +73,11 @@
 			"type": "ko-fi",
 			"url": "https://ko-fi.com/alban_crepel"
 		}
-	]
+	],
+	"bugs": {
+		"url": "https://github.com/AlbanCrepel/compiiile/issues"
+	},
+	"homepage": "https://github.com/AlbanCrepel/compiiile#readme",
+	"main": "build.js",
+	"devDependencies": {}
 }

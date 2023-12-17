@@ -24,6 +24,7 @@ export default class {
 			description:
 				process.env.VITE_COMPIIILE_DESCRIPTION !== "" ? process.env.VITE_COMPIIILE_DESCRIPTION : undefined,
 			logo: process.env.VITE_COMPIIILE_LOGO !== "null" ? process.env.VITE_COMPIIILE_LOGO : undefined,
+			logoUrl: process.env.VITE_COMPIIILE_LOGO_URL !== "" ? process.env.VITE_COMPIIILE_LOGO_URL : undefined,
 			siteUrl: process.env.VITE_COMPIIILE_SITE_URL !== "" ? process.env.VITE_COMPIIILE_SITE_URL : undefined,
 			base: process.env.VITE_COMPIIILE_BASE
 		}

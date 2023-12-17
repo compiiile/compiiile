@@ -4,14 +4,17 @@
 			<div class="top-bar-content">
 				<hamburger-button />
 				<a :href="base" class="home-link">
-					<img
-						v-if="isLogoDefined"
-						:src="`${base}favicon.png`"
-						:width="30"
-						:height="30"
-						class="logo"
-						alt="logo"
-					/>
+                    <a :href="logoUrl">
+                        <img
+                            v-if="isLogoDefined"
+                            :src="`${base}favicon.png`"
+                            :width="30"
+                            :height="30"
+                            class="logo"
+                            alt="logo"
+                        />
+                    </a>
+
 					<h1 class="title">{{ title }}</h1>
 				</a>
 				<search-bar />
@@ -43,7 +46,10 @@
 				}
 
 				return base
-			}
+			},
+            logoUrl(){
+                return site.logoUrl ?? this.base
+            }
 		}
 	}
 </script>

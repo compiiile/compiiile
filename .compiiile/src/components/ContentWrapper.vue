@@ -135,7 +135,7 @@
 		h2,
 		h3,
 		h4 {
-			margin: 10px 0;
+			margin: 20px 0 10px;
 		}
 
 		h2 {
