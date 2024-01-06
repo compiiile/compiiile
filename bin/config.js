@@ -1,5 +1,6 @@
 import { build, dev, preview } from "astro"
 import vue from "@astrojs/vue"
+import { passthroughImageService } from "astro/config"
 import compiiile from "./vitePluginCompiiile/index.js"
 import mdx from "@astrojs/mdx"
 import path from "node:path"
@@ -103,6 +104,9 @@ const astroConfig = {
 	devToolbar: {
 		enabled: false
 	},
+	image: {
+		service: passthroughImageService()
+	},
 	...(configFromFile.astroConfig ?? {})
 }
 
@@ -123,14 +127,15 @@ const run = async (astroConfig) => {
 
 		const devServer = await dev(astroConfig)
 		devServer.watcher.add([source])
+		return devServer
 	} else if (IS_BUILD) {
 		process.env.NODE_ENV = NODE_ENV_PRODUCTION
 
-		await build(astroConfig)
+		return await build(astroConfig)
 	} else if (IS_PREVIEW) {
 		process.env.NODE_ENV = NODE_ENV_PRODUCTION
 
-		await preview(astroConfig)
+		return await preview(astroConfig)
 	}
 }
 
