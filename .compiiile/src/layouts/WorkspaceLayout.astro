@@ -4,7 +4,7 @@ import TopBar from "../components/layout/TopBar.vue";
 import NavBar from "../components/layout/navBar/NavBar.vue";
 import ClientScript from "../components/ClientScript.vue";
 
-const { title, description } = Astro.props
+const { title, description, isNotFoundPage } = Astro.props
 let currentPath = Astro.url.pathname
 if(currentPath.length > 1 && currentPath.endsWith("/")){
     currentPath = currentPath.slice(0, -1)
@@ -12,7 +12,7 @@ if(currentPath.length > 1 && currentPath.endsWith("/")){
 ---
 
 
-<BaseLayout title={ title } description={ description } isNotFoundPage={ true }>
+<BaseLayout title={ title } description={ description } isNotFoundPage={ isNotFoundPage }>
     <div class="page">
         <TopBar client:load />
 
