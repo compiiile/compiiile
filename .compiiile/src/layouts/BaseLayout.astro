@@ -11,6 +11,8 @@ if(!siteBase.endsWith("/")){
 }
 const faviconBaseUrl = `${ siteBase }favicon.png`
 const faviconAbsoluteUrl = `${ siteUrl }/${ faviconBaseUrl }`
+
+const metaDescription = description || site.description
 ---
 
 <html lang="en">
@@ -20,13 +22,13 @@ const faviconAbsoluteUrl = `${ siteUrl }/${ faviconBaseUrl }`
     <link rel="icon" type="image/png" href={ faviconBaseUrl }/>
     {isNotFoundPage ? '' :
             <SEO title={title}
-                 description={description}
+                 description={metaDescription}
                  titleTemplate={titleTemplate}
                  openGraph={{
                      basic: {
                          title: title,
                          type: "website",
-                         description: description,
+                         description: metaDescription,
                          image: faviconAbsoluteUrl,
                      }
                  }}
