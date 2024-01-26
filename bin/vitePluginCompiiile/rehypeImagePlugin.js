@@ -29,7 +29,7 @@ export default function rehypeImagePlugin() {
 				const parsedAltValue = processImageNode(node.properties?.alt)
 				if (parsedAltValue) {
 					node.properties.style = buildImageStyleAttribute(parsedAltValue)
-					node.properties.alt = parsedAltValue.altValue
+					node.properties.alt = parsedAltValue.altValue ?? node.properties?.alt
 				}
 			}
 		})
@@ -43,7 +43,7 @@ export default function rehypeImagePlugin() {
 						type: "mdxJsxAttribute",
 						value: buildImageStyleAttribute(parsedAltValue)
 					})
-					alt.value = parsedAltValue.altValue
+					alt.value = parsedAltValue.altValue ?? alt?.value
 				}
 			}
 		})
