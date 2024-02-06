@@ -83,7 +83,7 @@ const astroConfig = {
 	srcDir: new URL("../.compiiile/src", import.meta.url).pathname,
 	outDir: path.join(source, argv.dest || ".compiiile/dist"),
 	...(argv.logo ? { publicDir } : {}),
-	integrations: [vue({ appEntrypoint: "/src/app.js" }), mdx(), ...(configFromFile.integrations ?? [])],
+	integrations: [vue({ appEntrypoint: "/src/app.js" }), ...(configFromFile.integrations ?? []), mdx()],
 	vite: {
 		plugins: [compiiile()],
 		resolve: {
