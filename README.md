@@ -244,6 +244,10 @@ import Test from "./Test.vue"
 
 You should use [Astro's client directives](https://docs.astro.build/en/reference/directives-reference/#client-directives) to load your component's script.
 
+## Common issues
+
+-   Make sure that the absolute path to the folder where you are running Compiiile doesn't contain any special character as it could prevent the project initialization.
+
 ## Special thanks
 
 -   [Astro](https://github.com/withastro/astro) for enabling us developers to make lightweight websites
