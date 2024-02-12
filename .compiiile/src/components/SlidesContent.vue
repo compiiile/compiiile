@@ -23,7 +23,8 @@
 			const deck = document.querySelector(".deck")
 
 			const Reveal = (await import("reveal.js")).default(deck, {
-				embedded: true
+				embedded: true,
+				pdfMaxPagesPerSlide: 1
 			})
 
 			await Reveal.initialize({
