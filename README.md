@@ -134,10 +134,11 @@ To separate your slides, just separate the content of your markdown with:
 
 :star2: You can make your slides print-ready by adding the `print-pdf` query parameter to your page, like: `https://compiiile.me/s/slides-preview?print-pdf`.
 
-Other frontmatter keys will be handled:
+Other frontmatter keys are handled:
 
 -   `title`: set the title to be displayed in the navbar and for SEO
 -   `description`: set the description for SEO
+-   `textAlign`: possible values are [CSS text-align values](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align) (`left`, `center`, ...). This changes the default text alignment in slides. The default value is `center`.
 
 ### Routing
 
@@ -148,7 +149,7 @@ The home page of Compiiile (`/`) points to a `README.md` file located at the roo
 Here is the list of parameters that you can set to customize Compiiile (none are required):
 
 | Parameter              | Type       | Description                                                                                     |
-| ---------------------- | ---------- | ----------------------------------------------------------------------------------------------- |
+|------------------------| ---------- |-------------------------------------------------------------------------------------------------|
 | `title`                | `string`   | The title to display on the top-left of the User Interface                                      |
 | `description`          | `string`   | The description that is rendered by default for the SEO                                         |
 | `logo`                 | `string`   | The relative path of the logo to display in the TopBar and as favicon                           |
@@ -156,6 +157,7 @@ Here is the list of parameters that you can set to customize Compiiile (none are
 | `dest`                 | `string`   | The folder in which to build files, defaults to `./.compiiile/dist`                             |
 | `siteUrl`              | `string`   | The url of the website in production (without trailing slash), used for the SEO tag `og:image`  |
 | `astroConfig`          | `Object`   | Override [default Astro config](https://docs.astro.build/en/reference/configuration-reference/) |
+| `data`                 | `Object`   | An object with data to use in MDX files (check use case below)                                  |
 | `vite.server.fs.allow` | `string[]` | Add local paths to vite's server fs allow list                                                  |
 
 You can use these parameters in 2 ways:
@@ -192,6 +194,8 @@ export default {
 v2 of Compiiile allows you to use MDX files with Vue components.
 
 For it to work, you should install some dependencies in your project folder: `yarn add vue astro fzf` (or `npm install vue astro fzf`).
+
+### Using components
 
 Let's say we have Vue a component `Test.vue` making an API request and listing results:
 
@@ -236,13 +240,23 @@ Let's say we have Vue a component `Test.vue` making an API request and listing r
 
 You can use it your MDX file like so:
 
-```
+```mdx
 import Test from "./Test.vue"
 
 <Test client:load />
 ```
 
 You should use [Astro's client directives](https://docs.astro.build/en/reference/directives-reference/#client-directives) to load your component's script.
+
+### Use config data values
+
+To use config values, you can access it by importing the `site` variable in your MDX file and then access the `data` key:
+
+```mdx
+import { site } from "virtual:compiiile"
+
+# {site.data.someProperty}
+```
 
 ## Common issues
 
@@ -260,6 +274,11 @@ You should use [Astro's client directives](https://docs.astro.build/en/reference
 Contributions are welcome after discussing the object of your contribution in the `Issues` pages (because the goal is to keep this project really simple and straightforward).
 
 You can read more about it and the roadmap in the [dedicated contributing guide](./CONTRIBUTING.md).
+
+## Community projects
+
+Here is a list of projects related to Compiiile developed by the community:
+- [compiiile-actions-cloudflare-pages](https://github.com/marketplace/actions/compiiile-cloudflare-pages): A simple GitHub action to deploy a Compiiile site to CloudFlare page
 
 ## Support
 
