@@ -37,7 +37,7 @@ export default class {
 			.map((val) => slugify(val, { lower: true }))
 			.join("/")
 
-		if (sluggifiedPath === "readme") {
+		if (sluggifiedPath === "readme" || sluggifiedPath === "index") {
 			if (process.env.VITE_COMPIIILE_BASE !== "/") {
 				return process.env.VITE_COMPIIILE_BASE
 			}
