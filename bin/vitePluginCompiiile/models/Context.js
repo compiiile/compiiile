@@ -109,8 +109,13 @@ export default class {
 								.replace(/<a.*aria-hidden.*>.*?<\/a>|<[^>]*>?/gi, "")
 								.replace(/[\r\n]{2,}/g, "\n")
 						)
+
+						const firstHeading = renderedMarkdown.metadata.headings.length ?
+							renderedMarkdown.metadata.headings[0].text.replaceAll('#', '') :
+							false;
+
 						const meta = renderedMarkdown.metadata.frontmatter
-						fileListItem.title = meta.title || fileName
+						fileListItem.title = meta.title || firstHeading || fileName
 						fileListItem.meta = meta
 						fileListItem.meta.title = fileListItem.meta.title || fileListItem.title
 						fileListItem.fullPath = filePath
