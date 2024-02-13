@@ -278,7 +278,7 @@ You can read more about it and the roadmap in the [dedicated contributing guide]
 ## Community projects
 
 Here is a list of projects related to Compiiile developed by the community:
-- [compiiile-actions-cloudflare-pages](https://github.com/marketplace/actions/compiiile-cloudflare-pages): A simple GitHub action to deploy a Compiiile site to CloudFlare page
+- [compiiile-actions-cloudflare-pages](https://github.com/marketplace/actions/compiiile-cloudflare-pages): A simple GitHub action to deploy a Compiiile site to CloudFlare pages
 
 ## Support
 
