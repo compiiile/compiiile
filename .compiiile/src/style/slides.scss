@@ -1,15 +1,31 @@
 :root {
 	--r-code-font: "JetBrains Mono Variable", monospace;
+	--slide-padding-vertical: 40px;
+	--slide-padding-horizontal: 80px;
 }
 
 .reveal {
 	height: 100vh;
 	width: 100vw;
 
+	.slides {
+		text-align: inherit;
+	}
+
+	section {
+		padding: var(--slide-padding-vertical) var(--slide-padding-horizontal);
+	}
+
 	pre code {
 		padding: 20px !important;
 		border-radius: 8px;
 		max-height: 80vh !important;
+	}
+
+	pre {
+		width: 100%;
+		margin: 0 auto;
+		max-width: 1200px;
 	}
 
 	h1,
@@ -23,26 +39,35 @@
 			"wght" 900,
 			"wdth" 125;
 		letter-spacing: -0.03em;
-		font-size: 24px;
+		font-size: 3.75vmin;
 		border: none !important;
+		margin-bottom: 4vmin;
+	}
+
+	h1 {
+		font-size: 12vmin;
+	}
+
+	h2{
+		font-size: 6vmin;
 	}
 
 	font-family: "DM Sans Variable", sans-serif !important;
 
 	p,
 	li {
-		font-size: 24px !important;
+		font-size: max(3.25vmin, 18px) !important;
 	}
 
 	.hljs {
-		font-size: 18px !important;
+		font-size: 2vmin !important;
 	}
 
 	p code {
 		background-color: var(--layout-background-color);
 		padding: 2px 4px;
 		border-radius: 3px;
-		font-size: 18px;
+		font-size: 2vmin;
 	}
 
 	blockquote {
@@ -50,14 +75,18 @@
 		border: solid 1px var(--blockquote-border-color);
 		border-radius: 8px;
 		padding: 0.5em 1em;
+		width: 100%;
+		font-style: normal;
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
+	ul {
+		margin-left: 0;
 	}
 
 	.header-anchor {
 		display: none;
-	}
-
-	ul {
-		width: 70%;
 	}
 
 	.slides a {
@@ -81,3 +110,17 @@
 .reveal .progress {
 	color: var(--slides-controls) !important;
 }
+
+.slides-deck-wrapper.text-align-left, {
+  blockquote, pre {
+    margin: 0;
+  }
+}
+
+.slides-deck-wrapper.text-align-right{
+  blockquote, pre {
+    margin-left: auto;
+    margin-right: 0;
+  }
+}
+
