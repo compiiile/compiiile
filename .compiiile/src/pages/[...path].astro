@@ -26,7 +26,8 @@ export async function getStaticPaths() {
                 asSlides: !!route.meta.asSlides,
                 uuid: route.name,
                 title: route.meta.title,
-                description: route.meta.description || ""
+                description: route.meta.description || "",
+                textAlign: route.meta.textAlign
             }
         }
     })
@@ -34,7 +35,7 @@ export async function getStaticPaths() {
 
 let {path} = Astro.params;
 
-const {name, title, description, asSlides} = Astro.props
+const {name, title, description, asSlides, textAlign} = Astro.props
 
 const {Content} = Astro.props.md
 
@@ -42,7 +43,7 @@ const tableOfContent = Astro.props.md.getHeadings()
 ---
 
 {asSlides ?
-<SlidesLayout title={title} description={description}>
+<SlidesLayout title={title} description={description} textAlign={textAlign}>
     <div class="slides-content">
         <Content/>
     </div>

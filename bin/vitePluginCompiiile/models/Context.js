@@ -26,7 +26,8 @@ export default class {
 			logo: process.env.VITE_COMPIIILE_LOGO !== "null" ? process.env.VITE_COMPIIILE_LOGO : undefined,
 			logoUrl: process.env.VITE_COMPIIILE_LOGO_URL !== "" ? process.env.VITE_COMPIIILE_LOGO_URL : undefined,
 			siteUrl: process.env.VITE_COMPIIILE_SITE_URL !== "" ? process.env.VITE_COMPIIILE_SITE_URL : undefined,
-			base: process.env.VITE_COMPIIILE_BASE
+			base: process.env.VITE_COMPIIILE_BASE,
+			data: JSON.parse(process.env.VITE_COMPIIILE_DATA)
 		}
 	}
 
@@ -106,10 +107,15 @@ export default class {
 
 						fileListItem.textContent = unemojify(
 							renderedMarkdown.code
+								.replace(/^<hr>\n<h2(.|\n)*?<\/h2>/g, "")
+								.replace(/<br>/g, " ")
 								.replace(/<a.*aria-hidden.*>.*?<\/a>|<[^>]*>?/gi, "")
 								.replace(/[\r\n]{2,}/g, "\n")
 						)
+
 						const meta = renderedMarkdown.metadata.frontmatter
+
+
 						fileListItem.title = meta.title || fileName
 						fileListItem.meta = meta
 						fileListItem.meta.title = fileListItem.meta.title || fileListItem.title

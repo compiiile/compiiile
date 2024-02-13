@@ -50,6 +50,8 @@ process.env.VITE_COMPIIILE_DESCRIPTION = argv.description ?? ""
 
 process.env.VITE_COMPIIILE_LOGO_URL = argv.logoUrl ?? ""
 
+process.env.VITE_COMPIIILE_DATA = JSON.stringify(argv.data ?? {})
+
 // Handling logo and favicon
 process.env.VITE_COMPIIILE_LOGO = null
 

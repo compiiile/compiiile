@@ -1,5 +1,5 @@
 <template>
-	<div ref="slidesDeckWrapper" class="slides-deck-wrapper">
+	<div ref="slidesDeckWrapper" :class="['slides-deck-wrapper', `text-align-${ textAlign }`]" :style="{ textAlign }">
 		<slot></slot>
 	</div>
 </template>
@@ -7,6 +7,12 @@
 <script>
 	export default {
 		name: "SlidesContent",
+        props: {
+            textAlign: {
+                type: String,
+                default: "center"
+            }
+        },
 		data() {
 			return {
 				loaded: false
@@ -24,7 +30,12 @@
 
 			const Reveal = (await import("reveal.js")).default(deck, {
 				embedded: true,
-				pdfMaxPagesPerSlide: 1
+				pdfMaxPagesPerSlide: 1,
+                width: "100%",
+                height: "100%",
+                margin: 0,
+                minScale: 1,
+                maxScale: 1
 			})
 
 			await Reveal.initialize({
