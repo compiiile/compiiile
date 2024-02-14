@@ -149,7 +149,7 @@ The home page of Compiiile (`/`) points to a `README.md` file located at the roo
 Here is the list of parameters that you can set to customize Compiiile (none are required):
 
 | Parameter              | Type       | Description                                                                                     |
-|------------------------| ---------- |-------------------------------------------------------------------------------------------------|
+| ---------------------- | ---------- | ----------------------------------------------------------------------------------------------- |
 | `title`                | `string`   | The title to display on the top-left of the User Interface                                      |
 | `description`          | `string`   | The description that is rendered by default for the SEO                                         |
 | `logo`                 | `string`   | The relative path of the logo to display in the TopBar and as favicon                           |
@@ -278,7 +278,8 @@ You can read more about it and the roadmap in the [dedicated contributing guide]
 ## Community projects
 
 Here is a list of projects related to Compiiile developed by the community:
-- [compiiile-actions-cloudflare-pages](https://github.com/marketplace/actions/compiiile-cloudflare-pages): A simple GitHub action to deploy a Compiiile site to CloudFlare pages
+
+-   [compiiile-actions-cloudflare-pages](https://github.com/marketplace/actions/compiiile-cloudflare-pages): A simple GitHub action to deploy a Compiiile site to CloudFlare pages
 
 ## Support
 

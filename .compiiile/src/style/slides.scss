@@ -48,7 +48,7 @@
 		font-size: 12vmin;
 	}
 
-	h2{
+	h2 {
 		font-size: 6vmin;
 	}
 
@@ -111,16 +111,21 @@
 	color: var(--slides-controls) !important;
 }
 
-.slides-deck-wrapper.text-align-left, {
-  blockquote, pre {
-    margin: 0;
-  }
+.slides-deck-wrapper.text-align-left {
+	blockquote,
+	pre {
+		margin: 0;
+	}
 }
 
-.slides-deck-wrapper.text-align-right{
-  blockquote, pre {
-    margin-left: auto;
-    margin-right: 0;
-  }
+.slides-deck-wrapper.text-align-right {
+	blockquote,
+	pre {
+		margin-left: auto;
+		margin-right: 0;
+	}
 }
 
+html.reveal-print .reveal .slides section {
+	padding: var(--slide-padding-vertical) var(--slide-padding-horizontal) !important;
+}
