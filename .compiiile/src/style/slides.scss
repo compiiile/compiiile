@@ -177,15 +177,14 @@ html.reveal-print .reveal .slides section {
 	padding: var(--slide-padding-vertical) var(--slide-padding-horizontal) !important;
 }
 
-
-@media screen and (max-width: 1400px){
+@media screen and (max-width: 1400px) {
 	:root {
 		--slide-padding-vertical: 20px;
 		--slide-padding-horizontal: 40px;
 	}
 }
 
-@media screen and (max-width: 800px){
+@media screen and (max-width: 800px) {
 	:root {
 		--slide-padding-vertical: 20px;
 		--slide-padding-horizontal: 10px;

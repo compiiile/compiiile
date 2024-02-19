@@ -205,9 +205,9 @@
 			padding: 0;
 			border-collapse: collapse;
 			margin-bottom: 20px;
-            display: block;
-            max-width: 100%;
-            overflow-x: scroll;
+			display: block;
+			max-width: 100%;
+			overflow-x: scroll;
 		}
 
 		table tr {
