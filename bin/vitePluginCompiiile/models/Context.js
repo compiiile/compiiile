@@ -32,14 +32,14 @@ export default class {
 		}
 	}
 
-	generateRoutePathFromFilePath(filePath, hash = "", asSlides = false) {
+	generateRoutePathFromFilePath(filePath, hash = "", asSlides = false, entryFileMatcher) {
 		const filePathWithoutExtension = filePath.substring(0, filePath.lastIndexOf("."))
 		const sluggifiedPath = filePathWithoutExtension
 			.split("/")
 			.map((val) => slugify(val, { lower: true }))
 			.join("/")
 
-		if (sluggifiedPath === "readme") {
+		if (sluggifiedPath.match(entryFileMatcher)) {
 			if (process.env.VITE_COMPIIILE_BASE !== "/") {
 				return process.env.VITE_COMPIIILE_BASE
 			}
@@ -63,6 +63,8 @@ export default class {
 
 		const files = fs.readdirSync(directoryPath).sort(collator.compare)
 
+		const entryFileMatcher = files.find((file) => file.toLowerCase() === "readme.md") ? /readme/ : /index/
+
 		for (let file of files) {
 			if (
 				![
@@ -81,7 +83,8 @@ export default class {
 				const isDirectory = fs.statSync(filePath).isDirectory()
 				const uuid = uuidv4()
 				const fileName = path.parse(filePath).name
-				const isReadmeFile = !isDirectory && filePath.toLowerCase().match(/^readme\.mdx?$/)
+				const isReadmeFile = !isDirectory
+					&& filePath.toLowerCase().match(new RegExp(/^/.source + entryFileMatcher.source + /\.mdx?$/.source))
 
 				let filesTreeItem = new FilesTreeItem(uuid, fileName)
 
@@ -121,7 +124,7 @@ export default class {
 						fileListItem.meta.title = fileListItem.meta.title || fileListItem.title
 						fileListItem.fullPath = filePath
 
-						const routePath = this.generateRoutePathFromFilePath(filePath, "", fileListItem.meta.asSlides)
+						const routePath = this.generateRoutePathFromFilePath(filePath, "", fileListItem.meta.asSlides, entryFileMatcher)
 
 						if (isReadmeFile) {
 							this.fileList.unshift(fileListItem)

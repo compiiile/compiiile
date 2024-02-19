@@ -156,7 +156,7 @@ Other frontmatter keys are handled:
 
 ### Routing
 
-The home page of Compiiile (`/`) points to a `README.md` file located at the root of your folder.
+The home page of Compiiile (`/`) points to a `README.md` file located at the root of your folder, or fallbacks to an `index.md` file.
 
 ## Custom configuration
 
