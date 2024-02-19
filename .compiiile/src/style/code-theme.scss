@@ -1,22 +1,32 @@
 :root {
 	--astro-code-color-text: #eeeeee;
-	--astro-code-color-background: var(--code-background-color);
+	--astro-code-color-background: var(--pre-background-color);
 	--astro-code-token-constant: #ec6875;
-	--astro-code-token-string: var(--code-color);
+	--astro-code-token-string: var(--pre-color);
 	--astro-code-token-comment: #8999a9;
-	--astro-code-token-keyword: var(--code-color);
+	--astro-code-token-keyword: var(--pre-color);
 	--astro-code-token-parameter: #ffb36f;
 	--astro-code-token-function: #ffb36f;
 	--astro-code-token-string-expression: #9bea93;
-	--astro-code-token-punctuation: var(--code-color);
+	--astro-code-token-punctuation: var(--pre-color);
 	--astro-code-token-link: #9a84ff;
+}
+
+.theme--light {
+	--astro-code-color-text: var(--pre-color);
+	--astro-code-token-constant: #b56959;
+	--astro-code-token-comment: #667566;
+	--astro-code-token-parameter: #b07d48;
+	--astro-code-token-function: #b07d48;
+	--astro-code-token-string-expression: #1e754f;
+	--astro-code-token-link: #481eff;
 }
 
 .astro-code {
 	display: block;
 	overflow-x: auto;
-	background: var(--code-background-color);
-	border: solid 1px var(--code-background-color); /* same color, useful when printing without background graphics */
+	background: var(--pre-background-color);
+	border: solid 1px var(--pre-background-color); /* same color, useful when printing without background graphics */
 	color: var(--code-color);
 	padding: 20px;
 	border-radius: 8px;

@@ -145,7 +145,8 @@
 		}
 
 		p code,
-		li code {
+		li code,
+		table code {
 			padding: 2px 4px;
 			border-radius: 3px;
 			background-color: var(--code-background-color);
@@ -177,11 +178,15 @@
 			border: solid 1px var(--blockquote-border-color);
 			border-radius: 8px;
 			padding: 0.5em 1em;
-			color: #babfc4;
+			color: var(--blockquote-color);
 			margin: 20px 0;
 
 			p {
 				margin-bottom: 0;
+			}
+
+			code {
+				background-color: rgb(169 156 231 / 22%);
 			}
 		}
 
@@ -278,6 +283,11 @@
 
 		.sibling-link {
 			text-decoration: none;
+			border-radius: 2px;
+
+			&:focus-visible {
+				outline: solid 1px var(--separator-color);
+			}
 		}
 
 		.sibling-link--next {

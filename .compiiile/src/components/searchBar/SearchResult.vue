@@ -48,7 +48,7 @@
 		}
 
 		&:focus {
-			box-shadow: inset 0 0 2px 2px rgb(153 133 254 / 80%);
+			box-shadow: inset 0 0 1px 1px rgba(153, 133, 254, 0.6);
 			outline: none;
 		}
 	}

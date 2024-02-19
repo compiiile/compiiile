@@ -1,6 +1,7 @@
 # Compiiile
 
-> Compiiile is the most convenient way to render a folder containing markdown files. Previewing and searching markdown files has never been that easy (it's really just a command away !) :sparkles:
+> Compiiile is the most convenient way to render a folder containing markdown files. Previewing and searching markdown
+> files has never been that easy (it's really just a command away !) :sparkles:
 
 ## Preview
 
@@ -11,28 +12,34 @@
 ## Purpose
 
 I document everything in markdown and have always been frustrated not having a simple tool to just **preview** a whole
-folder, being able to **search** through it, make **slides** out of it, and get a **production-ready** build of all the files as a knowledge base. On
+folder, being able to **search** through it, make **slides** out of it, and get a **production-ready** build of all the
+files as a knowledge base. On
 top of that, finding a tool with a sweet and simple UI is not that easy.
 
 That's what Compiiile does. And it does it hassle-free !
 
 ## Features
 
--   [x] 📦 **No config required, everything just works out of the box, without changing your files** (resolves images and relative links (cross-references), print-ready rendering)
--   [x] 🌱 Available everywhere with static files deployment: just host it somewhere and access it in any browser on your computer, phone or whatever you are using
--   [x] :link: Quick access to your files via the navbar and links to the previous and next file (with table of content generation)
+-   [x] 📦 **No config required, everything just works out of the box, without changing your files** (resolves images and
+        relative links (cross-references), print-ready rendering, :sunny: light and :first_quarter_moon_with_face: dark themes)
+-   [x] 🌱 Available everywhere with static files deployment: just host it somewhere and access it in any browser on your
+        computer, phone or whatever you are using
+-   [x] :link: Quick access to your files via the navbar and links to the previous and next file (with table of content
+        generation)
 -   [x] :tv: Display some files as slides
 -   [x] :mag: **Full-text quick search with content preview**
 -   [x] :zap: Hot-reload content preview as you edit it
--   [x] :tada: Supports MDX files
+-   [x] :tada: Supports MDX files: add your own components to your documentation
 -   [x] :bulb: Can serve as knowledge base
 -   [x] :wrench: Customizable by env variables or config file, it's up to you
 -   [x] :star2: You get it, it simply does the job, period.
 
 ### What Compiiile isn't
 
--   It's not a markdown editor, there are already plenty available, just choose the one that works best for you, even the simplest text editor will do.
--   It's not like VuePress, VitePress, Docusaurus or Notion. Compiiile's goal is to stay simple and stupidly easy without any configuration.
+-   It's not a markdown editor, there are already plenty available, just choose the one that works best for you, even the
+    simplest text editor will do.
+-   It's not like VuePress, VitePress, Docusaurus or Notion. Compiiile's goal is to stay simple and stupidly easy without
+    any configuration.
 
 > The goal is to help people rely purely on a **language** (_markdown_), not on _any_ platform.
 
@@ -42,7 +49,8 @@ You can install Compiiile either globally or per-project:
 
 ### Globally
 
-Open a terminal and type one of these commands, whether using [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/) depending on which package manager you are using:
+Open a terminal and type one of these commands, whether using [npm](https://www.npmjs.com/)
+or [yarn](https://yarnpkg.com/) depending on which package manager you are using:
 
 ```bash
 yarn global add @compiiile/compiiile # install globally with yarn
@@ -52,7 +60,8 @@ npm install -g @compiiile/compiiile # install globally with npm
 
 ### Per-project
 
-Open a terminal inside the folder containing your markdown files. Then, add Compiiile as a local command using yarn or npm:
+Open a terminal inside the folder containing your markdown files. Then, add Compiiile as a local command using yarn or
+npm:
 
 ```bash
 yarn add @compiiile/compiiile # install as a project dependency with yarn
@@ -62,7 +71,8 @@ npm install @compiiile/compiiile # install as a project dependency with npm
 
 ## Quick start
 
-To make yourself an idea and quickly get started using Compiiile, here are some commands that you can run in your terminal to get Compiiile running with a couple of markdown files as tests:
+To make yourself an idea and quickly get started using Compiiile, here are some commands that you can run in your
+terminal to get Compiiile running with a couple of markdown files as tests:
 
 ```bash
 mkdir test-compiiile && cd test-compiiile # creating a new folder and go into this folder
@@ -120,7 +130,8 @@ asSlides: true
 ```
 
 If you are not acquainted with frontmatter, it's just some file-specific parameters that you can put at the very
-beginning of your file to be processed (make sure to separate frontmatter values from your content with an empty line after the last `---`).
+beginning of your file to be processed (make sure to separate frontmatter values from your content with an empty line
+after the last `---`).
 
 By adding the frontmatter parameter, the page will directly open up as slides.
 
@@ -132,13 +143,16 @@ To separate your slides, just separate the content of your markdown with:
 
 > There must be an empty line before and after the `---`
 
-:star2: You can make your slides print-ready by adding the `print-pdf` query parameter to your page, like: `https://compiiile.me/s/slides-preview?print-pdf`.
+:star2: You can make your slides print-ready by adding the `print-pdf` query parameter to your page,
+like: `https://compiiile.me/s/slides-preview?print-pdf`.
 
 Other frontmatter keys are handled:
 
 -   `title`: set the title to be displayed in the navbar and for SEO
 -   `description`: set the description for SEO
--   `textAlign`: possible values are [CSS text-align values](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align) (`left`, `center`, ...). This changes the default text alignment in slides. The default value is `center`.
+-   `textAlign`: possible values
+    are [CSS text-align values](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align) (`left`, `center`, ...). This
+    changes the default text alignment in slides. The default value is `center`.
 
 ### Routing
 
@@ -148,17 +162,18 @@ The home page of Compiiile (`/`) points to a `README.md` file located at the roo
 
 Here is the list of parameters that you can set to customize Compiiile (none are required):
 
-| Parameter              | Type       | Description                                                                                     |
-| ---------------------- | ---------- | ----------------------------------------------------------------------------------------------- |
-| `title`                | `string`   | The title to display on the top-left of the User Interface                                      |
-| `description`          | `string`   | The description that is rendered by default for the SEO                                         |
-| `logo`                 | `string`   | The relative path of the logo to display in the TopBar and as favicon                           |
-| `logoUrl`              | `string`   | The url to go to when clicking on the logo, defaults to the home page if not set                |
-| `dest`                 | `string`   | The folder in which to build files, defaults to `./.compiiile/dist`                             |
-| `siteUrl`              | `string`   | The url of the website in production (without trailing slash), used for the SEO tag `og:image`  |
-| `astroConfig`          | `Object`   | Override [default Astro config](https://docs.astro.build/en/reference/configuration-reference/) |
-| `data`                 | `Object`   | An object with data to use in MDX files (check use case below)                                  |
-| `vite.server.fs.allow` | `string[]` | Add local paths to vite's server fs allow list                                                  |
+| Parameter              | Type       | Description                                                                                                 |
+| ---------------------- | ---------- | ----------------------------------------------------------------------------------------------------------- |
+| `title`                | `string`   | The title to display on the top-left of the User Interface                                                  |
+| `description`          | `string`   | The description that is rendered by default for the SEO                                                     |
+| `logo`                 | `string`   | The relative path of the logo to display in the TopBar and as favicon                                       |
+| `logoUrl`              | `string`   | The url to go to when clicking on the logo, defaults to the home page if not set                            |
+| `dest`                 | `string`   | The folder in which to build files, defaults to `./.compiiile/dist`                                         |
+| `siteUrl`              | `string`   | The url of the website in production (without trailing slash), used for the SEO tag `og:image`              |
+| `astroConfig`          | `Object`   | Override [default Astro config](https://docs.astro.build/en/reference/configuration-reference/)             |
+| `data`                 | `Object`   | An object with data to use in MDX files (check use case below)                                              |
+| `theme`                | `string`   | The website theme, value can be : `auto` (default value: adapts to system preferences) \| `light` \| `dark` |
+| `vite.server.fs.allow` | `string[]` | Add local paths to vite's server fs allow list                                                              |
 
 You can use these parameters in 2 ways:
 
@@ -193,7 +208,8 @@ export default {
 
 v2 of Compiiile allows you to use MDX files with Vue components.
 
-For it to work, you should install some dependencies in your project folder: `yarn add vue astro fzf` (or `npm install vue astro fzf`).
+For it to work, you should install some dependencies in your project folder: `yarn add vue astro fzf` (
+or `npm install vue astro fzf`).
 
 ### Using components
 
@@ -246,11 +262,14 @@ import Test from "./Test.vue"
 <Test client:load />
 ```
 
-You should use [Astro's client directives](https://docs.astro.build/en/reference/directives-reference/#client-directives) to load your component's script.
+You should
+use [Astro's client directives](https://docs.astro.build/en/reference/directives-reference/#client-directives) to load
+your component's script.
 
 ### Use config data values
 
-To use config values, you can access it by importing the `site` variable in your MDX file and then access the `data` key:
+To use config values, you can access it by importing the `site` variable in your MDX file and then access the `data`
+key:
 
 ```mdx
 import { site } from "virtual:compiiile"
@@ -260,7 +279,8 @@ import { site } from "virtual:compiiile"
 
 ## Common issues
 
--   Make sure that the absolute path to the folder where you are running Compiiile doesn't contain any special character as it could prevent the project initialization.
+-   Make sure that the absolute path to the folder where you are running Compiiile doesn't contain any special character
+    as it could prevent the project initialization.
 
 ## Special thanks
 
@@ -271,7 +291,8 @@ import { site } from "virtual:compiiile"
 
 ## Contributing
 
-Contributions are welcome after discussing the object of your contribution in the `Issues` pages (because the goal is to keep this project really simple and straightforward).
+Contributions are welcome after discussing the object of your contribution in the `Issues` pages (because the goal is to
+keep this project really simple and straightforward).
 
 You can read more about it and the roadmap in the [dedicated contributing guide](./CONTRIBUTING.md).
 
@@ -279,13 +300,17 @@ You can read more about it and the roadmap in the [dedicated contributing guide]
 
 Here is a list of projects related to Compiiile developed by the community:
 
--   [compiiile-actions-cloudflare-pages](https://github.com/marketplace/actions/compiiile-cloudflare-pages): A simple GitHub action to deploy a Compiiile site to CloudFlare pages
+-   [compiiile-actions-cloudflare-pages](https://github.com/marketplace/actions/compiiile-cloudflare-pages): A simple
+    GitHub action to deploy a Compiiile site to CloudFlare pages
 
 ## Support
 
-Open-source is a wonderful thing, so please if you found this project useful or use it as a part of a commercial project, **consider making a donation**.
-You can do it either via [GitHub donations](https://github.com/sponsors/AlbanCrepel) or via [my ko-fi page](https://ko-fi.com/alban_crepel) where you can make a one-time or monthly donation by PayPal or card.
-This allows you to use Compiiile as a **pay-what-you-want** service if you are not part of a non-profit project. But if you are **making any revenue** using this project or even use it as a trainer, **making a donation would be expected**.
+Open-source is a wonderful thing, so please if you found this project useful or use it as a part of a commercial
+project, **consider making a donation**.
+You can do it either via [GitHub donations](https://github.com/sponsors/AlbanCrepel) or
+via [my ko-fi page](https://ko-fi.com/alban_crepel) where you can make a one-time or monthly donation by PayPal or card.
+This allows you to use Compiiile as a **pay-what-you-want** service if you are not part of a non-profit project. But if
+you are **making any revenue** using this project or even use it as a trainer, **making a donation would be expected**.
 You can always contact me for a custom use of this project and any licence issue.
 
 Thank you :heart:
