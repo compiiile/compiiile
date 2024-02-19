@@ -111,7 +111,11 @@
 
 	table {
 		font-size: 2vmin;
+		display: block;
+		max-width: 100%;
+		overflow-x: scroll;
 	}
+
 	table tr {
 		border: 1px solid var(--table-border-color);
 		background-color: var(--table-odd-lines-background-color);
@@ -171,4 +175,18 @@ html.theme--light td code {
 
 html.reveal-print .reveal .slides section {
 	padding: var(--slide-padding-vertical) var(--slide-padding-horizontal) !important;
+}
+
+@media screen and (max-width: 1400px) {
+	:root {
+		--slide-padding-vertical: 20px;
+		--slide-padding-horizontal: 40px;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	:root {
+		--slide-padding-vertical: 20px;
+		--slide-padding-horizontal: 10px;
+	}
 }
