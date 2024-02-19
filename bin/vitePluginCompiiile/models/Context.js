@@ -83,8 +83,9 @@ export default class {
 				const isDirectory = fs.statSync(filePath).isDirectory()
 				const uuid = uuidv4()
 				const fileName = path.parse(filePath).name
-				const isReadmeFile = !isDirectory
-					&& filePath.toLowerCase().match(new RegExp(/^/.source + entryFileMatcher.source + /\.mdx?$/.source))
+				const isReadmeFile =
+					!isDirectory &&
+					filePath.toLowerCase().match(new RegExp(/^/.source + entryFileMatcher.source + /\.mdx?$/.source))
 
 				let filesTreeItem = new FilesTreeItem(uuid, fileName)
 
@@ -119,12 +120,31 @@ export default class {
 
 						const meta = renderedMarkdown.metadata.frontmatter
 
-						fileListItem.title = meta.title || fileName
+						let firstHeading = null
+						if (
+							JSON.parse(process.env.VITE_COMPIIILE_USE_AUTO_TITLES) &&
+							renderedMarkdown.metadata.headings.length > 0
+						) {
+							let firstHeadingIndex = 0
+							if (Object.keys(renderedMarkdown.metadata.frontmatter).length > 0) {
+								// If a frontmatter is set, it is present as the first index in the `headings` array
+								firstHeadingIndex = 1
+							}
+							// Remove the starting '#' from the title
+							firstHeading = renderedMarkdown.metadata.headings[firstHeadingIndex]?.text?.slice(1)
+						}
+
+						fileListItem.title = meta.title || firstHeading || fileName
 						fileListItem.meta = meta
 						fileListItem.meta.title = fileListItem.meta.title || fileListItem.title
 						fileListItem.fullPath = filePath
 
-						const routePath = this.generateRoutePathFromFilePath(filePath, "", fileListItem.meta.asSlides, entryFileMatcher)
+						const routePath = this.generateRoutePathFromFilePath(
+							filePath,
+							"",
+							fileListItem.meta.asSlides,
+							entryFileMatcher
+						)
 
 						if (isReadmeFile) {
 							this.fileList.unshift(fileListItem)
