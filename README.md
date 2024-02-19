@@ -162,18 +162,19 @@ The home page of Compiiile (`/`) points to a `README.md` file located at the roo
 
 Here is the list of parameters that you can set to customize Compiiile (none are required):
 
-| Parameter              | Type       | Description                                                                                                 |
-| ---------------------- | ---------- | ----------------------------------------------------------------------------------------------------------- |
-| `title`                | `string`   | The title to display on the top-left of the User Interface                                                  |
-| `description`          | `string`   | The description that is rendered by default for the SEO                                                     |
-| `logo`                 | `string`   | The relative path of the logo to display in the TopBar and as favicon                                       |
-| `logoUrl`              | `string`   | The url to go to when clicking on the logo, defaults to the home page if not set                            |
-| `dest`                 | `string`   | The folder in which to build files, defaults to `./.compiiile/dist`                                         |
-| `siteUrl`              | `string`   | The url of the website in production (without trailing slash), used for the SEO tag `og:image`              |
-| `astroConfig`          | `Object`   | Override [default Astro config](https://docs.astro.build/en/reference/configuration-reference/)             |
-| `data`                 | `Object`   | An object with data to use in MDX files (check use case below)                                              |
-| `theme`                | `string`   | The website theme, value can be : `auto` (default value: adapts to system preferences) \| `light` \| `dark` |
-| `vite.server.fs.allow` | `string[]` | Add local paths to vite's server fs allow list                                                              |
+| Parameter              | Type       | Description                                                                                                          |
+| ---------------------- | ---------- | -------------------------------------------------------------------------------------------------------------------- |
+| `title`                | `string`   | The title to display on the top-left of the User Interface                                                           |
+| `description`          | `string`   | The description that is rendered by default for the SEO                                                              |
+| `logo`                 | `string`   | The relative path of the logo to display in the TopBar and as favicon                                                |
+| `logoUrl`              | `string`   | The url to go to when clicking on the logo, defaults to the home page if not set                                     |
+| `dest`                 | `string`   | The folder in which to build files, defaults to `./.compiiile/dist`                                                  |
+| `siteUrl`              | `string`   | The url of the website in production (without trailing slash), used for the SEO tag `og:image`                       |
+| `astroConfig`          | `Object`   | Override [default Astro config](https://docs.astro.build/en/reference/configuration-reference/)                      |
+| `data`                 | `Object`   | An object with data to use in MDX files (check use case below)                                                       |
+| `theme`                | `string`   | The website theme, value can be : `auto` (default value: adapts to system preferences) \| `light` \| `dark`          |
+| `useAutoTitles`        | `Boolean`  | If set to `true`, use the first file heading as title to be displayed in the navbar and for SEO. Defaults to `false` |
+| `vite.server.fs.allow` | `string[]` | Add local paths to vite's server fs allow list                                                                       |
 
 You can use these parameters in 2 ways:
 
