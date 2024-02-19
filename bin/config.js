@@ -53,6 +53,7 @@ process.env.VITE_COMPIIILE_LOGO_URL = argv.logoUrl ?? ""
 process.env.VITE_COMPIIILE_THEME = argv.theme ?? "auto"
 
 process.env.VITE_COMPIIILE_DATA = JSON.stringify(argv.data ?? {})
+process.env.VITE_COMPIIILE_USE_AUTO_TITLES = /true/i.test(argv.useAutoTitles) // defaults to `false` if not set or not equal to `true`
 
 // Handling logo and favicon
 process.env.VITE_COMPIIILE_LOGO = null
