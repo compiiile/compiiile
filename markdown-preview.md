@@ -129,9 +129,12 @@ You can specify the title, alt text, and size of any image:
 
 ```md
 ![Favicon alt text|100px](./.compiiile/public/favicon.png "Favicon title")
+![Favicon alt text|100px|no-margin](./.compiiile/public/favicon.png "Favicon without margin")
 ```
 
 ![Favicon alt text|100px](./.compiiile/public/favicon.png "Favicon title")
+
+![Favicon alt text|100px|no-margin](./.compiiile/public/favicon.png "Favicon without margin")
 
 ## Code and syntax highlight
 

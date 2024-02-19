@@ -27,7 +27,8 @@ export default class {
 			logoUrl: process.env.VITE_COMPIIILE_LOGO_URL !== "" ? process.env.VITE_COMPIIILE_LOGO_URL : undefined,
 			siteUrl: process.env.VITE_COMPIIILE_SITE_URL !== "" ? process.env.VITE_COMPIIILE_SITE_URL : undefined,
 			base: process.env.VITE_COMPIIILE_BASE,
-			data: JSON.parse(process.env.VITE_COMPIIILE_DATA)
+			data: JSON.parse(process.env.VITE_COMPIIILE_DATA),
+			theme: process.env.VITE_COMPIIILE_THEME
 		}
 	}
 
@@ -114,7 +115,6 @@ export default class {
 						)
 
 						const meta = renderedMarkdown.metadata.frontmatter
-
 
 						fileListItem.title = meta.title || fileName
 						fileListItem.meta = meta

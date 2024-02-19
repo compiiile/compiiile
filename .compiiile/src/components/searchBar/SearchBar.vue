@@ -272,6 +272,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		z-index: 1;
 	}
 
 	.search-overlay {
@@ -336,13 +337,13 @@
 		background-color: var(--darker-background-color);
 		padding: 10px 20px 10px 40px;
 		font-size: var(--text-md);
-		color: var(--text-color-light);
-		border: none;
+		color: var(--text-color-base);
+		border: solid 1px var(--search-input-border-color);
 		display: block;
 		outline: none;
 
 		&:focus {
-			box-shadow: inset 0 0 2px 2px rgb(153 133 254 / 80%);
+			box-shadow: inset 0 0 1px 1px rgba(153, 133, 254, 0.6);
 		}
 	}
 

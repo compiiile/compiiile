@@ -20,6 +20,7 @@
 					</a>
 				</span>
 				<search-bar />
+				<theme-switcher />
 			</div>
 		</div>
 	</div>
@@ -29,10 +30,11 @@
 	import SearchBar from "../searchBar/SearchBar.vue"
 	import HamburgerButton from "./HamburgerButton.vue"
 	import { site } from "virtual:compiiile"
+	import ThemeSwitcher from "./ThemeSwitcher.vue"
 
 	export default {
 		name: "TopBar",
-		components: { HamburgerButton, SearchBar },
+		components: { ThemeSwitcher, HamburgerButton, SearchBar },
 		computed: {
 			title() {
 				return site.title
@@ -86,7 +88,7 @@
 	}
 
 	.title {
-		margin: 0;
+		margin: 0 6px 0 0;
 		font-size: 1.5rem;
 		max-width: 100%;
 		display: inline-block;
