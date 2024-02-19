@@ -1,0 +1,26 @@
+---
+const { defaultTheme } = Astro.props
+---
+
+<script is:inline define:vars={{ defaultTheme }}>
+    const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('COMPIIILE_THEME')) {
+            return localStorage.getItem('COMPIIILE_THEME');
+        }
+        if (["auto", "dark"].includes(defaultTheme) && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            return 'dark';
+        }
+        return 'light';
+    })();
+
+    if (theme === 'light') {
+        document.documentElement.classList.remove('theme--dark');
+        document.documentElement.classList.add('theme--light');
+    } else {
+        document.documentElement.classList.remove('theme--light');
+        document.documentElement.classList.add('theme--dark');
+    }
+
+    window.localStorage.setItem('COMPIIILE_THEME', theme);
+
+</script>

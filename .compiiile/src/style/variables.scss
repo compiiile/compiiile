@@ -10,38 +10,44 @@
 	--r-code-font: "JetBrains Mono Variable", monospace;
 
 	/* Dark theme by default */
+	--layout-background-color: #1b1b1f;
+	--darker-background-color: #161618;
+	--code-background-color: #2b2b31;
+	--blockquote-background-color: rgba(153, 133, 254, 0.1);
+	--blockquote-border-color: hsl(247, 26%, 25%);
+	--blockquote-color: hsl(236 60% 93% / 1);
 	--text-color-base: #f7fafc;
 	--text-color-light: #9ca6b3;
-	--layout-background-color: #1a1b25;
-	--darker-background-color: #16161d;
-	--search-background-color: #1a1b25;
-	--separator-color: #101014;
 	--dimmed-text-color: #8e989e;
-	--code-background-color: #2a2c3c;
-	--code-color: #d2d7e0;
+	--table-even-lines-background-color: #232329;
+	--pre-background-color: var(--darker-background-color);
+	--pre-color: #d2d7e0;
 	--highlight-color: #9985fe;
-	--link-color: var(--highlight-color);
-	--blockquote-background-color: rgba(153, 133, 254, 0.1);
-	--blockquote-border-color: hsl(247, 26%, 30%);
-	--table-border-color: var(--separator-color);
-	--table-odd-lines-background-color: var(--code-background-color);
-	--table-even-lines-background-color: #262a33;
-
 	--slides-controls: #eeaa6f;
+	/* ----------------------- */
+
+	--search-background-color: var(--layout-background-color);
+	--search-input-border-color: #88888812;
+	--link-color: var(--highlight-color);
+	--separator-color: #8883;
+	--table-border-color: var(--separator-color);
+	--code-color: var(--blockquote-color);
+	--table-odd-lines-background-color: var(--layout-background-color);
 }
 
 .theme--light {
+	--layout-background-color: #ffffff;
+	--darker-background-color: #f9f9fa;
+	--code-background-color: #f6f6f7;
+	--blockquote-background-color: rgba(169, 156, 231, 0.12);
+	--blockquote-border-color: rgba(169, 156, 231, 0.05);
+	--blockquote-color: hsl(247 41% 50% / 1);
 	--text-color-base: #37342f;
 	--text-color-light: #a3a29f;
-	--navbar-background-color: #f8f8f8;
-	--layout-background-color: #ffffff;
-	--separator-color: #e2e2e2;
 	--dimmed-text-color: #625f57;
-	--code-background-color: #eeeeee;
-	--blockquote-background-color: #f7f6f6;
-	--blockquote-border-color: #dfe2e5;
+	--table-even-lines-background-color: #fafafa;
+	--pre-background-color: #f6f6f7;
+	--pre-color: #393a34;
 	--highlight-color: #564ce0;
-	--table-border-color: #cccccc;
-	--table-odd-lines-background-color: white;
-	--table-even-lines-background-color: #f8f8f8;
+	--slides-controls: #ea9448;
 }

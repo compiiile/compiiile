@@ -1,4 +1,5 @@
 ---
+import ThemeLoader from "./ThemeLoader.astro";
 import '../utils/styles.js'
 import {SEO} from "astro-seo"
 const {title, description, isNotFoundPage} = Astro.props
@@ -13,6 +14,8 @@ const faviconBaseUrl = `${ siteBase }favicon.png`
 const faviconAbsoluteUrl = `${ siteUrl }/${ faviconBaseUrl }`
 
 const metaDescription = description || site.description
+
+const defaultTheme = site.theme
 ---
 
 <html lang="en">
@@ -33,6 +36,7 @@ const metaDescription = description || site.description
                      }
                  }}
             />}
+    <ThemeLoader defaultTheme={defaultTheme}/>
 </head>
 <body>
 <slot></slot>

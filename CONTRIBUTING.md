@@ -12,9 +12,6 @@ Here is the current roadmap and feature ideas for incoming releases:
 
 -   [ ] being able to resize the navbar
 -   [ ] tag files with frontmatter and search files having specific tags
--   [ ] Make a theme switcher and make custom themes available to others (load external CSS)
--   [ ] rewrite the whole thing in TypeScript and use Tailwind if I am ever motivated
--   [ ] add some remark plugins (Mermaid ? Any ideas from you ?)
 
 If a fix needs to be done or your contributing idea is part of this roadmap, it will most likely be taken into account.
 
