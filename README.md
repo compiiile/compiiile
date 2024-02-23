@@ -72,14 +72,14 @@ npm install @compiiile/compiiile # install as a project dependency with npm
 
 First, copy the `./Dockerfile` from this repo to your root folder.
 
-Run the following commands :
+Run the following commands:
 
 ```bash
 docker build -t <custom-image-name> .
 docker run -p 8080:80 <custom-image-name>
 ```
 
-> Replace `<custom-image-name>` with the tag you want.
+> Replace `<custom-image-name>` with the tag you want. You should get Compiiile running on http://localhost:8080.
 
 ## Quick start
 
