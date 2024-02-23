@@ -209,9 +209,6 @@ export default {
 
 v2 of Compiiile allows you to use MDX files with Vue components.
 
-For it to work, you should install some dependencies in your project folder: `yarn add vue astro fzf` (
-or `npm install vue astro fzf`).
-
 ### Using components
 
 Let's say we have Vue a component `Test.vue` making an API request and listing results:
