@@ -93,7 +93,25 @@ const astroConfig = {
 		plugins: [compiiile()],
 		resolve: {
 			alias: {
-				"@source": source
+				"@source": source,
+
+				// Adding aliases for Compiiile's build command to work when installed globally
+				vue: path.join(new URL("../node_modules/vue", import.meta.url).pathname),
+				"@vue/server-renderer": path.join(
+					new URL("../node_modules/@vue/server-renderer", import.meta.url).pathname
+				),
+				"@vue/runtime-dom": path.join(new URL("../node_modules/@vue/runtime-dom", import.meta.url).pathname),
+				"@vue/runtime-core": path.join(new URL("../node_modules/@vue/runtime-core", import.meta.url).pathname),
+				kleur: path.join(new URL("../node_modules/kleur", import.meta.url).pathname),
+				clsx: path.join(new URL("../node_modules/clsx", import.meta.url).pathname),
+				"html-escaper": path.join(new URL("../node_modules/html-escaper", import.meta.url).pathname),
+				cssesc: path.join(new URL("../node_modules/cssesc", import.meta.url).pathname),
+				"@vue/reactivity": path.join(new URL("../node_modules/@vue/reactivity", import.meta.url).pathname),
+				"@vue/shared": path.join(new URL("../node_modules/@vue/shared", import.meta.url).pathname),
+				fzf: path.join(new URL("../node_modules/fzf", import.meta.url).pathname),
+				"@astrojs/internal-helpers": path.join(
+					new URL("../node_modules/@astrojs/internal-helpers/dist", import.meta.url).pathname
+				)
 			}
 		},
 		server: {
