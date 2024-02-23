@@ -49,14 +49,13 @@ You can install Compiiile either globally or per-project:
 
 ### Globally
 
-Open a terminal and type one of these commands, whether using [npm](https://www.npmjs.com/)
-or [yarn](https://yarnpkg.com/) depending on which package manager you are using:
+Open a terminal and type the following command:
 
 ```bash
-yarn global add @compiiile/compiiile # install globally with yarn
-# or
 npm install -g @compiiile/compiiile # install globally with npm
 ```
+
+> Global installation won't work using `yarn` because modules are not resolved the same way.
 
 ### Per-project
 
@@ -68,6 +67,19 @@ yarn add @compiiile/compiiile # install as a project dependency with yarn
 # or
 npm install @compiiile/compiiile # install as a project dependency with npm
 ```
+
+### Using Docker
+
+First, copy the `./Dockerfile` from this repo to your root folder.
+
+Run the following commands :
+
+```bash
+docker build -t <custom-image-name> .
+docker run -p 8080:80 <custom-image-name>
+```
+
+> Replace `<custom-image-name>` with the tag you want.
 
 ## Quick start
 
