@@ -6,6 +6,7 @@ import mdx from "@astrojs/mdx"
 import path from "node:path"
 import { copyFileSync, cpSync } from "node:fs"
 import markdownConfig from "./vitePluginCompiiile/markdownConfig.js"
+import resolvePackagePath from 'resolve-package-path'
 
 const source = process.cwd()
 process.env.COMPIIILE_SOURCE = source
@@ -83,6 +84,11 @@ if (packageDir) {
 	viteServerFsAllowList.push(packageDir)
 }
 
+const resolve = (mod) => {
+	const packagePath = resolvePackagePath(mod,".")
+	return packagePath.slice(0, packagePath.lastIndexOf("/"))
+}
+
 const astroConfig = {
 	root: new URL("../.compiiile", import.meta.url).pathname,
 	srcDir: new URL("../.compiiile/src", import.meta.url).pathname,
@@ -96,22 +102,18 @@ const astroConfig = {
 				"@source": source,
 
 				// Adding aliases for Compiiile's build command to work when installed globally
-				vue: path.join(new URL("../node_modules/vue", import.meta.url).pathname),
-				"@vue/server-renderer": path.join(
-					new URL("../node_modules/@vue/server-renderer", import.meta.url).pathname
-				),
-				"@vue/runtime-dom": path.join(new URL("../node_modules/@vue/runtime-dom", import.meta.url).pathname),
-				"@vue/runtime-core": path.join(new URL("../node_modules/@vue/runtime-core", import.meta.url).pathname),
-				kleur: path.join(new URL("../node_modules/kleur", import.meta.url).pathname),
-				clsx: path.join(new URL("../node_modules/clsx", import.meta.url).pathname),
-				"html-escaper": path.join(new URL("../node_modules/html-escaper", import.meta.url).pathname),
-				cssesc: path.join(new URL("../node_modules/cssesc", import.meta.url).pathname),
-				"@vue/reactivity": path.join(new URL("../node_modules/@vue/reactivity", import.meta.url).pathname),
-				"@vue/shared": path.join(new URL("../node_modules/@vue/shared", import.meta.url).pathname),
-				fzf: path.join(new URL("../node_modules/fzf", import.meta.url).pathname),
-				"@astrojs/internal-helpers": path.join(
-					new URL("../node_modules/@astrojs/internal-helpers/dist", import.meta.url).pathname
-				)
+				vue: resolve("vue"),
+				"@vue/server-renderer": resolve("@vue/server-renderer"),
+				"@vue/runtime-dom": resolve("@vue/runtime-dom"),
+				"@vue/runtime-core": resolve("@vue/runtime-core"),
+				kleur: resolve("kleur"),
+				clsx: resolve("clsx"),
+				"html-escaper": resolve("html-escaper"),
+				cssesc: resolve("cssesc"),
+				"@vue/reactivity": resolve("@vue/reactivity"),
+				"@vue/shared": resolve("@vue/shared"),
+				fzf: resolve("fzf"),
+				"@astrojs/internal-helpers": resolve("@astrojs/internal-helpers") + "/dist"
 			}
 		},
 		server: {

@@ -49,13 +49,13 @@ You can install Compiiile either globally or per-project:
 
 ### Globally
 
-Open a terminal and type the following command:
+Open a terminal and type one of these commands, whether using [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/) depending on which package manager you are using:
 
 ```bash
+yarn global add @compiiile/compiiile # install globally with yarn
+# or
 npm install -g @compiiile/compiiile # install globally with npm
 ```
-
-> Global installation won't work using `yarn` because modules are not resolved the same way.
 
 ### Per-project
 
