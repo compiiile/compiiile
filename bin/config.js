@@ -6,7 +6,8 @@ import mdx from "@astrojs/mdx"
 import path from "node:path"
 import { copyFileSync, cpSync } from "node:fs"
 import markdownConfig from "./vitePluginCompiiile/markdownConfig.js"
-import resolvePackagePath from 'resolve-package-path'
+import resolvePackagePath from "resolve-package-path"
+import requireg from "requireg"
 
 const source = process.cwd()
 process.env.COMPIIILE_SOURCE = source
@@ -85,7 +86,8 @@ if (packageDir) {
 }
 
 const resolve = (mod) => {
-	const packagePath = resolvePackagePath(mod,".")
+	const resolvedModule = requireg.resolve("vue")
+	const packagePath = resolvePackagePath(mod,resolvedModule)
 	return packagePath.slice(0, packagePath.lastIndexOf("/"))
 }
 
