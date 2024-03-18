@@ -87,7 +87,7 @@ if (packageDir) {
 
 const resolve = (mod) => {
 	const resolvedModule = requireg.resolve("vue")
-	const packagePath = resolvePackagePath(mod,resolvedModule)
+	const packagePath = resolvePackagePath(mod, resolvedModule)
 	return packagePath.slice(0, packagePath.lastIndexOf("/"))
 }
 
