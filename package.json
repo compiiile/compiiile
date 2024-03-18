@@ -1,7 +1,7 @@
 {
 	"name": "@compiiile/compiiile",
 	"private": false,
-	"version": "2.7.5",
+	"version": "2.8.0",
 	"description": "The most convenient way to render a folder containing markdown files. Previewing and searching markdown files has never been that easy.",
 	"author": "AlbanCrepel <alban.crepel@gmail.com>",
 	"license": "GPL-3.0-only",
@@ -22,6 +22,7 @@
 	},
 	"dependencies": {
 		"@astrojs/mdx": "^2.1.1",
+		"@astrojs/sitemap": "^3.1.1",
 		"@astrojs/vue": "^4.0.8",
 		"@babel/core": "^7.0.0-0",
 		"@babel/eslint-parser": "^7.22.15",

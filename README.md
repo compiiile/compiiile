@@ -186,6 +186,7 @@ Here is the list of parameters that you can set to customize Compiiile (none are
 | `data`                 | `Object`   | An object with data to use in MDX files (check use case below)                                                       |
 | `theme`                | `string`   | The website theme, value can be : `auto` (default value: adapts to system preferences) \| `light` \| `dark`          |
 | `useAutoTitles`        | `Boolean`  | If set to `true`, use the first file heading as title to be displayed in the navbar and for SEO. Defaults to `false` |
+| `noIndex`              | `Boolean`  | If set to `true`, the `robots.txt` file will disallow all routes, preventing indexation. Defaults to `false`         |
 | `vite.server.fs.allow` | `string[]` | Add local paths to vite's server fs allow list                                                                       |
 
 You can use these parameters in 2 ways:
