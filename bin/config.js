@@ -8,6 +8,7 @@ import { copyFileSync, cpSync } from "node:fs"
 import markdownConfig from "./vitePluginCompiiile/markdownConfig.js"
 import resolvePackagePath from "resolve-package-path"
 import requireg from "requireg"
+import sitemap from "@astrojs/sitemap"
 
 const source = process.cwd()
 process.env.COMPIIILE_SOURCE = source
@@ -46,6 +47,7 @@ const argv = yargs(hideBin(process.argv))
 	.version(packageJSON.version).argv
 
 process.env.VITE_COMPIIILE_SITE_URL = argv.siteUrl ?? ""
+process.env.VITE_COMPIIILE_NO_INDEX = /true/i.test(argv.noIndex) // defaults to `false` if not set or not equal to `true`
 
 process.env.VITE_COMPIIILE_TITLE = argv.title ?? ""
 process.env.VITE_COMPIIILE_DESCRIPTION = argv.description ?? ""
@@ -96,7 +98,13 @@ const astroConfig = {
 	srcDir: new URL("../.compiiile/src", import.meta.url).pathname,
 	outDir: path.join(source, argv.dest || ".compiiile/dist"),
 	...(argv.logo ? { publicDir } : {}),
-	integrations: [vue({ appEntrypoint: "/src/app.js" }), ...(configFromFile.integrations ?? []), mdx()],
+	integrations: [
+		vue({ appEntrypoint: "/src/app.js" }),
+		...(configFromFile.integrations ?? []),
+		mdx(),
+		...(process.env.VITE_COMPIIILE_SITE_URL ? [sitemap()] : [])
+	],
+	...(process.env.VITE_COMPIIILE_SITE_URL ? { site: process.env.VITE_COMPIIILE_SITE_URL } : {}),
 	vite: {
 		plugins: [compiiile()],
 		resolve: {
