@@ -63,7 +63,7 @@ export default class {
 
 		const files = fs.readdirSync(directoryPath).sort(collator.compare)
 
-		const entryFileMatcher = files.find((file) => file.toLowerCase() === "readme.md") ? /readme/ : /index/
+		const entryFileMatcher = files.find((file) => file.toLowerCase().match(/^readme.mdx?$/)) ? /readme/ : /index/
 
 		for (let file of files) {
 			if (
