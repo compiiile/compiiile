@@ -490,10 +490,10 @@
   resolved "https://registry.yarnpkg.com/@chevrotain/utils/-/utils-11.0.3.tgz#e39999307b102cff3645ec4f5b3665f5297a2224"
   integrity sha512-YslZMgtJUyuMbZ+aKvfF3x1f5liK4mWNxghFRv7jqRR9C3R3fAOGTTKvxXDa2Y1s9zSbcpuO0cAxDYsc9SrXoQ==
 
-"@compiiile/compiiile-pro@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@compiiile/compiiile-pro/-/compiiile-pro-1.0.0.tgz#ad4a710930325ae8b57e778483b6c09b814758a7"
-  integrity sha512-rtXsVJ4XF9w8rEvzyB67rxQgltWQ3i4oKPQwspB7VkjkuDYj2pzg7AFJ0L9JvHdaLzpRiWv7UORkC8eqj7TWKA==
+"@compiiile/compiiile-pro@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@compiiile/compiiile-pro/-/compiiile-pro-1.0.3.tgz#6139ba7b8a095b3a7ff42a66d9cf5d4d74e20e3e"
+  integrity sha512-wqXFHZ+23ABjIBONdeq2TRN3l/3ILZbBXSlrW0sjZgPR8hY2DDv81Cn+/LEzB+qO5E9S0pbLoTBSn2OgpAQzgA==
   dependencies:
     "@babel/eslint-parser" "^7.23.10"
     "@compiiile/compiiile" "^2.8.0"
@@ -511,33 +511,8 @@
     pako "^2.1.0"
     prettier "^3.2.5"
     rc9 "^2.1.1"
-    unist-util-visit "^5.0.0"
-    unplugin-icons "^0.18.5"
-    unplugin-vue-components "^0.26.0"
-    yargs "^17.7.2"
-
-"@compiiile/compiiile-pro@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@compiiile/compiiile-pro/-/compiiile-pro-1.0.1.tgz#cef83f4e47eb378908942c60fb53aa4a1952295a"
-  integrity sha512-DNrNh6zyyaUeR2CDfLlE01zCsOp6wrv8TbwEwbFuGB7/nZhhtbcgQwivTeLNc9EWCKtYjqAfWzJQs0bF0OXfNQ==
-  dependencies:
-    "@babel/eslint-parser" "^7.23.10"
-    "@compiiile/compiiile" "^2.8.0"
-    "@compiiile/compiiile-pro" "^1.0.0"
-    "@iconify-json/ph" "^1.1.11"
-    "@phosphor-icons/web" "^2.0.3"
-    astro-auto-import "^0.4.2"
-    consola "^3.2.3"
-    eslint "^8.56.0"
-    eslint-config-prettier "^9.1.0"
-    eslint-plugin-vue "^9.21.1"
-    markmap-common "^0.15.6"
-    markmap-lib "^0.15.7"
-    markmap-view "^0.15.6"
-    mermaid "^11.0.0-alpha.6"
-    pako "^2.1.0"
-    prettier "^3.2.5"
-    rc9 "^2.1.1"
+    requireg "^0.2.2"
+    resolve-package-path "^4.0.3"
     unist-util-visit "^5.0.0"
     unplugin-icons "^0.18.5"
     unplugin-vue-components "^0.26.0"

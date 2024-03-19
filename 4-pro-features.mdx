@@ -468,20 +468,9 @@ style: {
     ````
 </details>
 
-# Some title with an icon <Icon name="github-logo" />
+## Code blocks
 
-```
-# Some title with an icon <Icon name="github-logo" />
-```
-
-Icons in body text: <i class="ph ph-smiley"></i>
-
-```
-Icons in body text: <i class="ph ph-smiley"></i>
-In Vue components, use the following syntax: <i-ph-user />
-```
-
-A code block with a custom filename:
+Code block all have a copy content button with the pro version. The file type will be displayed, and you can also display a custom filename:
 
 ```bash filename="script.sh"
 yarn dev
@@ -491,7 +480,7 @@ yarn dev
 yarn add @compiiile/compiiile-pro
 ```
 
-````
+````mdx
 ```bash filename="script.sh"
 yarn dev
 ```
@@ -500,3 +489,44 @@ yarn dev
 yarn add @compiiile/compiiile-pro
 ```
 ````
+
+## Components
+
+Components are usable in `mdx` files without importing them.
+
+### Icon
+
+The `Icon` component is used to display an icon from the PhosphorIcons library. The icon name has to be passed in the `name` prop.
+
+> Some blockquote with an icon <Icon name="github-logo" />
+
+```mdx
+> Some blockquote with an icon <Icon name="github-logo" />
+```
+
+You can also use icons in regular Markdown files (not `mdx`) by using the `i` tag with appropriate classes: `<i class="ph ph-smiley"></i>`
+
+In Vue components, you can use the following syntax to dynamically import the icon you want: `<i-ph-user />`
+
+### CGrid
+
+The `CGrid` component allows you to use a grid layout (very useful for slides):
+
+```mdx
+<CGrid template="2 1" align="center">
+    <div>
+        # Title
+
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. From [xodnnhm](https://giphy.com/xodnnhm).
+    </div>
+
+    ![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdDI1d2lybmoycXA5NTQ1Y2N5Y3ZhOXVuYWxxcmh5MHJvMDdsbWdvcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/SKT9pS2jJ3J7lrn51E/giphy-downsized-large.gif)
+
+</CGrid>
+```
+
+- The `template` prop works just like the `grid-template-columns` CSS property, you can omit the `fr` unit, it will be processed automatically.
+    - `template="1 1"` will make 2 columns of equal width
+    - `template="2 1"` will make 2 columns with the first one using 2/3 width
+- You can vertically align items with the `align` prop, working like the `align-items` CSS property.
+
