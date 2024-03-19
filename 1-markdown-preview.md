@@ -1,6 +1,6 @@
 ---
-title: Markdown preview
-description: Here is how you can write some markdown and see how it will look on the page
+title: "Markdown preview"
+description: Here is how you can write some Markdown and see how it will look on the page thanks to Compiiile.
 ---
 
 # Markdown preview

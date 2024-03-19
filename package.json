@@ -1,7 +1,7 @@
 {
 	"name": "@compiiile/compiiile",
 	"private": false,
-	"version": "2.8.0",
+	"version": "2.8.1",
 	"description": "The most convenient way to render a folder containing markdown files. Previewing and searching markdown files has never been that easy.",
 	"author": "AlbanCrepel <alban.crepel@gmail.com>",
 	"license": "GPL-3.0-only",
@@ -14,7 +14,9 @@
 		"build": "node ./bin/cli.js build && node ./build.js",
 		"preview": "node ./bin/cli.js preview",
 		"lint": "eslint --ext .js,.vue,.ts --ignore-path .gitignore --fix .compiiile bin",
-		"format": "prettier . --write"
+		"format": "prettier . --write",
+		"build-pro": "compiiile-pro build",
+		"dev-pro": "compiiile-pro dev"
 	},
 	"repository": {
 		"type": "git",
@@ -26,6 +28,7 @@
 		"@astrojs/vue": "^4.0.8",
 		"@babel/core": "^7.0.0-0",
 		"@babel/eslint-parser": "^7.22.15",
+		"@compiiile/compiiile-pro": "^1.0.3",
 		"@fontsource-variable/archivo": "^5.0.16",
 		"@fontsource-variable/dm-sans": "^5.0.3",
 		"@fontsource-variable/jetbrains-mono": "^5.0.18",

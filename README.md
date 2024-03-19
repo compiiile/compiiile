@@ -100,9 +100,9 @@ Et voilà, you should be able to preview your files in your browser :tada:.
 
 Once installed, 3 commands are available to see your beautiful markdown files :eyes::
 
--   `compiiile dev` : creates a web server to check your markdown files (alias to only `compiiile`)
--   `compiiile build` : builds all the files for you to serve them production-ready
--   `compiiile preview` : preview your production-ready build
+-   `compiiile dev`: creates a web server to check your markdown files (alias to only `compiiile`)
+-   `compiiile build`: builds all the files for you to serve them production-ready
+-   `compiiile preview`: preview your production-ready build
 
 You can run the command you want in your terminal while being in the desired folder.
 
