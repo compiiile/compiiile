@@ -1,0 +1,502 @@
+---
+title: "[PRO] Features"
+description: "Use icons, admonitions, mermaid diagrams, markmap mindmaps in Markdow thanks to compiiile-pro."
+---
+
+# compiiile-pro added features <Icon name="star" />
+
+## Admonitions
+
+> [!NOTE]
+> A note to `highlight` information for users.
+
+> [!NOTE] Some custom title
+> A note to highlight information for users.
+
+> [!NOTE] Custom title
+>
+> > [!NOTE] Custom title
+> > Admonition-ception, yes that's possible!
+
+> [!TIP]
+> Optional information to `help` a user be more successful.
+
+> [!IMPORTANT]
+> Crucial information `necessary` for users to succeed.
+
+> [!WARNING]
+> Critical content demanding `immediate` user attention due to potential risks.
+
+> [!CAUTION]
+> `Negative` potential consequences of an action.
+
+<details>
+    <summary>Display the source:</summary>
+
+    ```md
+    > [!NOTE]
+    > A note to `highlight` information for users.
+
+    > [!NOTE] Some custom title
+    > A note to highlight information for users.
+
+    > [!NOTE] Custom title
+    >
+    > > [!NOTE] Custom title
+    > > Admonition-ception, yes that's possible!
+
+    > [!TIP]
+    > Optional information to `help` a user be more successful.
+
+    > [!IMPORTANT]
+    > Crucial information `necessary` for users to succeed.
+
+    > [!WARNING]
+    > Critical content demanding `immediate` user attention due to potential risks.
+
+    > [!CAUTION]
+    > `Negative` potential consequences of an action.
+    ```
+</details>
+
+## Diagrams
+
+```mermaid
+graph TD
+  B( compiiile-pro ) -->|Is amazing! | C{ What does it do? }
+  C --> D[ Write diagrams in Markdown ]
+  C --> E[ Display mindmaps ]
+  C --> F[ Use a collection of components ]
+```
+
+<details>
+    <summary>Source</summary>
+
+    ````md
+        ```mermaid
+        graph TD
+        B( compiiile-pro ) -->|Is amazing! | C{ What does it do? }
+        C --> D[ Write diagrams in Markdown ]
+        C --> E[ Display mindmaps ]
+        C --> F[ Use a collection of components ]
+        ```
+    ````
+</details>
+---
+
+```markmap
+---
+markmap:
+    width: 700px
+---
+
+- compiiile-pro
+  - diagrams
+  - mindmaps
+  - components
+    - icons
+    - layout
+```
+
+<details>
+    <summary>Source</summary>
+
+    ````md
+    ```markmap
+    ---
+    markmap:
+    width: 700px
+    ---
+
+    - compiiile-pro
+        - diagrams
+        - mindmaps
+        - components
+            - icons
+            - layout
+    ```
+    ````
+</details>
+
+---
+
+```mermaid
+gitGraph
+    commit id: "☝️ added README"
+    commit id: "feat - diagrams"
+    branch mindmaps
+    commit id: "feat - mindmaps"
+    checkout main
+    merge mindmaps
+    branch components
+    commit id: "feat - components"
+    checkout main
+    commit id: "📚 doc - project description"
+    merge components tag: "1.0.0"
+```
+
+<details>
+    <summary>Source</summary>
+
+    ````md
+    ```mermaid
+    gitGraph
+    commit id: "☝️ added README"
+    commit id: "feat - diagrams"
+    branch mindmaps
+    commit id: "feat - mindmaps"
+    checkout main
+    merge mindmaps
+    branch components
+    commit id: "feat - components"
+    checkout main
+    commit id: "📚 doc - project description"
+    merge components tag: "1.0.0"
+    ```
+    ````
+</details>
+
+---
+
+```mermaid
+sequenceDiagram
+    Client->>Server: GET /products
+    Server-->>Client: Return product list
+```
+
+<details>
+    <summary>Source</summary>
+
+    ````md
+    ```mermaid
+    sequenceDiagram
+    Client->>Server: GET /products
+    Server-->>Client: Return product list
+    ```
+    ````
+</details>
+
+---
+
+```mermaid
+classDiagram
+    class BankAccount
+    BankAccount : +String owner
+    BankAccount : +Bigdecimal balance
+    BankAccount : +deposit(amount)
+    BankAccount : +withdrawal(amount)
+```
+
+<details>
+    <summary>Source</summary>
+
+    ````md
+    ```mermaid
+    classDiagram
+    class BankAccount
+    BankAccount : +String owner
+    BankAccount : +Bigdecimal balance
+    BankAccount : +deposit(amount)
+    BankAccount : +withdrawal(amount)
+    ```
+    ````
+</details>
+
+---
+
+```mermaid
+stateDiagram-v2
+    [*] --> Still
+    Still --> [*]
+
+    Still --> Moving
+    Moving --> Still
+    Moving --> Crash
+    Crash --> [*]
+```
+
+<details>
+    <summary>Source</summary>
+
+    ````md
+    ```mermaid
+    stateDiagram-v2
+    [*] --> Still
+    Still --> [*]
+
+    Still --> Moving
+    Moving --> Still
+    Moving --> Crash
+    Crash --> [*]
+    ```
+    ````
+</details>
+
+---
+
+```mermaid
+erDiagram
+    CUSTOMER ||--o{ ORDER : places
+    ORDER ||--|{ LINE-ITEM : contains
+    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
+```
+
+<details>
+    <summary>Source</summary>
+
+    ````md
+    ```mermaid
+    erDiagram
+    CUSTOMER ||--o{ ORDER : places
+    ORDER ||--|{ LINE-ITEM : contains
+    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
+    ```
+    ````
+</details>
+
+---
+
+```mermaid
+gantt
+    title A Gantt Diagram
+    dateFormat YYYY-MM-DD
+    section Section
+        A task          :a1, 2014-01-01, 30d
+        Another task    :after a1, 20d
+    section Another
+        Task in Another :2014-01-12, 12d
+        another task    :24d
+```
+
+<details>
+    <summary>Source</summary>
+
+    ````md
+   ```mermaid
+    gantt
+        title A Gantt Diagram
+        dateFormat YYYY-MM-DD
+        section Section
+            A task          :a1, 2014-01-01, 30d
+            Another task    :after a1, 20d
+        section Another
+            Task in Another :2014-01-12, 12d
+            another task    :24d
+    ```
+    ````
+</details>
+
+---
+
+```mermaid
+pie title Pets adopted by volunteers
+    "Dogs" : 386
+    "Cats" : 85
+    "Rats" : 15
+```
+
+<details>
+    <summary>Source</summary>
+
+    ````md
+   ```mermaid
+    pie title Pets adopted by volunteers
+        "Dogs" : 386
+        "Cats" : 85
+        "Rats" : 15
+    ```
+    ````
+</details>
+
+---
+
+```mermaid
+quadrantChart
+    title Reach and engagement of campaigns
+    x-axis Low Reach --> High Reach
+    y-axis Low Engagement --> High Engagement
+    quadrant-1 We should expand
+    quadrant-2 Need to promote
+    quadrant-3 Re-evaluate
+    quadrant-4 May be improved
+    Campaign A: [0.3, 0.6]
+    Campaign B: [0.45, 0.23]
+    Campaign C: [0.57, 0.69]
+    Campaign D: [0.78, 0.34]
+    Campaign E: [0.40, 0.34]
+    Campaign F: [0.35, 0.78]
+```
+
+<details>
+    <summary>Source</summary>
+
+    ````md
+    ```mermaid
+    quadrantChart
+        title Reach and engagement of campaigns
+        x-axis Low Reach --> High Reach
+        y-axis Low Engagement --> High Engagement
+        quadrant-1 We should expand
+        quadrant-2 Need to promote
+        quadrant-3 Re-evaluate
+        quadrant-4 May be improved
+        Campaign A: [0.3, 0.6]
+        Campaign B: [0.45, 0.23]
+        Campaign C: [0.57, 0.69]
+        Campaign D: [0.78, 0.34]
+        Campaign E: [0.40, 0.34]
+        Campaign F: [0.35, 0.78]
+    ```
+    ````
+</details>
+
+---
+
+```mermaid
+xychart-beta
+    title "Sales Revenue"
+    x-axis [jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec]
+    y-axis "Revenue (in $)" 4000 --> 11000
+    bar [5000, 6000, 7500, 8200, 9500, 10500, 11000, 10200, 9200, 8500, 7000, 6000]
+    line [5000, 6000, 7500, 8200, 9500, 10500, 11000, 10200, 9200, 8500, 7000, 6000]
+```
+
+<details>
+    <summary>Source</summary>
+
+    ````md
+    ```mermaid
+    xychart-beta
+        title "Sales Revenue"
+        x-axis [jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec]
+        y-axis "Revenue (in $)" 4000 --> 11000
+        bar [5000, 6000, 7500, 8200, 9500, 10500, 11000, 10200, 9200, 8500, 7000, 6000]
+        line [5000, 6000, 7500, 8200, 9500, 10500, 11000, 10200, 9200, 8500, 7000, 6000]
+    ```
+    ````
+</details>
+
+---
+
+```mermaid
+timeline
+    title History of Social Media Platform
+    2002 : LinkedIn
+    2004 : Facebook
+         : Google
+    2005 : Youtube
+    2006 : Twitter
+```
+
+<details>
+    <summary>Source</summary>
+
+    ````md
+    ```mermaid
+    timeline
+        title History of Social Media Platform
+        2002 : LinkedIn
+        2004 : Facebook
+             : Google
+        2005 : Youtube
+        2006 : Twitter
+    ```
+    ````
+</details>
+
+---
+
+```d2
+direction: right
+
+costumes: {
+  shape: sql_table
+  id: int {constraint: primary_key}
+  silliness: int
+  monster: int
+  last_updated: timestamp
+}
+
+monsters: {
+  shape: sql_table
+  id: int {constraint: primary_key}
+  movie: string
+  weight: int
+  last_updated: timestamp
+}
+
+costumes.monster -> monsters.id
+costumes.style.border-radius: 4
+monsters.style.border-radius: 4
+
+style: {
+  fill: "#eeeeee"
+}
+```
+
+<details>
+    <summary>Source</summary>
+
+    ````md
+    ```d2
+    direction: right
+
+    costumes: {
+        shape: sql_table
+        id: int {constraint: primary_key}
+        silliness: int
+        monster: int
+        last_updated: timestamp
+    }
+
+    monsters: {
+        shape: sql_table
+        id: int {constraint: primary_key}
+        movie: string
+        weight: int
+        last_updated: timestamp
+    }
+
+    costumes.monster -> monsters.id
+    costumes.style.border-radius: 4
+    monsters.style.border-radius: 4
+
+    style: {
+        fill: "#eeeeee"
+    }
+    ```
+    ````
+</details>
+
+# Some title with an icon <Icon name="github-logo" />
+
+```
+# Some title with an icon <Icon name="github-logo" />
+```
+
+Icons in body text: <i class="ph ph-smiley"></i>
+
+```
+Icons in body text: <i class="ph ph-smiley"></i>
+In Vue components, use the following syntax: <i-ph-user />
+```
+
+A code block with a custom filename:
+
+```bash filename="script.sh"
+yarn dev
+```
+
+```bash
+yarn add @compiiile/compiiile-pro
+```
+
+````
+```bash filename="script.sh"
+yarn dev
+```
+
+```bash
+yarn add @compiiile/compiiile-pro
+```
+````
