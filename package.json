@@ -11,11 +11,10 @@
 	},
 	"scripts": {
 		"dev": "node ./bin/cli.js dev",
-		"build": "node ./bin/cli.js build && node ./build.js",
+		"build": "compiiile-pro build && node ./build.js",
 		"preview": "node ./bin/cli.js preview",
 		"lint": "eslint --ext .js,.vue,.ts --ignore-path .gitignore --fix .compiiile bin",
 		"format": "prettier . --write",
-		"build-pro": "compiiile-pro build",
 		"dev-pro": "compiiile-pro dev"
 	},
 	"repository": {
