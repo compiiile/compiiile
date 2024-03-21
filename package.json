@@ -27,7 +27,7 @@
 		"@astrojs/vue": "^4.0.8",
 		"@babel/core": "^7.0.0-0",
 		"@babel/eslint-parser": "^7.22.15",
-		"@compiiile/compiiile-pro": "^1.0.3",
+		"@compiiile/compiiile-pro": "^1.0.5",
 		"@fontsource-variable/archivo": "^5.0.16",
 		"@fontsource-variable/dm-sans": "^5.0.3",
 		"@fontsource-variable/jetbrains-mono": "^5.0.18",
