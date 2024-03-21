@@ -1,5 +1,5 @@
 <template>
-	<button class="theme-switcher" @click="toggleTheme">
+	<button class="theme-switcher" @click="toggleTheme" aria-label="Theme switcher">
 		<!-- sun-dim -->
 		<svg
 			class="theme-icon theme-icon--light"
