@@ -529,4 +529,50 @@ The `CGrid` component allows you to use a grid layout (very useful for slides):
     - `template="1 1"` will make 2 columns of equal width
     - `template="2 1"` will make 2 columns with the first one using 2/3 width
 - You can vertically align items with the `align` prop, working like the `align-items` CSS property.
+- You can specify the gap between components with the `gap` prop (defaults to `40px`)
+
+
+### CCard
+
+The `CCard` component can be used as a traditional card or a link.
+- The `title` and `description` slots can be used for traditional cards
+- To get it to work as a link, just provide a Markdown link as default slot, and specify a hint text if needed with the `hintText` prop
+
+<CGrid gap="20px" template="1 1">
+    <CCard hintText="Go to the specific page">
+        [Some link](./3-pro-installation.mdx)
+    </CCard>
+
+    <CCard>
+        [Link (without hint)](./3-pro-installation.mdx)
+    </CCard>
+
+    <CCard>
+        <span slot="title">Title</span>
+        <span slot="description">Some description</span>
+    </CCard>
+</CGrid>
+
+&nbsp;
+
+<details>
+    <summary>Source</summary>
+
+    ````md
+    <CGrid gap="20px" template="1 1">
+        <CCard hintText="Go to the specific page">
+            [Check compiiile-pro installation](./3-pro-installation.mdx)
+        </CCard>
+
+        <CCard>
+            [Link (with hover hint)](./3-pro-installation.mdx)
+        </CCard>
+
+        <CCard>
+            <span slot="title">Title</span>
+            <span slot="description">Some description</span>
+        </CCard>
+    </CGrid>
+    ````
+</details>
 
