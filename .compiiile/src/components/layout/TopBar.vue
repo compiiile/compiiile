@@ -4,7 +4,7 @@
 			<div class="top-bar-content">
 				<hamburger-button />
 				<span class="home-link-wrapper">
-					<a :href="logoUrl">
+					<a :href="logoUrl" aria-label="Home link">
 						<img
 							v-if="isLogoDefined"
 							:src="`${base}favicon.png`"
