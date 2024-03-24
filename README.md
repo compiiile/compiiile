@@ -81,6 +81,26 @@ docker run -p 8080:80 <custom-image-name>
 
 > Replace `<custom-image-name>` with the tag you want. You should get Compiiile running on http://localhost:8080.
 
+### Using docker compose (with dev server)
+Create a new `docker-compose.yaml` file in your directory and add the following code
+```yaml
+services:
+  compiiile-dev:
+    image: node:lts
+    entrypoint: bash -c "yarn global add @compiiile/compiiile && /usr/local/bin/compiiile dev --host 0.0.0.0 --port 4321"
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - 4321:4321
+```
+
+then just run the following command
+
+```bash
+docker compose up
+```
+
 ## Quick start
 
 To make yourself an idea and quickly get started using Compiiile, here are some commands that you can run in your

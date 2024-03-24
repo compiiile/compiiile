@@ -43,8 +43,17 @@ const argv = yargs(hideBin(process.argv))
 	.command("dev", "launch development server")
 	.command("build", "build")
 	.command("preview", "preview")
+	.option('port', {
+        describe: 'port to bind on',
+        default: 4321
+      })
+	.option('host',{
+		describe: 'host to bind on',
+		default: '127.0.0.1'
+	})
 	.help()
 	.version(packageJSON.version).argv
+	
 
 process.env.VITE_COMPIIILE_SITE_URL = argv.siteUrl ?? ""
 process.env.VITE_COMPIIILE_NO_INDEX = /true/i.test(argv.noIndex) // defaults to `false` if not set or not equal to `true`
@@ -94,6 +103,10 @@ const resolve = (mod) => {
 }
 
 const astroConfig = {
+	server: {
+		host: argv.host,
+		port: argv.port
+	},
 	root: new URL("../.compiiile", import.meta.url).pathname,
 	srcDir: new URL("../.compiiile/src", import.meta.url).pathname,
 	outDir: path.join(source, argv.dest || ".compiiile/dist"),
