@@ -82,24 +82,16 @@ docker run -p 8080:80 <custom-image-name>
 > Replace `<custom-image-name>` with the tag you want. You should get Compiiile running on http://localhost:8080.
 
 ### Using docker compose (with dev server)
-Create a new `docker-compose.yaml` file in your directory and add the following code
-```yaml
-services:
-  compiiile-dev:
-    image: node:lts
-    entrypoint: bash -c "yarn global add @compiiile/compiiile && /usr/local/bin/compiiile dev --host 0.0.0.0 --port 4321"
-    working_dir: /app
-    volumes:
-      - .:/app
-    ports:
-      - 4321:4321
-```
 
-then just run the following command
+First, copy the `./docker-compose.yaml` from this repo to your root folder.
+
+Then just run the following command:
 
 ```bash
 docker compose up
 ```
+
+> You should get Compiiile running on http://localhost:4321.
 
 ## Quick start
 
@@ -174,6 +166,12 @@ To separate your slides, just separate the content of your markdown with:
 ```
 
 > There must be an empty line before and after the `---`
+
+You can also make fragments within slides by using 2 hyphens:
+
+```md
+--
+```
 
 :star2: You can make your slides print-ready by adding the `print-pdf` query parameter to your page,
 like: `https://compiiile.me/s/slides-preview?print-pdf`.
