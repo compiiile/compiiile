@@ -57,6 +57,7 @@ description: "Use icons, admonitions, mermaid diagrams, markmap mindmaps in Mark
     > [!CAUTION]
     > `Negative` potential consequences of an action.
     ```
+
 </details>
 
 ## Diagrams
@@ -81,8 +82,8 @@ graph TD
         C --> F[ Use a collection of components ]
         ```
     ````
+
 </details>
----
 
 ```markmap
 ---
@@ -116,6 +117,7 @@ markmap:
             - layout
     ```
     ````
+
 </details>
 
 ---
@@ -154,6 +156,7 @@ gitGraph
     merge components tag: "1.0.0"
     ```
     ````
+
 </details>
 
 ---
@@ -174,6 +177,7 @@ sequenceDiagram
     Server-->>Client: Return product list
     ```
     ````
+
 </details>
 
 ---
@@ -200,6 +204,7 @@ classDiagram
     BankAccount : +withdrawal(amount)
     ```
     ````
+
 </details>
 
 ---
@@ -230,6 +235,7 @@ stateDiagram-v2
     Crash --> [*]
     ```
     ````
+
 </details>
 
 ---
@@ -252,6 +258,7 @@ erDiagram
     CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
     ```
     ````
+
 </details>
 
 ---
@@ -272,60 +279,62 @@ gantt
     <summary>Source</summary>
 
     ````md
-   ```mermaid
-    gantt
-        title A Gantt Diagram
-        dateFormat YYYY-MM-DD
-        section Section
-            A task          :a1, 2014-01-01, 30d
-            Another task    :after a1, 20d
-        section Another
-            Task in Another :2014-01-12, 12d
-            another task    :24d
-    ```
-    ````
+
+`````mermaid
+ gantt
+     title A Gantt Diagram
+     dateFormat YYYY-MM-DD
+     section Section
+         A task          :a1, 2014-01-01, 30d
+         Another task    :after a1, 20d
+     section Another
+         Task in Another :2014-01-12, 12d
+         another task    :24d
+ ```
+ ````
 </details>
 
 ---
 
 ```mermaid
 pie title Pets adopted by volunteers
-    "Dogs" : 386
-    "Cats" : 85
-    "Rats" : 15
-```
+ "Dogs" : 386
+ "Cats" : 85
+ "Rats" : 15
+`````
 
 <details>
     <summary>Source</summary>
 
     ````md
-   ```mermaid
-    pie title Pets adopted by volunteers
-        "Dogs" : 386
-        "Cats" : 85
-        "Rats" : 15
-    ```
-    ````
+
+`````mermaid
+ pie title Pets adopted by volunteers
+     "Dogs" : 386
+     "Cats" : 85
+     "Rats" : 15
+ ```
+ ````
 </details>
 
 ---
 
 ```mermaid
 quadrantChart
-    title Reach and engagement of campaigns
-    x-axis Low Reach --> High Reach
-    y-axis Low Engagement --> High Engagement
-    quadrant-1 We should expand
-    quadrant-2 Need to promote
-    quadrant-3 Re-evaluate
-    quadrant-4 May be improved
-    Campaign A: [0.3, 0.6]
-    Campaign B: [0.45, 0.23]
-    Campaign C: [0.57, 0.69]
-    Campaign D: [0.78, 0.34]
-    Campaign E: [0.40, 0.34]
-    Campaign F: [0.35, 0.78]
-```
+ title Reach and engagement of campaigns
+ x-axis Low Reach --> High Reach
+ y-axis Low Engagement --> High Engagement
+ quadrant-1 We should expand
+ quadrant-2 Need to promote
+ quadrant-3 Re-evaluate
+ quadrant-4 May be improved
+ Campaign A: [0.3, 0.6]
+ Campaign B: [0.45, 0.23]
+ Campaign C: [0.57, 0.69]
+ Campaign D: [0.78, 0.34]
+ Campaign E: [0.40, 0.34]
+ Campaign F: [0.35, 0.78]
+`````
 
 <details>
     <summary>Source</summary>
@@ -348,6 +357,7 @@ quadrantChart
         Campaign F: [0.35, 0.78]
     ```
     ````
+
 </details>
 
 ---
@@ -374,6 +384,7 @@ xychart-beta
         line [5000, 6000, 7500, 8200, 9500, 10500, 11000, 10200, 9200, 8500, 7000, 6000]
     ```
     ````
+
 </details>
 
 ---
@@ -402,6 +413,7 @@ timeline
         2006 : Twitter
     ```
     ````
+
 </details>
 
 ---
@@ -466,6 +478,7 @@ style: {
     }
     ```
     ````
+
 </details>
 
 ## Code blocks
@@ -525,18 +538,18 @@ The `CGrid` component allows you to use a grid layout (very useful for slides):
 </CGrid>
 ```
 
-- The `template` prop works just like the `grid-template-columns` CSS property, you can omit the `fr` unit, it will be processed automatically.
-    - `template="1 1"` will make 2 columns of equal width
-    - `template="2 1"` will make 2 columns with the first one using 2/3 width
-- You can vertically align items with the `align` prop, working like the `align-items` CSS property.
-- You can specify the gap between components with the `gap` prop (defaults to `40px`)
-
+-   The `template` prop works just like the `grid-template-columns` CSS property, you can omit the `fr` unit, it will be processed automatically.
+    -   `template="1 1"` will make 2 columns of equal width
+    -   `template="2 1"` will make 2 columns with the first one using 2/3 width
+-   You can vertically align items with the `align` prop, working like the `align-items` CSS property.
+-   You can specify the gap between components with the `gap` prop (defaults to `40px`)
 
 ### CCard
 
 The `CCard` component can be used as a traditional card or a link.
-- The `title` and `description` slots can be used for traditional cards
-- To get it to work as a link, just provide a Markdown link as default slot, and specify a hint text if needed with the `hintText` prop
+
+-   The `title` and `description` slots can be used for traditional cards
+-   To get it to work as a link, just provide a Markdown link as default slot, and specify a hint text if needed with the `hintText` prop
 
 <CGrid gap="20px" template="1 1">
     <CCard hintText="Go to the specific page">
@@ -551,6 +564,7 @@ The `CCard` component can be used as a traditional card or a link.
         <span slot="title">Title</span>
         <span slot="description">Some description</span>
     </CCard>
+
 </CGrid>
 
 &nbsp;
@@ -574,5 +588,5 @@ The `CCard` component can be used as a traditional card or a link.
         </CCard>
     </CGrid>
     ````
-</details>
 
+</details>

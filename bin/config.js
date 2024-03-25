@@ -43,17 +43,55 @@ const argv = yargs(hideBin(process.argv))
 	.command("dev", "launch development server")
 	.command("build", "build")
 	.command("preview", "preview")
-	.option('port', {
-        describe: 'port to bind on',
-        default: 4321
-      })
-	.option('host',{
-		describe: 'host to bind on',
-		default: '127.0.0.1'
+	.option("port", {
+		describe: "Port to use",
+		default: 4321
+	})
+	.option("host", {
+		describe: "Host to use",
+		default: "127.0.0.1"
+	})
+	.option("title", {
+		describe: "The title to display on the top-left of the User Interface"
+	})
+	.option("description", {
+		describe: "The description that is rendered by default for the SEO"
+	})
+	.option("logo", {
+		describe: "The relative path of the logo to display in the TopBar and as favicon"
+	})
+	.option("logoUrl", {
+		describe: "The url to go to when clicking on the logo, defaults to the home page if not set"
+	})
+	.option("dest", {
+		describe: "The folder in which to build files, defaults to `./.compiiile/dist`"
+	})
+	.option("siteUrl", {
+		describe: "The url of the website in production (without trailing slash), used for the SEO tag `og:image`"
+	})
+	.option("astroConfig", {
+		describe: "Override default Astro config (https://docs.astro.build/en/reference/configuration-reference/)"
+	})
+	.option("data", {
+		describe: "An object with data to use in MDX files"
+	})
+	.option("theme", {
+		describe:
+			"The website theme, value can be : `auto` (default value: adapts to system preferences) | `light` | `dark`"
+	})
+	.option("useAutoTitles", {
+		describe:
+			"If set to `true`, use the first file heading as title to be displayed in the navbar and for SEO. Defaults to `false`"
+	})
+	.option("noIndex", {
+		describe:
+			"If set to `true`, the `robots.txt` file will disallow all routes, preventing indexation. Defaults to `false`"
+	})
+	.option("vite.server.fs.allow", {
+		describe: "Add local paths to vite's server fs allow list"
 	})
 	.help()
 	.version(packageJSON.version).argv
-	
 
 process.env.VITE_COMPIIILE_SITE_URL = argv.siteUrl ?? ""
 process.env.VITE_COMPIIILE_NO_INDEX = /true/i.test(argv.noIndex) // defaults to `false` if not set or not equal to `true`

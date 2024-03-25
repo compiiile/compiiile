@@ -5,7 +5,7 @@ description: "Compiiile with some spice ! With the pro version, enhance your Mar
 
 # Compiiile-pro
 
-Compiiile with some spice :cherries:! With the ***pro*** version, enhance your Markdown files, add diagrams, mindmaps, admonitions, and ready-made components and get your knowledge-base or course ready to be served in one simple command :sparkles:.
+Compiiile with some spice :cherries:! With the **_pro_** version, enhance your Markdown files, add diagrams, mindmaps, admonitions, and ready-made components and get your knowledge-base or course ready to be served in one simple command :sparkles:.
 
 ## Installation
 
@@ -34,6 +34,7 @@ npm install @compiiile/compiiile-pro # install as a project dependency with npm
 ## Usage
 
 Once installed, 3 commands are available that act the same as the usual `compiiile` command:
+
 -   `compiiile-pro dev`
 -   `compiiile-pro build`
 -   `compiiile-pro preview`
@@ -62,13 +63,13 @@ COMPIIILE_PRO_LICENSE="XXXX-XXXX-XXXX-XXXX" COMPIIILE_PRO_EMAIL="john.doe@mail.c
 
 Similarly, you have 2 parameters that you can pass to the build command to use your licence: `--pro.license="<YOUR-LICENCE>"` and `--pro.email="<YOUR-EMAIL-USED-FOR-PURCHASE>"`.
 
-Here is the complete command as example: 
+Here is the complete command as example:
 
 ```bash
 compiiile-pro build --pro.license="XXXX-XXXX-XXXX-XXXX" --pro.email="john.doe@mail.com"
 ```
 
-### Set it globally 
+### Set it globally
 
 To use the same license on multiple projects, you can create a `.compiiilerc` file at the root of your user folder (`~/.compiiilerc`).
 
@@ -89,20 +90,20 @@ pro.email=<your-email>
 
 ## Affiliate
 
-
-You can become an affiliate and earn 20% on each sale by referring new customers (or should we say... *compiiilers ?*):
+You can become an affiliate and earn 20% on each sale by referring new customers (or should we say... _compiiilers ?_):
 
 <a style="background-color:var(--highlight-color);color:#f7fafc;display:block;text-align:center;border-radius:4px;text-decoration:none;padding:10px;" href="https://compiiile.lemonsqueezy.com/affiliates" target="_blank">Become an affiliate</a>
 
 ## Added features
 
 Here is a list of features that the pro version adds:
-- add a button to copy code blocks and be able to specify the code block file name
-- add admonitions (or alerts) with different semantic colors
-- use any [Phosphor Icon](https://phosphoricons.com/) in your Markdown files or Vue components
-- add [MermaidJs](https://mermaid.js.org/#/) integration to write diagrams in Markdown, without compromising on style
-- add [Markmap](https://markmap.js.org/) integration to write mindmaps in Markdown from bullet-points lists
-- add [d2](https://d2lang.com/) integration to write diagrams
-- use ready-to-use components (for slides layouts, etc) in `mdx` files
+
+-   add a button to copy code blocks and be able to specify the code block file name
+-   add admonitions (or alerts) with different semantic colors
+-   use any [Phosphor Icon](https://phosphoricons.com/) in your Markdown files or Vue components
+-   add [MermaidJs](https://mermaid.js.org/#/) integration to write diagrams in Markdown, without compromising on style
+-   add [Markmap](https://markmap.js.org/) integration to write mindmaps in Markdown from bullet-points lists
+-   add [d2](https://d2lang.com/) integration to write diagrams
+-   use ready-to-use components (for slides layouts, etc) in `mdx` files
 
 See an overview of these features in the next page.
