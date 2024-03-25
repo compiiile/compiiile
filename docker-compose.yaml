@@ -1,0 +1,9 @@
+services:
+    compiiile-dev:
+        image: node:lts
+        entrypoint: bash -c "yarn && yarn dev --host 0.0.0.0 --port 4321"
+        working_dir: /app
+        volumes:
+            - .:/app
+        ports:
+            - 4321:4321
