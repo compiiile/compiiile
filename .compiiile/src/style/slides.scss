@@ -71,7 +71,8 @@
 	font-family: "DM Sans Variable", sans-serif !important;
 
 	p,
-	li {
+	li,
+	a {
 		font-size: max(3.25vmin, 18px) !important;
 	}
 
@@ -125,7 +126,7 @@
 		font-size: 2vmin;
 		display: block;
 		max-width: 100%;
-		overflow-x: scroll;
+		overflow-x: auto;
 	}
 
 	table tr {
