@@ -72,7 +72,7 @@
 
 	p,
 	li,
-	a {
+	*:not(.slide-number) a {
 		font-size: max(3.25vmin, 18px) !important;
 	}
 
