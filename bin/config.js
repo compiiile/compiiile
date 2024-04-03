@@ -159,6 +159,7 @@ const astroConfig = {
 	vite: {
 		plugins: [compiiile()],
 		resolve: {
+			preserveSymlinks: true,
 			alias: {
 				"@source": source,
 
