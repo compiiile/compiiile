@@ -184,6 +184,8 @@ Other frontmatter keys are handled:
     are [CSS text-align values](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align) (`left`, `center`, ...). This
     changes the default text alignment in slides. The default value is `center`.
 
+> :bulb: You can override slides theme by passing it to a `theme` query parameter in your slide url (for example `/s/slides?theme=light`). See the `theme` config parameter below for valid values.
+
 ### Routing
 
 The home page of Compiiile (`/`) points to a `README.md` file located at the root of your folder, or fallbacks to an `index.md` file.
