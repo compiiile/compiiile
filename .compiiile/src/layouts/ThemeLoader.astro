@@ -4,6 +4,10 @@ const { defaultTheme } = Astro.props
 
 <script is:inline define:vars={{ defaultTheme }}>
     const theme = (() => {
+        const themeQueryParameter = new URLSearchParams(window.location.search).get("theme")
+        if(themeQueryParameter && ["light", "dark"].includes(themeQueryParameter)){
+            return themeQueryParameter
+        }
         if (typeof localStorage !== 'undefined' && localStorage.getItem('COMPIIILE_THEME')) {
             return localStorage.getItem('COMPIIILE_THEME');
         }

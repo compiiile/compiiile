@@ -39,7 +39,7 @@ export default class {
 			.map((val) => slugify(val, { lower: true }))
 			.join("/")
 
-		if (sluggifiedPath.match(entryFileMatcher)) {
+		if (sluggifiedPath.match(new RegExp(/^/.source + entryFileMatcher.source))) {
 			if (process.env.VITE_COMPIIILE_BASE !== "/") {
 				return process.env.VITE_COMPIIILE_BASE
 			}
@@ -85,7 +85,7 @@ export default class {
 				const fileName = path.parse(filePath).name
 				const isReadmeFile =
 					!isDirectory &&
-					filePath.toLowerCase().match(new RegExp(/^/.source + entryFileMatcher.source + /\.mdx?$/.source))
+					filePath.toLowerCase().match(new RegExp(/^(.*?\/?)/.source + entryFileMatcher.source + /\.mdx?$/.source))
 
 				let filesTreeItem = new FilesTreeItem(uuid, fileName)
 
@@ -147,7 +147,16 @@ export default class {
 						)
 
 						if (isReadmeFile) {
-							this.fileList.unshift(fileListItem)
+							let newIndex = 0
+
+							if(directoryPath !== "."){
+								newIndex = this.fileList.findIndex(f => f.fullPath.startsWith(directoryPath))
+								if(newIndex < 0){
+									newIndex = this.fileList.length
+								}
+							}
+
+							this.fileList.splice(newIndex, 0, fileListItem)
 						} else {
 							this.fileList.push(fileListItem)
 						}

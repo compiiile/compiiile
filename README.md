@@ -30,7 +30,7 @@ That's what Compiiile does. And it does it hassle-free !
 -   [x] :mag: **Full-text quick search with content preview**
 -   [x] :zap: Hot-reload content preview as you edit it
 -   [x] :tada: Supports MDX files: add your own components to your documentation
--   [x] :bulb: Can serve as knowledge base
+-   [x] :bulb: Can serve as knowledge base, and handles symlinks to reuse content
 -   [x] :wrench: Customizable by env variables or config file, it's up to you
 -   [x] :star2: You get it, it simply does the job, period.
 
@@ -183,6 +183,8 @@ Other frontmatter keys are handled:
 -   `textAlign`: possible values
     are [CSS text-align values](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align) (`left`, `center`, ...). This
     changes the default text alignment in slides. The default value is `center`.
+
+> :bulb: You can override slides theme by passing it to a `theme` query parameter in your slide url (for example `/s/slides?theme=light`). See the `theme` config parameter below for valid values.
 
 ### Routing
 
