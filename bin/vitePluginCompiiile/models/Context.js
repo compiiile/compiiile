@@ -85,7 +85,9 @@ export default class {
 				const fileName = path.parse(filePath).name
 				const isReadmeFile =
 					!isDirectory &&
-					filePath.toLowerCase().match(new RegExp(/^(.*?\/?)/.source + entryFileMatcher.source + /\.mdx?$/.source))
+					filePath
+						.toLowerCase()
+						.match(new RegExp(/^(.*?\/?)/.source + entryFileMatcher.source + /\.mdx?$/.source))
 
 				let filesTreeItem = new FilesTreeItem(uuid, fileName)
 
@@ -149,9 +151,9 @@ export default class {
 						if (isReadmeFile) {
 							let newIndex = 0
 
-							if(directoryPath !== "."){
-								newIndex = this.fileList.findIndex(f => f.fullPath.startsWith(directoryPath))
-								if(newIndex < 0){
+							if (directoryPath !== ".") {
+								newIndex = this.fileList.findIndex((f) => f.fullPath.startsWith(directoryPath))
+								if (newIndex < 0) {
 									newIndex = this.fileList.length
 								}
 							}

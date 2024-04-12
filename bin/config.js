@@ -20,7 +20,7 @@ import yargs from "yargs/yargs"
 import { hideBin } from "yargs/helpers"
 
 import { readFile } from "fs/promises"
-const packageJSON = JSON.parse(await readFile(fileURLToPath(path.join(import.meta.url, "../../package.json"))))
+const packageJSON = JSON.parse(await readFile(fileURLToPath(new URL("../package.json", import.meta.url))))
 
 /*
  Order of options by priority:
@@ -114,7 +114,7 @@ const publicDir = path.resolve(source, "./.compiiile/public")
 
 if (argv.logo) {
 	try {
-		cpSync(fileURLToPath(path.join(import.meta.url, "../.compiiile/public")), publicDir, { recursive: true })
+		cpSync(fileURLToPath(new URL("../.compiiile/public", import.meta.url)), publicDir, { recursive: true })
 		copyFileSync(path.resolve(source, argv.logo), path.resolve(publicDir, "favicon.png"))
 		// Set the logo to be displayed on the top bar if we were able to copy
 		process.env.VITE_COMPIIILE_LOGO = argv.logo
@@ -129,11 +129,7 @@ import { createRequire } from "node:module"
 const require = createRequire(import.meta.url)
 const pathName = require.resolve("@fontsource-variable/archivo")
 import { packageDirectory } from "pkg-dir"
-const viteServerFsAllowList = [
-	source,
-	fileURLToPath(path.join(import.meta.url, "../")),
-	path.resolve(pathName, "../../")
-]
+const viteServerFsAllowList = [source, fileURLToPath(new URL("../", import.meta.url)), path.resolve(pathName, "../../")]
 const packageDir = await packageDirectory()
 if (packageDir) {
 	viteServerFsAllowList.push(packageDir)
@@ -150,8 +146,8 @@ const astroConfig = {
 		host: argv.host,
 		port: argv.port
 	},
-	root: fileURLToPath(path.join(import.meta.url, "../.compiiile")),
-	srcDir: fileURLToPath(path.join(import.meta.url, "../.compiiile/src")),
+	root: fileURLToPath(new URL("../.compiiile", import.meta.url)),
+	srcDir: fileURLToPath(new URL("../.compiiile/src", import.meta.url)),
 	outDir: path.join(source, argv.dest || ".compiiile/dist"),
 	...(argv.logo ? { publicDir } : {}),
 	integrations: [
@@ -167,7 +163,6 @@ const astroConfig = {
 			preserveSymlinks: true,
 			alias: {
 				"@source": source,
-
 				// Adding aliases for Compiiile's build command to work when installed globally
 				vue: resolve("vue"),
 				"@vue/server-renderer": resolve("@vue/server-renderer"),
