@@ -138,7 +138,8 @@ if (packageDir) {
 const resolve = (mod) => {
 	const resolvedModule = requireg.resolve("vue")
 	const packagePath = resolvePackagePath(mod, resolvedModule)
-	return packagePath.slice(0, packagePath.lastIndexOf("/"))
+	// Check to work on both Windows (using `\`) and UNIX systems (using `/`)
+	return packagePath.slice(0, packagePath.lastIndexOf("/") < 0 ? packagePath.lastIndexOf("\\") : packagePath.lastIndexOf("/"))
 }
 
 const astroConfig = {
