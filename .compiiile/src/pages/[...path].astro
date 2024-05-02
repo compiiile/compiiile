@@ -2,13 +2,17 @@
 import WorkspaceLayout from "../layouts/WorkspaceLayout.astro"
 import ContentWrapper from "../components/ContentWrapper.vue"
 import {routeList} from "virtual:compiiile"
-import SlidesLayout from "../layouts/SlidesLayout.astro";
+import SlidesLayout from "../layouts/SlidesLayout.astro"
+import path from "node:path"
 
 export async function getStaticPaths() {
     const markdownFiles = await Astro.glob('@source/**/*.{md,mdx}')
 
     return routeList.map(route => {
-        const md = markdownFiles.find(post => post.file === `${process.cwd()}/${route.fullPath}`)
+        const md = markdownFiles.find(post => {
+            // Using normalize for paths to work on both Windows (using `\`) and UNIX systems (using `/`)
+            return path.normalize(post.file) === path.normalize(`${process.cwd()}/${route.fullPath}`)
+        })
 
         let routePath = route.path
 
