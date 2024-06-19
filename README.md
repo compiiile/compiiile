@@ -207,6 +207,7 @@ Here is the list of parameters that you can set to customize Compiiile (none are
 | `theme`                | `string`   | The website theme, value can be : `auto` (default value: adapts to system preferences) \| `light` \| `dark`          |
 | `useAutoTitles`        | `Boolean`  | If set to `true`, use the first file heading as title to be displayed in the navbar and for SEO. Defaults to `false` |
 | `noIndex`              | `Boolean`  | If set to `true`, the `robots.txt` file will disallow all routes, preventing indexation. Defaults to `false`         |
+| `publicDir`            | `string`   | The folder name in which you can serve public files, defaults to `public`                                            |
 | `vite.server.fs.allow` | `string[]` | Add local paths to vite's server fs allow list                                                                       |
 
 You can use these parameters in 2 ways:
@@ -237,6 +238,17 @@ export default {
 ```
 
 > ⚠️ You should bear in mind that script arguments have priority over config file parameters.
+
+## Public files
+
+If you want some files to be public, just create a folder named `public` at the root of your Compiiile folder.
+
+For example, if you want to link to a local PDF in your Markdown file, you can put your PDF in your local public directory, in `public/my-pdf.pdf`.
+Then, all you have to do is creating a link in Markdown with an absolute path like so :
+
+```markdown
+[Check the PDF](/my-pdf.pdf)
+```
 
 ## Use MDX
 

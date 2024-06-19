@@ -4,7 +4,7 @@ import { passthroughImageService } from "astro/config"
 import compiiile from "./vitePluginCompiiile/index.js"
 import mdx from "@astrojs/mdx"
 import path from "node:path"
-import { copyFileSync, cpSync } from "node:fs"
+import { copyFileSync, cpSync, existsSync } from "node:fs"
 import { fileURLToPath } from "node:url"
 import markdownConfig from "./vitePluginCompiiile/markdownConfig.js"
 import resolvePackagePath from "resolve-package-path"
@@ -88,6 +88,9 @@ const argv = yargs(hideBin(process.argv))
 		describe:
 			"If set to `true`, the `robots.txt` file will disallow all routes, preventing indexation. Defaults to `false`"
 	})
+	.option("publicDir", {
+		describe: "The folder name in which you can serve public files, defaults to `public`"
+	})
 	.option("vite.server.fs.allow", {
 		describe: "Add local paths to vite's server fs allow list"
 	})
@@ -112,9 +115,21 @@ process.env.VITE_COMPIIILE_LOGO = null
 
 const publicDir = path.resolve(source, "./.compiiile/public")
 
+const localPublicDirName = argv.publicDir ?? "public"
+const localPublicDir = path.resolve(source, localPublicDirName)
+const localPublicDirExists = existsSync(localPublicDir)
+
+const hasPublicFiles = localPublicDirExists || argv.logo
+if (hasPublicFiles) {
+	cpSync(fileURLToPath(new URL("../.compiiile/public", import.meta.url)), publicDir, { recursive: true })
+}
+
+if (localPublicDirExists) {
+	cpSync(localPublicDir, publicDir, { recursive: true })
+}
+
 if (argv.logo) {
 	try {
-		cpSync(fileURLToPath(new URL("../.compiiile/public", import.meta.url)), publicDir, { recursive: true })
 		copyFileSync(path.resolve(source, argv.logo), path.resolve(publicDir, "favicon.png"))
 		// Set the logo to be displayed on the top bar if we were able to copy
 		process.env.VITE_COMPIIILE_LOGO = argv.logo
@@ -139,7 +154,10 @@ const resolve = (mod) => {
 	const resolvedModule = requireg.resolve("vue")
 	const packagePath = resolvePackagePath(mod, resolvedModule)
 	// Check to work on both Windows (using `\`) and UNIX systems (using `/`)
-	return packagePath.slice(0, packagePath.lastIndexOf("/") < 0 ? packagePath.lastIndexOf("\\") : packagePath.lastIndexOf("/"))
+	return packagePath.slice(
+		0,
+		packagePath.lastIndexOf("/") < 0 ? packagePath.lastIndexOf("\\") : packagePath.lastIndexOf("/")
+	)
 }
 
 const astroConfig = {
@@ -150,7 +168,7 @@ const astroConfig = {
 	root: fileURLToPath(new URL("../.compiiile", import.meta.url)),
 	srcDir: fileURLToPath(new URL("../.compiiile/src", import.meta.url)),
 	outDir: path.join(source, argv.dest || ".compiiile/dist"),
-	...(argv.logo ? { publicDir } : {}),
+	...(hasPublicFiles ? { publicDir } : {}),
 	integrations: [
 		vue({ appEntrypoint: "/src/app.js" }),
 		...(configFromFile.integrations ?? []),
