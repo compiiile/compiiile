@@ -110,6 +110,21 @@ process.env.VITE_COMPIIILE_THEME = argv.theme ?? "auto"
 process.env.VITE_COMPIIILE_DATA = JSON.stringify(argv.data ?? {})
 process.env.VITE_COMPIIILE_USE_AUTO_TITLES = /true/i.test(argv.useAutoTitles) // defaults to `false` if not set or not equal to `true`
 
+
+// Get command and set env
+const IS_DEV = argv._.length === 0 || argv._.includes("dev")
+const IS_BUILD = argv._.includes("build")
+const IS_PREVIEW = argv._.includes("preview")
+
+const NODE_ENV_DEVELOPMENT = "development"
+const NODE_ENV_PRODUCTION = "production"
+if (IS_DEV) {
+	process.env.NODE_ENV = NODE_ENV_DEVELOPMENT
+} else if (IS_BUILD || IS_PREVIEW) {
+	process.env.NODE_ENV = NODE_ENV_PRODUCTION
+}
+
+
 // Handling logo and favicon
 process.env.VITE_COMPIIILE_LOGO = null
 
@@ -190,7 +205,8 @@ const astroConfig = {
 				kleur: resolve("kleur"),
 				clsx: resolve("clsx"),
 				"html-escaper": resolve("html-escaper"),
-				cssesc: resolve("cssesc"),
+				...(process.env.NODE_ENV === NODE_ENV_PRODUCTION ? {cssesc: resolve("cssesc")} : {}), // Not included in dev because of the 'module is not defined' error otherwise
+				mrmime: resolve("mrmime"),
 				"@vue/reactivity": resolve("@vue/reactivity"),
 				"@vue/shared": resolve("@vue/shared"),
 				fzf: resolve("fzf"),
@@ -222,25 +238,13 @@ if (process.env.VITE_COMPIIILE_BASE !== "/" && process.env.VITE_COMPIIILE_BASE.e
 }
 
 const run = async (astroConfig) => {
-	const IS_DEV = argv._.length === 0 || argv._.includes("dev")
-	const IS_BUILD = argv._.includes("build")
-	const IS_PREVIEW = argv._.includes("preview")
-
-	const NODE_ENV_DEVELOPMENT = "development"
-	const NODE_ENV_PRODUCTION = "production"
 	if (IS_DEV) {
-		process.env.NODE_ENV = NODE_ENV_DEVELOPMENT
-
 		const devServer = await dev(astroConfig)
 		devServer.watcher.add([source])
 		return devServer
 	} else if (IS_BUILD) {
-		process.env.NODE_ENV = NODE_ENV_PRODUCTION
-
 		return await build(astroConfig)
 	} else if (IS_PREVIEW) {
-		process.env.NODE_ENV = NODE_ENV_PRODUCTION
-
 		return await preview(astroConfig)
 	}
 }
