@@ -183,6 +183,7 @@ Other frontmatter keys are handled:
 -   `textAlign`: possible values
     are [CSS text-align values](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align) (`left`, `center`, ...). This
     changes the default text alignment in slides. The default value is `center`.
+- `ignore` : Boolean value (`true` or `false`) to ignore the current file and exclude it from Compiiile (the file is not ignored by default).
 
 > :bulb: You can override slides theme by passing it to a `theme` query parameter in your slide url (for example `/s/slides?theme=light`). See the `theme` config parameter below for valid values.
 

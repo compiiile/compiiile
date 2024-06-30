@@ -71,7 +71,7 @@ export default class {
 					".vuepress",
 					".git",
 					"node_modules",
-					"compiiile",
+					".compiiile",
 					"bin",
 					".idea",
 					".DS_Store",
@@ -121,6 +121,14 @@ export default class {
 						)
 
 						const meta = renderedMarkdown.metadata.frontmatter
+
+						if(meta.ignore){
+							const fileIndex = fileArray.findIndex(f => f.uuid === fileListItem.uuid)
+							if(fileIndex > -1){
+								fileArray.splice(fileIndex, 1)
+							}
+							continue
+						}
 
 						let firstHeading = null
 						if (
