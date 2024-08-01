@@ -122,9 +122,9 @@ export default class {
 
 						const meta = renderedMarkdown.metadata.frontmatter
 
-						if(meta.ignore){
-							const fileIndex = fileArray.findIndex(f => f.uuid === fileListItem.uuid)
-							if(fileIndex > -1){
+						if (meta.ignore) {
+							const fileIndex = fileArray.findIndex((f) => f.uuid === fileListItem.uuid)
+							if (fileIndex > -1) {
 								fileArray.splice(fileIndex, 1)
 							}
 							continue

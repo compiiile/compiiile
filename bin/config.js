@@ -10,7 +10,7 @@ import markdownConfig from "./vitePluginCompiiile/markdownConfig.js"
 import resolvePackagePath from "resolve-package-path"
 import requireg from "requireg"
 import sitemap from "@astrojs/sitemap"
-import {loadConfig} from "c12"
+import { loadConfig } from "c12"
 const source = process.cwd()
 process.env.COMPIIILE_SOURCE = source
 
@@ -28,7 +28,7 @@ const packageJSON = JSON.parse(await readFile(fileURLToPath(new URL("../package.
  */
 let configFromFile = {}
 try {
-	configFromFile = (await loadConfig({ name: "compiiile"})).config
+	configFromFile = (await loadConfig({ name: "compiiile" })).config
 } catch {
 	// This means that no config file was provided: getting parameters from script parameters instead
 }
@@ -108,7 +108,6 @@ process.env.VITE_COMPIIILE_THEME = argv.theme ?? "auto"
 process.env.VITE_COMPIIILE_DATA = JSON.stringify(argv.data ?? {})
 process.env.VITE_COMPIIILE_USE_AUTO_TITLES = /true/i.test(argv.useAutoTitles) // defaults to `false` if not set or not equal to `true`
 
-
 // Get command and set env
 const IS_DEV = argv._.length === 0 || argv._.includes("dev")
 const IS_BUILD = argv._.includes("build")
@@ -121,7 +120,6 @@ if (IS_DEV) {
 } else if (IS_BUILD || IS_PREVIEW) {
 	process.env.NODE_ENV = NODE_ENV_PRODUCTION
 }
-
 
 // Handling logo and favicon
 process.env.VITE_COMPIIILE_LOGO = null
@@ -203,7 +201,7 @@ const astroConfig = {
 				kleur: resolve("kleur"),
 				clsx: resolve("clsx"),
 				"html-escaper": resolve("html-escaper"),
-				...(process.env.NODE_ENV === NODE_ENV_PRODUCTION ? {cssesc: resolve("cssesc")} : {}), // Not included in dev because of the 'module is not defined' error otherwise
+				...(process.env.NODE_ENV === NODE_ENV_PRODUCTION ? { cssesc: resolve("cssesc") } : {}), // Not included in dev because of the 'module is not defined' error otherwise
 				mrmime: resolve("mrmime"),
 				"@vue/reactivity": resolve("@vue/reactivity"),
 				"@vue/shared": resolve("@vue/shared"),
