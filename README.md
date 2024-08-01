@@ -183,7 +183,7 @@ Other frontmatter keys are handled:
 -   `textAlign`: possible values
     are [CSS text-align values](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align) (`left`, `center`, ...). This
     changes the default text alignment in slides. The default value is `center`.
-- `ignore` : Boolean value (`true` or `false`) to ignore the current file and exclude it from Compiiile (the file is not ignored by default).
+-   `ignore` : Boolean value (`true` or `false`) to ignore the current file and exclude it from Compiiile (the file is not ignored by default).
 
 > :bulb: You can override slides theme by passing it to a `theme` query parameter in your slide url (for example `/s/slides?theme=light`). See the `theme` config parameter below for valid values.
 
@@ -342,12 +342,16 @@ keep this project really simple and straightforward).
 
 You can read more about it and the roadmap in the [dedicated contributing guide](./CONTRIBUTING.md).
 
-## Community projects
+## Official integrations & community projects
+
+You can add features to Compiiile by using the following projects:
+
+-   [compiiile-pro](https://compiiile.me/c/3-pro-installation): Enhance your Markdown files, add diagrams, mindmaps, admonitions, and ready-made components
+-   [compiiile-print](https://github.com/compiiile/compiiile-print): Add a print ready page containing all your Markdown files
 
 Here is a list of projects related to Compiiile developed by the community:
 
--   [compiiile-actions-cloudflare-pages](https://github.com/marketplace/actions/compiiile-cloudflare-pages): A simple
-    GitHub action to deploy a Compiiile site to CloudFlare pages
+-   [compiiile-actions-cloudflare-pages](https://github.com/marketplace/actions/compiiile-cloudflare-pages): A simple GitHub action to deploy a Compiiile site to CloudFlare pages
 
 ## Support
 
@@ -361,8 +365,8 @@ You can always contact me for a custom use of this project and any licence issue
 
 Thank you :heart:
 
-## Licence
+## License
 
 This project is licensed under the terms of the GNU General Public License v3.0.
 
-See [LICENCE.md](./LICENCE.md).
+See [LICENSE.md](./LICENSE.md).
