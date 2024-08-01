@@ -10,11 +10,9 @@ import markdownConfig from "./vitePluginCompiiile/markdownConfig.js"
 import resolvePackagePath from "resolve-package-path"
 import requireg from "requireg"
 import sitemap from "@astrojs/sitemap"
-
+import {loadConfig} from "c12"
 const source = process.cwd()
 process.env.COMPIIILE_SOURCE = source
-
-const CONFIG_FILE = "compiiile.config.js"
 
 import yargs from "yargs/yargs"
 import { hideBin } from "yargs/helpers"
@@ -30,7 +28,7 @@ const packageJSON = JSON.parse(await readFile(fileURLToPath(new URL("../package.
  */
 let configFromFile = {}
 try {
-	configFromFile = (await import(path.join(source, CONFIG_FILE))).default
+	configFromFile = (await loadConfig({ name: "compiiile"})).config
 } catch {
 	// This means that no config file was provided: getting parameters from script parameters instead
 }

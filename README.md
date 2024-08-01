@@ -240,6 +240,8 @@ export default {
 
 > ⚠️ You should bear in mind that script arguments have priority over config file parameters.
 
+> :bulb: Compiiile uses [c12](https://github.com/unjs/c12) to load the config file, which allows to **extend config values** from other files. See the [dedicated c12 documentation](https://github.com/unjs/c12?tab=readme-ov-file#extending-configuration) for more information.
+
 ## Public files
 
 If you want some files to be public, just create a folder named `public` at the root of your Compiiile folder.
