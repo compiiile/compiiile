@@ -1,7 +1,7 @@
 {
 	"name": "@compiiile/compiiile",
 	"private": false,
-	"version": "2.13.0",
+	"version": "2.13.1",
 	"description": "The most convenient way to render a folder containing markdown files. Previewing and searching markdown files has never been that easy.",
 	"author": "AlbanCrepel <alban.crepel@gmail.com>",
 	"license": "GPL-3.0-only",
@@ -19,7 +19,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/AlbanCrepel/compiiile.git"
+		"url": "git+https://github.com/compiiile/compiiile.git"
 	},
 	"dependencies": {
 		"@astrojs/mdx": "^2.3.1",
