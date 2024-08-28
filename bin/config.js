@@ -245,4 +245,4 @@ const run = async (astroConfig) => {
 	}
 }
 
-export { astroConfig, run }
+export { astroConfig, run, argv }
