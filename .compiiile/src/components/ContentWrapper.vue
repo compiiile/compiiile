@@ -192,9 +192,10 @@
 
 		img {
 			max-width: 100%;
-			margin: 0 auto;
+			margin: 20px auto;
 			display: block;
 			object-fit: contain;
+            height: auto;
 		}
 
 		a {
