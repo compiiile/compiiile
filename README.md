@@ -184,6 +184,7 @@ Other frontmatter keys are handled:
     are [CSS text-align values](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align) (`left`, `center`, ...). This
     changes the default text alignment in slides. The default value is `center`.
 -   `ignore` : Boolean value (`true` or `false`) to ignore the current file and exclude it from Compiiile (the file is not ignored by default).
+-   `hidden` : Boolean value (`true` or `false`) to hide the file from the navbar and siblings links (the file is not hidden by default).
 
 > :bulb: You can override slides theme by passing it to a `theme` query parameter in your slide url (for example `/s/slides?theme=light`). See the `theme` config parameter below for valid values.
 
@@ -321,6 +322,18 @@ key:
 import { site } from "virtual:compiiile"
 
 # {site.data.someProperty}
+```
+
+## Ignoring files and folders
+
+To ignore a whole folder or some files matching a certain pattern, you can add a `.compiiileignore` at the root of the folder where you run Compiiile.
+
+This file accepts glob patterns to ignore files. For example, if you want to ignore files containing the word `preview` and files starting with a number,
+you can simply put these 2 lines in your `.compiiileignore`:
+
+```ignorelang
+*preview*
+[1-9]*
 ```
 
 ## Common issues

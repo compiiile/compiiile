@@ -1,5 +1,5 @@
 <template>
-	<li class="nav-list-item no-wrap">
+	<li class="nav-list-item no-wrap" v-if="!route.meta.hidden">
 		<template v-if="item.isDirectory">
 			<svg
 				class="directory-icon"
