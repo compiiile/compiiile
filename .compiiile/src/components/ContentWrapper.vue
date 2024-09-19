@@ -105,11 +105,11 @@
 				return this.fileIndex > -1 ? this.$context.fileList[this.fileIndex] : null
 			},
 			fileSiblings() {
-                let visibleFiles = this.$context.fileList
-                if(!this.file.meta.hidden){
-                    visibleFiles = visibleFiles.filter(file => !file.meta.hidden)
-                }
-                const newIndex = visibleFiles.findIndex((file) => file.uuid === this.name)
+				let visibleFiles = this.$context.fileList
+				if (!this.file.meta.hidden) {
+					visibleFiles = visibleFiles.filter((file) => !file.meta.hidden)
+				}
+				const newIndex = visibleFiles.findIndex((file) => file.uuid === this.name)
 
 				return {
 					prev: visibleFiles[newIndex - 1] ?? null,
@@ -201,7 +201,7 @@
 			margin: 20px auto;
 			display: block;
 			object-fit: contain;
-            height: auto;
+			height: auto;
 		}
 
 		a {
