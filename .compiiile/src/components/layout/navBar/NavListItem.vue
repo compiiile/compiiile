@@ -1,5 +1,5 @@
 <template>
-	<li class="nav-list-item no-wrap" v-if="!route.meta.hidden">
+	<li v-if="isVisible(item)" class="nav-list-item no-wrap">
 		<template v-if="item.isDirectory">
 			<svg
 				class="directory-icon"
@@ -155,6 +155,21 @@
 		computed: {
 			route() {
 				return this.$context.routeList.find((route) => route.name === this.item.uuid)
+			}
+		},
+		methods: {
+			isVisible(item) {
+				if (!item.isDirectory) {
+					const route = this.$context.routeList.find((route) => route.name === item.uuid)
+					return !route.meta.hidden
+				}
+
+				return (
+					item.children.length > 0 &&
+					item.children.some((child) => {
+						return this.isVisible(child)
+					})
+				)
 			}
 		}
 	}

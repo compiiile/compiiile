@@ -9,7 +9,7 @@ import markdownConfig from "../markdownConfig.js"
 import { unemojify } from "node-emoji"
 import slugify from "slugify"
 import parseIgnore from "parse-gitignore"
-import { minimatch } from 'minimatch'
+import { minimatch } from "minimatch"
 
 export default class {
 	WORKSPACE_BASE_PATH = "c"
@@ -84,23 +84,24 @@ export default class {
 				const filePath = path.join(directoryPath, file)
 
 				try {
-					const compiiileIgnoreFilePath = fs.readFileSync(path.join(process.env.COMPIIILE_SOURCE, ".compiiileignore"))
+					const compiiileIgnoreFilePath = fs.readFileSync(
+						path.join(process.env.COMPIIILE_SOURCE, ".compiiileignore")
+					)
 					const compiiileIgnore = parseIgnore(compiiileIgnoreFilePath)
 
-					const ignoreGlobs = compiiileIgnore.globs().filter(globType => globType.type === "ignore")
+					const ignoreGlobs = compiiileIgnore.globs().filter((globType) => globType.type === "ignore")
 					const ignorePatterns = ignoreGlobs.reduce((patterns, currentIgnoreGlobItem) => {
 						return [...patterns, ...currentIgnoreGlobItem.patterns]
 					}, [])
 
-					const isFilePathInIgnoredPatterns = ignorePatterns.some(pattern => minimatch(filePath, pattern))
+					const isFilePathInIgnoredPatterns = ignorePatterns.some((pattern) => minimatch(filePath, pattern))
 
-					if(isFilePathInIgnoredPatterns){
+					if (isFilePathInIgnoredPatterns) {
 						continue
 					}
-				} catch(e){
+				} catch (e) {
 					// No .compiiileignore file found at the root
 				}
-
 
 				const isDirectory = fs.statSync(filePath).isDirectory()
 				const uuid = uuidv4()
