@@ -106,7 +106,7 @@
 			},
 			fileSiblings() {
 				let visibleFiles = this.$context.fileList
-				if (!this.file.meta.hidden) {
+				if (this.file && !this.file.meta.hidden) {
 					visibleFiles = visibleFiles.filter((file) => !file.meta.hidden)
 				}
 				const newIndex = visibleFiles.findIndex((file) => file.uuid === this.name)
