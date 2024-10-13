@@ -1,8 +1,8 @@
-@import "variables";
-@import "texts";
-@import "layouts";
-@import "print";
-@import "code-theme";
+@import "./variables.css";
+@import "./texts.css";
+@import "./layouts.css";
+@import "./print.css";
+@import "./code-theme.css";
 
 *,
 *::before,

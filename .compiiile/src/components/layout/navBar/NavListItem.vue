@@ -175,7 +175,7 @@
 	}
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 	.nav-list-item-children {
 		list-style-type: none;
 		padding-left: 20px;

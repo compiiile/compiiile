@@ -120,7 +120,7 @@
 	}
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 	:deep(.markdown-content) {
 		margin-right: calc(var(--toc-width) + 80px);
 

@@ -50,7 +50,7 @@
 	}
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 	.theme-switcher {
 		position: relative;
 		margin-left: 6px;

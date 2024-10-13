@@ -24,7 +24,7 @@
 	}
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 	.toc {
 		width: var(--toc-width);
 		position: sticky;
