@@ -206,6 +206,7 @@ const astroConfig = {
 				"@vue/reactivity": resolve("@vue/reactivity"),
 				"@vue/shared": resolve("@vue/shared"),
 				fzf: resolve("fzf"),
+				"@oslojs/encoding": resolve("@oslojs/encoding"),
 				"@astrojs/internal-helpers": resolve("@astrojs/internal-helpers") + "/dist"
 			}
 		},

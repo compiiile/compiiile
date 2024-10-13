@@ -72,10 +72,10 @@
 	}
 </script>
 
-<style lang="scss">
+<style>
 	@import "reveal.js/dist/reveal.css";
 	@import "reveal.js/dist/theme/black.css";
-	@import "../style/slides.scss";
+	@import "../style/slides.css";
 
 	:global(#app) {
 		height: 100%;

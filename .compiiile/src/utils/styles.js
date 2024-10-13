@@ -1,4 +1,4 @@
-import "../style/index.scss"
+import "../style/index.css"
 /* Importing global fonts */
 import "@fontsource-variable/archivo/wdth.css"
 import "@fontsource-variable/archivo/wdth-italic.css"

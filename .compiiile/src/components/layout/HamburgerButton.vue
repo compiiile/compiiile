@@ -26,7 +26,7 @@
 	}
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 	.hamburger {
 		display: flex;
 		flex-direction: column;

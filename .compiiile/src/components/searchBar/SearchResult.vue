@@ -33,7 +33,7 @@
 	}
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 	.search-result,
 	.search-result-header {
 		background-color: var(--search-background-color);

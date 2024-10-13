@@ -262,7 +262,7 @@
 	}
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 	.search-bar-wrapper {
 		position: fixed;
 		top: 0;

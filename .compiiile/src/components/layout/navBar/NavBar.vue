@@ -19,7 +19,7 @@
 	}
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 	nav {
 		width: var(--nav-bar-width);
 		background-color: var(--darker-background-color);
