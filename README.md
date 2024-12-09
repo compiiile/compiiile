@@ -20,26 +20,26 @@ That's what Compiiile does. And it does it hassle-free !
 
 ## Features
 
--   [x] 📦 **No config required, everything just works out of the box, without changing your files** (resolves images and
-        relative links (cross-references), print-ready rendering, :sunny: light and :first_quarter_moon_with_face: dark themes)
--   [x] 🌱 Available everywhere with static files deployment: just host it somewhere and access it in any browser on your
-        computer, phone or whatever you are using
--   [x] :link: Quick access to your files via the navbar and links to the previous and next file (with table of content
-        generation)
--   [x] :tv: Display some files as slides
--   [x] :mag: **Full-text quick search with content preview**
--   [x] :zap: Hot-reload content preview as you edit it
--   [x] :tada: Supports MDX files: add your own components to your documentation
--   [x] :bulb: Can serve as knowledge base, and handles symlinks to reuse content
--   [x] :wrench: Customizable by env variables or config file, it's up to you
--   [x] :star2: You get it, it simply does the job, period.
+- [x] 📦 **No config required, everything just works out of the box, without changing your files** (resolves images and
+      relative links (cross-references), print-ready rendering, :sunny: light and :first_quarter_moon_with_face: dark themes)
+- [x] 🌱 Available everywhere with static files deployment: just host it somewhere and access it in any browser on your
+      computer, phone or whatever you are using
+- [x] :link: Quick access to your files via the navbar and links to the previous and next file (with table of content
+      generation)
+- [x] :tv: Display some files as slides
+- [x] :mag: **Full-text quick search with content preview**
+- [x] :zap: Hot-reload content preview as you edit it
+- [x] :tada: Supports MDX files: add your own components to your documentation
+- [x] :bulb: Can serve as knowledge base, and handles symlinks to reuse content
+- [x] :wrench: Customizable by env variables or config file, it's up to you
+- [x] :star2: You get it, it simply does the job, period.
 
 ### What Compiiile isn't
 
--   It's not a markdown editor, there are already plenty available, just choose the one that works best for you, even the
-    simplest text editor will do.
--   It's not like VuePress, VitePress, Docusaurus or Notion. Compiiile's goal is to stay simple and stupidly easy without
-    any configuration.
+- It's not a markdown editor, there are already plenty available, just choose the one that works best for you, even the
+  simplest text editor will do.
+- It's not like VuePress, VitePress, Docusaurus or Notion. Compiiile's goal is to stay simple and stupidly easy without
+  any configuration.
 
 > The goal is to help people rely purely on a **language** (_markdown_), not on _any_ platform.
 
@@ -112,9 +112,9 @@ Et voilà, you should be able to preview your files in your browser :tada:.
 
 Once installed, 3 commands are available to see your beautiful markdown files :eyes::
 
--   `compiiile dev`: creates a web server to check your markdown files (alias to only `compiiile`)
--   `compiiile build`: builds all the files for you to serve them production-ready
--   `compiiile preview`: preview your production-ready build
+- `compiiile dev`: creates a web server to check your markdown files (alias to only `compiiile`)
+- `compiiile build`: builds all the files for you to serve them production-ready
+- `compiiile preview`: preview your production-ready build
 
 You can run the command you want in your terminal while being in the desired folder.
 
@@ -178,13 +178,13 @@ like: `https://compiiile.me/s/slides-preview?print-pdf`.
 
 Other frontmatter keys are handled:
 
--   `title`: set the title to be displayed in the navbar and for SEO
--   `description`: set the description for SEO
--   `textAlign`: possible values
-    are [CSS text-align values](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align) (`left`, `center`, ...). This
-    changes the default text alignment in slides. The default value is `center`.
--   `ignore` : Boolean value (`true` or `false`) to ignore the current file and exclude it from Compiiile (the file is not ignored by default).
--   `hidden` : Boolean value (`true` or `false`) to hide the file from the navbar and siblings links (the file is not hidden by default).
+- `title`: set the title to be displayed in the navbar and for SEO
+- `description`: set the description for SEO
+- `textAlign`: possible values
+  are [CSS text-align values](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align) (`left`, `center`, ...). This
+  changes the default text alignment in slides. The default value is `center`.
+- `ignore` : Boolean value (`true` or `false`) to ignore the current file and exclude it from Compiiile (the file is not ignored by default).
+- `hidden` : Boolean value (`true` or `false`) to hide the file from the navbar and siblings links (the file is not hidden by default).
 
 > :bulb: You can override slides theme by passing it to a `theme` query parameter in your slide url (for example `/s/slides?theme=light`). See the `theme` config parameter below for valid values.
 
@@ -338,15 +338,15 @@ you can simply put these 2 lines in your `.compiiileignore`:
 
 ## Common issues
 
--   Make sure that the absolute path to the folder where you are running Compiiile doesn't contain any special character
-    as it could prevent the project initialization.
+- Make sure that the absolute path to the folder where you are running Compiiile doesn't contain any special character
+  as it could prevent the project initialization.
 
 ## Special thanks
 
--   [Astro](https://github.com/withastro/astro) for enabling us developers to make lightweight websites
--   [fzf-for-js](https://github.com/ajitid/fzf-for-js) for the search feature
--   [reveal.js](https://revealjs.com/) for displaying markdown files as slides
--   [Vite](https://vitejs.dev/) for helping modern frontend developers keep their mental health sane :heart:
+- [Astro](https://github.com/withastro/astro) for enabling us developers to make lightweight websites
+- [fzf-for-js](https://github.com/ajitid/fzf-for-js) for the search feature
+- [reveal.js](https://revealjs.com/) for displaying markdown files as slides
+- [Vite](https://vitejs.dev/) for helping modern frontend developers keep their mental health sane :heart:
 
 ## Contributing
 
@@ -359,12 +359,12 @@ You can read more about it and the roadmap in the [dedicated contributing guide]
 
 You can add features to Compiiile by using the following projects:
 
--   [compiiile-pro](https://compiiile.me/c/3-pro-installation): Enhance your Markdown files, add diagrams, mindmaps, admonitions, and ready-made components
--   [compiiile-print](https://github.com/compiiile/compiiile-print): Add a print ready page containing all your Markdown files
+- [compiiile-pro](https://compiiile.me/c/3-pro-installation): Enhance your Markdown files, add diagrams, mindmaps, admonitions, and ready-made components
+- [compiiile-print](https://github.com/compiiile/compiiile-print): Add a print ready page containing all your Markdown files
 
 Here is a list of projects related to Compiiile developed by the community:
 
--   [compiiile-actions-cloudflare-pages](https://github.com/marketplace/actions/compiiile-cloudflare-pages): A simple GitHub action to deploy a Compiiile site to CloudFlare pages
+- [compiiile-actions-cloudflare-pages](https://github.com/marketplace/actions/compiiile-cloudflare-pages): A simple GitHub action to deploy a Compiiile site to CloudFlare pages
 
 ## Support
 

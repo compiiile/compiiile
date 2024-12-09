@@ -22,6 +22,8 @@
 	--table-even-lines-background-color: #232329;
 	--pre-background-color: var(--darker-background-color);
 	--pre-color: #d2d7e0;
+	--astro-code-background: var(--darker-background-color);
+	--astro-code-foreground: var(--pre-color);
 	--highlight-color: #9985fe;
 	--slides-controls: #eeaa6f;
 	/* ----------------------- */

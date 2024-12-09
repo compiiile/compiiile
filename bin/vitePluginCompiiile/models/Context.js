@@ -99,7 +99,7 @@ export default class {
 					if (isFilePathInIgnoredPatterns) {
 						continue
 					}
-				} catch (e) {
+				} catch (_) {
 					// No .compiiileignore file found at the root
 				}
 

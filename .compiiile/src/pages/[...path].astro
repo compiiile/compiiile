@@ -6,7 +6,7 @@ import SlidesLayout from "../layouts/SlidesLayout.astro"
 import path from "node:path"
 
 export async function getStaticPaths() {
-    const markdownFiles = await Astro.glob('@source/**/*.{md,mdx}')
+    const markdownFiles = Object.values(import.meta.glob('@source/**/*.{md,mdx}', { eager: true }))
 
     return routeList.map(route => {
         const md = markdownFiles.find(post => {

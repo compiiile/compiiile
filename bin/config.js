@@ -194,7 +194,6 @@ const astroConfig = {
 			alias: {
 				"@source": source,
 				// Adding aliases for Compiiile's build command to work when installed globally
-				vue: resolve("vue"),
 				"@vue/server-renderer": resolve("@vue/server-renderer"),
 				"@vue/runtime-dom": resolve("@vue/runtime-dom"),
 				"@vue/runtime-core": resolve("@vue/runtime-core"),
