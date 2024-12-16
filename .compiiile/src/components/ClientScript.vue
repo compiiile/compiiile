@@ -14,6 +14,14 @@
 				console.log(this.$context)
 				console.groupEnd()
 			}
+
+			const activeLink = document.querySelector(".nav-list-item .link-active")
+			const nav = document.querySelector("body > .page > nav")
+
+			const activeLinkTop = activeLink?.getBoundingClientRect()?.y
+			if (activeLink && nav && activeLinkTop > window.innerHeight) {
+				nav.scrollTop = activeLinkTop - window.innerHeight + nav.offsetTop
+			}
 		},
 		methods: {
 			async onScroll() {
