@@ -35,9 +35,9 @@ npm install @compiiile/compiiile-pro # install as a project dependency with npm
 
 Once installed, 3 commands are available that act the same as the usual `compiiile` command:
 
--   `compiiile-pro dev`
--   `compiiile-pro build`
--   `compiiile-pro preview`
+- `compiiile-pro dev`
+- `compiiile-pro build`
+- `compiiile-pro preview`
 
 ## License
 
@@ -98,12 +98,12 @@ You can become an affiliate and earn 20% on each sale by referring new customers
 
 Here is a list of features that the pro version adds:
 
--   add a button to copy code blocks and be able to specify the code block file name
--   add admonitions (or alerts) with different semantic colors
--   use any [Phosphor Icon](https://phosphoricons.com/) in your Markdown files or Vue components
--   add [MermaidJs](https://mermaid.js.org/#/) integration to write diagrams in Markdown, without compromising on style
--   add [Markmap](https://markmap.js.org/) integration to write mindmaps in Markdown from bullet-points lists
--   add [d2](https://d2lang.com/) integration to write diagrams
--   use ready-to-use components (for slides layouts, etc) in `mdx` files
+- add a button to copy code blocks and be able to specify the code block file name
+- add admonitions (or alerts) with different semantic colors
+- use any [Phosphor Icon](https://phosphoricons.com/) in your Markdown files or Vue components
+- add [MermaidJs](https://mermaid.js.org/#/) integration to write diagrams in Markdown, without compromising on style
+- add [Markmap](https://markmap.js.org/) integration to write mindmaps in Markdown from bullet-points lists
+- add [d2](https://d2lang.com/) integration to write diagrams
+- use ready-to-use components (for slides layouts, etc) in `mdx` files
 
 See an overview of these features in the next page.

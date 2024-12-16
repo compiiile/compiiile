@@ -10,8 +10,8 @@ Whether, we will always aim to keep the code base and features simple.
 
 Here is the current roadmap and feature ideas for incoming releases:
 
--   [ ] being able to resize the navbar
--   [ ] tag files with frontmatter and search files having specific tags
+- [ ] being able to resize the navbar
+- [ ] tag files with frontmatter and search files having specific tags
 
 If a fix needs to be done or your contributing idea is part of this roadmap, it will most likely be taken into account.
 
@@ -21,8 +21,8 @@ People should also understand that I am not working full-time on this project an
 
 You can launch a local version of the project by cloning the repository, installing the dependencies (with `yarn install`, and use these 3 commands):
 
--   `yarn dev`
--   `yarn build`
--   `yarn preview`
+- `yarn dev`
+- `yarn build`
+- `yarn preview`
 
 Your code should also comply with the project's code style by running `yarn lint` and `yarn format`.

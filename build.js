@@ -1,16 +1,16 @@
 import { build } from "vite"
 import { unlinkSync } from "node:fs"
 
-const jsFileName = "style.es.js"
+const fileName = "style"
 await build({
 	build: {
 		lib: {
 			entry: new URL("./.compiiile/src/utils/styles.js", import.meta.url).pathname,
 			name: "style",
 			formats: ["es"],
-			fileName: (_) => jsFileName
+			fileName
 		}
 	}
 })
 
-await unlinkSync(`./dist/${jsFileName}`)
+await unlinkSync(`./dist/${fileName}.js`)

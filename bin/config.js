@@ -7,17 +7,19 @@ import path from "node:path"
 import { copyFileSync, cpSync, existsSync } from "node:fs"
 import { fileURLToPath } from "node:url"
 import markdownConfig from "./vitePluginCompiiile/markdownConfig.js"
-import resolvePackagePath from "resolve-package-path"
-import requireg from "requireg"
 import sitemap from "@astrojs/sitemap"
 import { loadConfig } from "c12"
-const source = process.cwd()
-process.env.COMPIIILE_SOURCE = source
-
 import yargs from "yargs/yargs"
 import { hideBin } from "yargs/helpers"
 
-import { readFile } from "fs/promises"
+import { readFile } from "node:fs/promises"
+// Making sure fonts are accessible by vite's server
+import { createRequire } from "node:module"
+import { packageDirectory } from "pkg-dir"
+
+const source = process.cwd()
+process.env.COMPIIILE_SOURCE = source
+
 const packageJSON = JSON.parse(await readFile(fileURLToPath(new URL("../package.json", import.meta.url))))
 
 /*
@@ -150,25 +152,13 @@ if (argv.logo) {
 	}
 }
 
-// Making sure fonts are accessible by vite's server
-import { createRequire } from "node:module"
 const require = createRequire(import.meta.url)
 const pathName = require.resolve("@fontsource-variable/archivo")
-import { packageDirectory } from "pkg-dir"
+
 const viteServerFsAllowList = [source, fileURLToPath(new URL("../", import.meta.url)), path.resolve(pathName, "../../")]
 const packageDir = await packageDirectory()
 if (packageDir) {
 	viteServerFsAllowList.push(packageDir)
-}
-
-const resolve = (mod) => {
-	const resolvedModule = requireg.resolve("vue")
-	const packagePath = resolvePackagePath(mod, resolvedModule)
-	// Check to work on both Windows (using `\`) and UNIX systems (using `/`)
-	return packagePath.slice(
-		0,
-		packagePath.lastIndexOf("/") < 0 ? packagePath.lastIndexOf("\\") : packagePath.lastIndexOf("/")
-	)
 }
 
 const astroConfig = {
@@ -184,7 +174,36 @@ const astroConfig = {
 		vue({ appEntrypoint: "/src/app.js" }),
 		...(configFromFile.integrations ?? []),
 		mdx(),
-		...(process.env.VITE_COMPIIILE_SITE_URL ? [sitemap()] : [])
+		...(process.env.VITE_COMPIIILE_SITE_URL ? [sitemap()] : []),
+		{
+			name: "include-dependencies",
+			hooks: {
+				"astro:build:setup": ({ vite }) => {
+					vite.ssr.noExternal.push(
+						"kleur",
+						"clsx",
+						"vue",
+						"@vue/compiler-dom",
+						"@vue/compiler-core",
+						"@vue/shared",
+						"@babel/parser",
+						"estree-walker",
+						"source-map-js",
+						"@vue/runtime-dom",
+						"@vue/runtime-core",
+						"@vue/reactivity",
+						"@vue/server-renderer",
+						"@vue/compiler-ssr",
+						"html-escaper",
+						"@oslojs/encoding",
+						"cssesc",
+						"fzf",
+						"@astrojs/internal-helpers",
+						"mrmime"
+					)
+				}
+			}
+		}
 	],
 	...(process.env.VITE_COMPIIILE_SITE_URL ? { site: process.env.VITE_COMPIIILE_SITE_URL } : {}),
 	vite: {
@@ -192,22 +211,7 @@ const astroConfig = {
 		resolve: {
 			preserveSymlinks: true,
 			alias: {
-				"@source": source,
-				// Adding aliases for Compiiile's build command to work when installed globally
-				vue: resolve("vue"),
-				"@vue/server-renderer": resolve("@vue/server-renderer"),
-				"@vue/runtime-dom": resolve("@vue/runtime-dom"),
-				"@vue/runtime-core": resolve("@vue/runtime-core"),
-				kleur: resolve("kleur"),
-				clsx: resolve("clsx"),
-				"html-escaper": resolve("html-escaper"),
-				...(process.env.NODE_ENV === NODE_ENV_PRODUCTION ? { cssesc: resolve("cssesc") } : {}), // Not included in dev because of the 'module is not defined' error otherwise
-				mrmime: resolve("mrmime"),
-				"@vue/reactivity": resolve("@vue/reactivity"),
-				"@vue/shared": resolve("@vue/shared"),
-				fzf: resolve("fzf"),
-				"@oslojs/encoding": resolve("@oslojs/encoding"),
-				"@astrojs/internal-helpers": resolve("@astrojs/internal-helpers") + "/dist"
+				"@source": source
 			}
 		},
 		server: {

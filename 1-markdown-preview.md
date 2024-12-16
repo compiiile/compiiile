@@ -72,11 +72,11 @@ Strikethrough uses two tildes. ~~Scratch this.~~
     To have a line break without a paragraph, you will need to use two trailing spaces.
     Note that this line is separate, but within the same paragraph.
 
--   Unordered list can use asterisks
+- Unordered list can use asterisks
 
-*   Or minuses
+* Or minuses
 
--   Or pluses
+- Or pluses
 ```
 
 1. First ordered list item
@@ -91,11 +91,11 @@ Strikethrough uses two tildes. ~~Scratch this.~~
     To have a line break without a paragraph, you will need to use two trailing spaces.
     Note that this line is separate, but within the same paragraph.
 
--   Unordered list can use asterisks
+- Unordered list can use asterisks
 
-*   Or minuses
+* Or minuses
 
--   Or pluses
+- Or pluses
 
 ## Links
 
@@ -211,12 +211,12 @@ Quote break.
 ## Checkboxes
 
 ```md
--   [ ] a todo item
--   [x] I've done this one
+- [ ] a todo item
+- [x] I've done this one
 ```
 
--   [ ] a todo item
--   [x] I've done this one
+- [ ] a todo item
+- [x] I've done this one
 
 ## Inline HTML
 
