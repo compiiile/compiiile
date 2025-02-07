@@ -197,7 +197,7 @@ The home page of Compiiile (`/`) points to a `README.md` file located at the roo
 Here is the list of parameters that you can set to customize Compiiile (none are required):
 
 | Parameter              | Type       | Description                                                                                                          |
-| ---------------------- | ---------- | -------------------------------------------------------------------------------------------------------------------- |
+|------------------------|------------|----------------------------------------------------------------------------------------------------------------------|
 | `title`                | `string`   | The title to display on the top-left of the User Interface                                                           |
 | `description`          | `string`   | The description that is rendered by default for the SEO                                                              |
 | `logo`                 | `string`   | The relative path of the logo to display in the TopBar and as favicon                                                |
@@ -211,6 +211,7 @@ Here is the list of parameters that you can set to customize Compiiile (none are
 | `noIndex`              | `Boolean`  | If set to `true`, the `robots.txt` file will disallow all routes, preventing indexation. Defaults to `false`         |
 | `publicDir`            | `string`   | The folder name in which you can serve public files, defaults to `public`                                            |
 | `vite.server.fs.allow` | `string[]` | Add local paths to vite's server fs allow list                                                                       |
+| `printReady`           | `Boolean`  | Add a `/print` page to display a full ready-to-print content (uses `@compiiile/compiiile-print`)                     |
 
 You can use these parameters in 2 ways:
 

@@ -1,0 +1,42 @@
+---
+title: "Deploy"
+description: "Deploy a Compiiile project and self-host or put it online via a provider like Vercel, making your knowledge-base accessible on the web."
+---
+
+# Deploy Compiiile :rocket:
+
+You own your Markdown files, so unlike a proprietary solution, you can deploy Compiiile and make your knowledge-base accessible on the web freely.
+
+Let's suppose you have a folder containing a bunch Markdown files, with sub-folders, without any config file (no `package.json` whatsoever).
+It's a breeze to deploy it, so let's dive into it!
+
+## Self-host your knowledge-base :hammer:
+
+### Using Docker
+
+A [ready-to-use Docker file is available on the repo](https://github.com/compiiile/compiiile/blob/master/Dockerfile) and you can
+follow the [instructions on the README to build the files](./README.md#using-docker).
+
+### Build static files
+
+Assuming you have Compiiile installed globally (`npm install -g @compiiile/compiiile`), you can run the `build` command with parameters on-the-fly to generate static files.
+
+```bash
+compiiile build --title="Hello world!"
+```
+
+You'll have all your static files generated in the `.compiiile/dist` folder, ready to be served on your server!
+
+## Deploy your Markdown files on Vercel :globe_with_meridians:
+
+In your project's `Settings` tab, put these settings:
+- Framework preset: `Other`
+- Build command: `compiiile build --title="Hello world!"`
+- Output directory: `.compiiile/dist`
+- Install command: `npm install @compiiile/compiiile`
+
+Wait... is this it? Well, yeah, it's as simple as that! Everytime you make a new deployment (via a push to the `main` branch of your repo or via the Vercel CLI),
+you'll get your knowledge-base updated. Once again, without even config files! Isn't it beautiful? :open_mouth:
+
+> [!TIP]
+> Of course, something similar can be done using `Netlify`, `GitHub pages`, or whatever you use.

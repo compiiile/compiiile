@@ -94,6 +94,9 @@ const argv = yargs(hideBin(process.argv))
 	.option("vite.server.fs.allow", {
 		describe: "Add local paths to vite's server fs allow list"
 	})
+	.option("printReady", {
+		describe: "Add a /print page to display a full ready-to-print content (uses @compiiile/compiiile-print)"
+	})
 	.help()
 	.version(packageJSON.version).argv
 
@@ -161,6 +164,13 @@ if (packageDir) {
 	viteServerFsAllowList.push(packageDir)
 }
 
+const localIntegrations = []
+
+if(/true/i.test(argv.printReady)){
+	const compiiilePrintIntegration = (await import("@compiiile/compiiile-print")).default
+	localIntegrations.push(compiiilePrintIntegration())
+}
+
 const astroConfig = {
 	server: {
 		host: argv.host,
@@ -173,6 +183,7 @@ const astroConfig = {
 	integrations: [
 		vue({ appEntrypoint: "/src/app.js" }),
 		...(configFromFile.integrations ?? []),
+		...(localIntegrations ?? []),
 		mdx(),
 		...(process.env.VITE_COMPIIILE_SITE_URL ? [sitemap()] : []),
 		{
