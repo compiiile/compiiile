@@ -8,6 +8,8 @@
 	--ease-in-out-quart: cubic-bezier(0.77, 0, 0.175, 1);
 	--monospace: "JetBrains Mono Variable", monospace;
 	--r-code-font: "JetBrains Mono Variable", monospace;
+	--heading-font: "Archivo Variable", sans-serif;
+	--default-font: "DM Sans Variable", sans-serif;
 
 	/* Dark theme by default */
 	--layout-background-color: #1b1b1f;

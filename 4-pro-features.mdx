@@ -5,6 +5,30 @@ description: "Use icons, admonitions, mermaid diagrams, markmap mindmaps in Mark
 
 # compiiile-pro added features <Icon name="star" />
 
+## Customize style by providing your own CSS file
+
+You can customize every bit of the UI with your own style by passing a `css` param with the relative path to your css file :
+
+```bash
+compiiile-pro dev --css="./custom.css"
+```
+
+Here is an example of a CSS file content to set some colors and the default font:
+
+```css
+@import url(https://fonts.bunny.net/css?family=inter:200i,400,400i,900);
+
+:root {
+    --layout-background-color: #0000FF;
+    --darker-background-color: #00FF00;
+    --default-font: 'Inter', sans-serif;
+}
+```
+
+:nail_care: The list of global CSS variables can be found here : https://github.com/compiiile/compiiile/blob/master/.compiiile/src/style/variables.css
+
+:rainbow: You can also just target CSS classes and tweak them the way you want.
+
 ## Admonitions
 
 > [!NOTE]
@@ -572,7 +596,7 @@ The `CCard` component can be used as a traditional card or a link.
 <details>
     <summary>Source</summary>
 
-    ````md
+    ````mdx
     <CGrid gap="20px" template="1 1">
         <CCard hintText="Go to the specific page">
             [Check compiiile-pro installation](./3-pro-installation.md)
@@ -590,3 +614,23 @@ The `CCard` component can be used as a traditional card or a link.
     ````
 
 </details>
+
+### CDetails
+
+The `CDetails` component allows you to hide a block and reveal it by clicking on an arrow, just like the `details` HTML tag.
+
+- The title can be set via a `summary` prop or a `summary` slot
+
+<CDetails summary="Example">
+    > [!TIP]
+    > This is lit! :sparkles:
+</CDetails>
+
+<CDetails summary="Source">
+    ```mdx
+    <CDetails summary="Example">
+        > [!TIP]
+        > This is lit! :sparkles:
+    </CDetails>
+    ```
+</CDetails>
