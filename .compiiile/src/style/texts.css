@@ -3,7 +3,7 @@ h2,
 h3,
 h4,
 h5 {
-	font-family: "Archivo Variable", sans-serif;
+	font-family: var(--heading-font);
 	margin: 3rem 0 1.38rem;
 	line-height: 1;
 	font-variation-settings: "wght" 900;
@@ -86,4 +86,9 @@ body {
 
 .hidden {
 	visibility: hidden;
+}
+
+
+details summary {
+	cursor: pointer;
 }
