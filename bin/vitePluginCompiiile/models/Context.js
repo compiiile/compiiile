@@ -55,6 +55,24 @@ export default class {
 		}/${asSlides ? this.SLIDES_BASE_PATH : this.WORKSPACE_BASE_PATH}/${sluggifiedPath}${hash}`
 	}
 
+	getFileTitleFromProcessedMarkdown(processedMarkdown){
+		let firstHeading = null
+		if (
+			JSON.parse(process.env.VITE_COMPIIILE_USE_AUTO_TITLES) &&
+			processedMarkdown.metadata.headings.length > 0
+		) {
+			let firstHeadingIndex = 0
+			if (Object.keys(processedMarkdown.metadata.frontmatter).length > 0) {
+				// If a frontmatter is set, it is present as the first index in the `headings` array
+				firstHeadingIndex = 1
+			}
+			// Remove the starting '#' from the title
+			firstHeading = processedMarkdown.metadata.headings[firstHeadingIndex]?.text?.slice(1)
+		}
+
+		return processedMarkdown.metadata.frontmatter.title || firstHeading
+	}
+
 	async scanDirectoryRecursively(directoryPath) {
 		const fileArray = []
 
@@ -153,23 +171,10 @@ export default class {
 							continue
 						}
 
-						let firstHeading = null
-						if (
-							JSON.parse(process.env.VITE_COMPIIILE_USE_AUTO_TITLES) &&
-							renderedMarkdown.metadata.headings.length > 0
-						) {
-							let firstHeadingIndex = 0
-							if (Object.keys(renderedMarkdown.metadata.frontmatter).length > 0) {
-								// If a frontmatter is set, it is present as the first index in the `headings` array
-								firstHeadingIndex = 1
-							}
-							// Remove the starting '#' from the title
-							firstHeading = renderedMarkdown.metadata.headings[firstHeadingIndex]?.text?.slice(1)
-						}
-
-						fileListItem.title = meta.title || firstHeading || fileName
+						const title = this.getFileTitleFromProcessedMarkdown(renderedMarkdown) || fileName
+						fileListItem.title = title
 						fileListItem.meta = meta
-						fileListItem.meta.title = fileListItem.meta.title || fileListItem.title
+						fileListItem.meta.title = title
 						fileListItem.fullPath = filePath
 
 						const routePath = this.generateRoutePathFromFilePath(

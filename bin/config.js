@@ -29,8 +29,10 @@ const packageJSON = JSON.parse(await readFile(fileURLToPath(new URL("../package.
  3. default config as fallback
  */
 let configFromFile = {}
+let compiiileConfig = {}
 try {
-	configFromFile = (await loadConfig({ name: "compiiile" })).config
+	compiiileConfig = await loadConfig({ name: "compiiile" })
+	configFromFile = compiiileConfig.config
 } catch {
 	// This means that no config file was provided: getting parameters from script parameters instead
 }
@@ -110,7 +112,7 @@ process.env.VITE_COMPIIILE_LOGO_URL = argv.logoUrl ?? ""
 
 process.env.VITE_COMPIIILE_THEME = argv.theme ?? "auto"
 
-process.env.VITE_COMPIIILE_DATA = JSON.stringify(argv.data ?? {})
+process.env.VITE_COMPIIILE_DATA = typeof argv.data === "string" ? argv.data : JSON.stringify(argv.data ?? {})
 process.env.VITE_COMPIIILE_USE_AUTO_TITLES = /true/i.test(argv.useAutoTitles) // defaults to `false` if not set or not equal to `true`
 
 // Get command and set env
@@ -214,6 +216,17 @@ const astroConfig = {
 					)
 				}
 			}
+		},
+		{
+			name: "watch-config",
+			hooks: {
+				"astro:config:setup": async ({addWatchFile}) => {
+					const compiiileConfigFilePath = compiiileConfig?.configFile
+					if(compiiileConfigFilePath){
+						addWatchFile(compiiileConfigFilePath);
+					}
+				}
+			}
 		}
 	],
 	...(process.env.VITE_COMPIIILE_SITE_URL ? { site: process.env.VITE_COMPIIILE_SITE_URL } : {}),
@@ -241,7 +254,8 @@ const astroConfig = {
 	image: {
 		service: passthroughImageService()
 	},
-	...(configFromFile.astroConfig ?? {})
+	...(configFromFile.astroConfig ?? {}),
+	...(argv.astroConfig ?? {})
 }
 
 process.env.VITE_COMPIIILE_BASE = astroConfig.base
