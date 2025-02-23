@@ -3,13 +3,15 @@ import {createMarkdownProcessor} from "@astrojs/markdown-remark";
 import markdownConfig from "./markdownConfig.js";
 import path from "node:path";
 import {loadConfig} from "c12";
+import { pathToFileURL } from 'node:url';
+import { promises as fs } from 'node:fs';
 
 const source = "."
 
 let context = null
 
 const pathFromSource = (filePath) => {
-	return filePath.replace(process.env.COMPIIILE_SOURCE + "/", "")
+	return filePath?.replace(process.env.COMPIIILE_SOURCE + "/", "")
 }
 
 export default function compiiile() {
@@ -43,20 +45,7 @@ export default function compiiile() {
 			const absolutePath = pathFromSource(file)
 
 			if(file.match(/.*\.mdx?/)){
-				console.log("HMR")
-				console.log("ctx")
-				console.log("file")
-				console.log(file)
-				console.log("timestamp")
-				console.log(timestamp)
-				console.log("modules")
-				console.log(modules)
-				console.log("context")
-				//console.log(context?.routeList)
-
-
 				const content = await read()
-				//console.log(content)
 
 				const routeListItem = context.routeList.find(route => route.fullPath === absolutePath)
 				const markdownProcessor = await createMarkdownProcessor(markdownConfig)
@@ -65,69 +54,10 @@ export default function compiiile() {
 				const title = context.getFileTitleFromProcessedMarkdown(renderedMarkdown)
 				const meta = renderedMarkdown.metadata.frontmatter
 				meta.title = title || path.parse(file).name
-				//server.restart()
 
 				const fileMetaChanged = JSON.stringify(routeListItem?.meta || {}) !== JSON.stringify(meta)
 
 				shouldReloadPlugin = fileMetaChanged || !routeListItem
-				/*
-				if (meta.ignore) {
-
-				}
-				*/
-
-				/*
-				let firstHeading = null
-				if (
-					JSON.parse(process.env.VITE_COMPIIILE_USE_AUTO_TITLES) &&
-					renderedMarkdown.metadata.headings.length > 0
-				) {
-					let firstHeadingIndex = 0
-					if (Object.keys(renderedMarkdown.metadata.frontmatter).length > 0) {
-						// If a frontmatter is set, it is present as the first index in the `headings` array
-						firstHeadingIndex = 1
-					}
-					// Remove the starting '#' from the title
-					firstHeading = renderedMarkdown.metadata.headings[firstHeadingIndex]?.text?.slice(1)
-				}
-
-				if(firstHeading !== routeListItem.meta.title)
-				fileListItem.meta.title = fileListItem.meta.title || fileListItem.title
-
-				 */
-
-				//console.log(context?.filesTree)
-
-
-
-
-				/*
-
-				function findFileListItemByUUID(data, uuid) {
-					for (const fileListItem of data) {
-						if (fileListItem.uuid === uuid) {
-							return fileListItem;
-						}
-						if (fileListItem.children && fileListItem.children.length > 0) {
-							const found = findFileListItemByUUID(fileListItem.children, uuid);
-							if (found) return found;
-						}
-					}
-					return null;
-				}
-
-				const fileListItem = findFileListItemByUUID(context.filesTree, routeListItem.name)
-				routeListItem.name = "coucou"*/
-
-				//server.ws.send({ type: 'full-reload' })
-
-
-				/*server.ws.send({
-					type: 'custom',
-					event: 'special-update',
-					data: {}
-				})
-				return []*/
 			}
 			//console.log("server")
 			//console.log(server)
@@ -149,45 +79,49 @@ export default function compiiile() {
 			//return []
 
 
-			const compiiileConfigFilePath = pathFromSource((await loadConfig({ name: "compiiile" })).configFile)
+			const compiiileConfigFilePath = pathFromSource(process.env.COMPIIILE_CONFIG_FILE)
 			if(absolutePath === compiiileConfigFilePath) {
-				process.env.VITE_COMPIIILE_TITLE = "salut"
-				console.log(process.argv)
-				//server.restart()
-				//return
-				//console.log(server)
+				//process.env.VITE_COMPIIILE_TITLE = "salut"
 				//console.log(process.argv)
 				shouldReloadPlugin = true
 
-				/*
-                                console.log("full reload")
-                                console.log(server.moduleGraph.idToModuleMap.entries())
-                                const invalidatedModules = new Set()
-                                for(const ah of server.moduleGraph.idToModuleMap.values()){
-                                    //console.log("ah")
-                                    //console.log(ah.id)
-                                    server.moduleGraph.invalidateModule(
-                                        ah,
-                                        invalidatedModules,
-                                        timestamp,
-                                        true
-                                    )
-                                }
+				// WHY we do all this stuff and don't just import the config:
+				// "the file change callback may fire too fast before the editor finishes updating the file"
+				// https://vite.dev/guide/api-plugin.html#handlehotupdate
 
-                                for (const mod of modules) {
-                                    console.log("mod")
-                                    console.log(mod)
-                                    server.moduleGraph.invalidateModule(
-                                        mod,
-                                        invalidatedModules,
-                                        timestamp,
-                                        true
-                                    )
-                                }
-                                server.ws.send({ type: 'full-reload' })
-                                return []
-                            }*/
+				const compiiileConfigFileContent = await read()
+				console.log(compiiileConfigFileContent)
 
+				try {
+					const tempFileName = `compiiile.config.mjs`
+					const tempDir = path.join(process.env.COMPIIILE_SOURCE, ".compiiile", ".temp")
+					await fs.mkdir(tempDir, { recursive: true }).catch(console.error);
+					const filePath = path.join(tempDir, tempFileName)
+					await fs.writeFile(filePath, compiiileConfigFileContent);
+					const module = await import(pathToFileURL(filePath).href);
+					process.env.COMPIIILE_TEMP_DIR = filePath
+
+					console.log(module.default || module)
+				} catch(e){
+					console.log(e)
+				}
+
+				// TODO test without config !
+				// TODO test delete config file !
+				// TODO astro:server:done cleanup temp dir
+				// TODO update roadmap
+
+				/*let newConfig = {}
+				const blob = new Blob([compiiileConfigFileContent], { type: "application/javascript" });
+				const url = URL.createObjectURL(blob);
+				try {
+					const module = await import(url);
+					URL.revokeObjectURL(url);
+					newConfig = module.default || module
+				} catch (error) {
+					console.error("Error importing module:", error);
+				}
+				console.log(newConfig)*/
 			}
 
 			if(shouldReloadPlugin){
@@ -197,12 +131,7 @@ export default function compiiile() {
 					server.moduleGraph.invalidateModule(pluginModule);
 				}
 
-				// Trigger full reload
-				// if meta.ignore pas de reload
 				server.ws.send({ type: "full-reload" });
-				// TODO send switch to slides page if meta changed
-				// TODO si la propriété ignore a changé
-				// TODO store ignore patterns as property and check file path against it
 				return []
 			}
 		}

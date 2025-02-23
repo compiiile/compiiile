@@ -20,5 +20,6 @@ pnpm-debug.log*
 
 .compiiile/node_modules
 .compiiile/dist
+.compiiile/.temp
 .idea
 .vercel

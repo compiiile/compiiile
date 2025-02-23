@@ -31,8 +31,14 @@ const packageJSON = JSON.parse(await readFile(fileURLToPath(new URL("../package.
 let configFromFile = {}
 let compiiileConfig = {}
 try {
-	compiiileConfig = await loadConfig({ name: "compiiile" })
+	console.log("EHEHEHEHEHEH")
+	console.log(process.env.COMPIIILE_TEMP_DIR)
+	compiiileConfig = await loadConfig({
+		name: "compiiile",
+		cwd: process.env.COMPIIILE_TEMP_DIR || source
+	})
 	configFromFile = compiiileConfig.config
+	process.env.COMPIIILE_CONFIG_FILE = compiiileConfig.configFile
 } catch {
 	// This means that no config file was provided: getting parameters from script parameters instead
 }
