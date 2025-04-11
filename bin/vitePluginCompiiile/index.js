@@ -1,10 +1,9 @@
 import Context from "./models/Context.js"
-import {createMarkdownProcessor} from "@astrojs/markdown-remark";
-import markdownConfig from "./markdownConfig.js";
-import path from "node:path";
-import {loadConfig} from "c12";
-import { pathToFileURL } from 'node:url';
-import { promises as fs } from 'node:fs';
+import { createMarkdownProcessor } from "@astrojs/markdown-remark"
+import markdownConfig from "./markdownConfig.js"
+import path from "node:path"
+import { loadConfig } from "../loadConfig.js"
+import { promises as fs } from "node:fs"
 
 const source = "."
 
@@ -40,98 +39,93 @@ export default function compiiile() {
             const site = ${JSON.stringify(context.site)};\n\n
             export { fileList, filesTree, routeList, site };`
 		},
-		async handleHotUpdate({file, timestamp, modules, read, server}){
+		async hotUpdate({ file, read }) {
 			let shouldReloadPlugin = false
 			const absolutePath = pathFromSource(file)
 
-			if(file.match(/.*\.mdx?/)){
-				const content = await read()
+			if (file.match(/.*\.mdx?/)) {
+				try {
+					const content = await read()
 
-				const routeListItem = context.routeList.find(route => route.fullPath === absolutePath)
-				const markdownProcessor = await createMarkdownProcessor(markdownConfig)
-				const renderedMarkdown = await markdownProcessor.render(content)
+					const routeListItem = context.routeList.find((route) => route.fullPath === absolutePath)
 
-				const title = context.getFileTitleFromProcessedMarkdown(renderedMarkdown)
-				const meta = renderedMarkdown.metadata.frontmatter
-				meta.title = title || path.parse(file).name
+					const markdownProcessor = await createMarkdownProcessor(markdownConfig)
+					const renderedMarkdown = await markdownProcessor.render(content)
 
-				const fileMetaChanged = JSON.stringify(routeListItem?.meta || {}) !== JSON.stringify(meta)
+					const title = context.getFileTitleFromProcessedMarkdown(renderedMarkdown)
+					const meta = renderedMarkdown.metadata.frontmatter
+					meta.title = title || path.parse(file).name
 
-				shouldReloadPlugin = fileMetaChanged || !routeListItem
+					const fileMetaChanged = JSON.stringify(routeListItem?.meta || {}) !== JSON.stringify(meta)
+
+					shouldReloadPlugin = fileMetaChanged || !routeListItem
+
+					const prevStateWasAsSlides = !!routeListItem?.meta?.asSlides
+					const currentStateIsAsSlides = !!meta.asSlides
+
+					if (prevStateWasAsSlides !== currentStateIsAsSlides) {
+						const newRoutePath = context.generateRoutePathFromFilePath(
+							routeListItem.fullPath,
+							"",
+							currentStateIsAsSlides,
+							context.getEntryFileMatcher([routeListItem.fullPath])
+						)
+
+						this.environment.hot.send({
+							type: "custom",
+							event: "switch-page-render",
+							data: {
+								oldRoutePath: routeListItem.path,
+								newRoutePath: newRoutePath
+							}
+						})
+					}
+				} catch (e) {
+					if (e.code === "ENOENT") {
+						// The file has been deleted
+						shouldReloadPlugin = true
+					}
+				}
 			}
-			//console.log("server")
-			//console.log(server)
-			/*
-			file
-
-
-			path: '/c/test/test',
-			name: '0bea781c-875f-44fb-bc9c-b1f71f2c92c1',
-			title: 'test',
-			fullPath: 'test/test.md',
-			meta: { title: 'test' }
-
-			 */
-
-			// Si c'est un nouveau fichier md ou mdx => full reload
-			// Si c'est un fichier md ou mdx qu'on a déjà, read file + update meta dans lers clés correspondates
-			//server.ws.send({ type: 'full-reload' })
-			//return []
-
 
 			const compiiileConfigFilePath = pathFromSource(process.env.COMPIIILE_CONFIG_FILE)
-			if(absolutePath === compiiileConfigFilePath) {
-				//process.env.VITE_COMPIIILE_TITLE = "salut"
-				//console.log(process.argv)
+			const compiiileConfigFileNewlyCreated =
+				absolutePath.match(/^compiiile\.config\.(m|c)?js$/) &&
+				process.env.COMPIIILE_CONFIG_FILE === "compiiile.config"
+
+			if (absolutePath === compiiileConfigFilePath || compiiileConfigFileNewlyCreated) {
 				shouldReloadPlugin = true
 
 				// WHY we do all this stuff and don't just import the config:
 				// "the file change callback may fire too fast before the editor finishes updating the file"
 				// https://vite.dev/guide/api-plugin.html#handlehotupdate
 
-				const compiiileConfigFileContent = await read()
-				console.log(compiiileConfigFileContent)
-
 				try {
-					const tempFileName = `compiiile.config.mjs`
+					const compiiileConfigFileContent = await read()
+					const tempConfigName = `${Date.now()}-temp-compiiile`
 					const tempDir = path.join(process.env.COMPIIILE_SOURCE, ".compiiile", ".temp")
-					await fs.mkdir(tempDir, { recursive: true }).catch(console.error);
-					const filePath = path.join(tempDir, tempFileName)
-					await fs.writeFile(filePath, compiiileConfigFileContent);
-					const module = await import(pathToFileURL(filePath).href);
-					process.env.COMPIIILE_TEMP_DIR = filePath
-
-					console.log(module.default || module)
-				} catch(e){
-					console.log(e)
+					await fs.mkdir(tempDir, { recursive: true }).catch(console.error)
+					const filePath = path.join(tempDir, tempConfigName + ".config.mjs")
+					await fs.writeFile(filePath, compiiileConfigFileContent)
+					process.env.COMPIIILE_TEMP_DIR = tempDir
+					process.env.COMPIIILE_TEMP_CONFIG_NAME = tempConfigName
+				} catch (e) {
+					// Config file has been deleted
 				}
 
-				// TODO test without config !
-				// TODO test delete config file !
-				// TODO astro:server:done cleanup temp dir
-				// TODO update roadmap
-
-				/*let newConfig = {}
-				const blob = new Blob([compiiileConfigFileContent], { type: "application/javascript" });
-				const url = URL.createObjectURL(blob);
-				try {
-					const module = await import(url);
-					URL.revokeObjectURL(url);
-					newConfig = module.default || module
-				} catch (error) {
-					console.error("Error importing module:", error);
-				}
-				console.log(newConfig)*/
+				// Whether the config file has been created / updated / deleted, we reload the whole config with args + env parameters
+				await loadConfig()
 			}
 
-			if(shouldReloadPlugin){
+			if (shouldReloadPlugin) {
 				// Invalidate the plugin module so it gets re-imported
-				const pluginModule = server.moduleGraph.getModuleById(resolvedVirtualModuleId);
+				const pluginModule = this.environment.moduleGraph.getModuleById(resolvedVirtualModuleId)
 				if (pluginModule) {
-					server.moduleGraph.invalidateModule(pluginModule);
+					this.environment.moduleGraph.invalidateModule(pluginModule)
 				}
 
-				server.ws.send({ type: "full-reload" });
+				this.environment.hot.send({ type: "full-reload" })
+
 				return []
 			}
 		}

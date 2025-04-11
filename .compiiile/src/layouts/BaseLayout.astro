@@ -40,5 +40,31 @@ const defaultTheme = site.theme
 </head>
 <body>
 <slot></slot>
+
+
+<script>
+    /*
+        Using HMR, we send a custom event when the `asSlides` frontmatter parameter changed.
+        The event contains the old and new route path based on whether the page needs to display slides.
+        We store the new page URL to redirect to in the sessionStorage because it follows this flow:
+        - the `switch-page-render` event is sent
+        - we receive it just below, and check if we are on the updated file's URL : we store the new URL to redirect to
+        - the whole page reloads because Compiiile vite's module in invalidated to reload its config and all files
+        - only when the reload is done, we get to the second `if`, where we change the current route URL
+        - the redirect is not made before the vite's module invalidation because the reload prevents the redirection from happening
+    */
+    if (import.meta.hot) {
+        import.meta.hot.on('switch-page-render', (data) => {
+            if(window.location.pathname === data.oldRoutePath){
+                sessionStorage.setItem("COMPIIILE_SWITCH_PAGE_RENDER", window.location.origin + data.newRoutePath)
+            }
+        })
+    }
+
+    if(sessionStorage.getItem("COMPIIILE_SWITCH_PAGE_RENDER")){
+        window.location.href = sessionStorage.getItem("COMPIIILE_SWITCH_PAGE_RENDER")
+        sessionStorage.removeItem("COMPIIILE_SWITCH_PAGE_RENDER")
+    }
+</script>
 </body>
 </html>

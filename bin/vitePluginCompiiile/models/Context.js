@@ -55,12 +55,9 @@ export default class {
 		}/${asSlides ? this.SLIDES_BASE_PATH : this.WORKSPACE_BASE_PATH}/${sluggifiedPath}${hash}`
 	}
 
-	getFileTitleFromProcessedMarkdown(processedMarkdown){
+	getFileTitleFromProcessedMarkdown(processedMarkdown) {
 		let firstHeading = null
-		if (
-			JSON.parse(process.env.VITE_COMPIIILE_USE_AUTO_TITLES) &&
-			processedMarkdown.metadata.headings.length > 0
-		) {
+		if (JSON.parse(process.env.VITE_COMPIIILE_USE_AUTO_TITLES) && processedMarkdown.metadata.headings.length > 0) {
 			let firstHeadingIndex = 0
 			if (Object.keys(processedMarkdown.metadata.frontmatter).length > 0) {
 				// If a frontmatter is set, it is present as the first index in the `headings` array
@@ -73,6 +70,10 @@ export default class {
 		return processedMarkdown.metadata.frontmatter.title || firstHeading
 	}
 
+	getEntryFileMatcher(files) {
+		return files.find((file) => file.toLowerCase().match(/^readme.mdx?$/)) ? /readme/ : /index/
+	}
+
 	async scanDirectoryRecursively(directoryPath) {
 		const fileArray = []
 
@@ -83,7 +84,7 @@ export default class {
 
 		const files = fs.readdirSync(directoryPath).sort(collator.compare)
 
-		const entryFileMatcher = files.find((file) => file.toLowerCase().match(/^readme.mdx?$/)) ? /readme/ : /index/
+		const entryFileMatcher = this.getEntryFileMatcher(files)
 
 		for (let file of files) {
 			if (
