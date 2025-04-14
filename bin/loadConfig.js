@@ -25,7 +25,7 @@ export const loadConfig = async () => {
 			name: process.env.COMPIIILE_TEMP_CONFIG_NAME || "compiiile",
 			cwd: process.env.COMPIIILE_TEMP_DIR || source
 		})
-		configFromFile = JSON.parse(JSON.stringify(compiiileConfig.config))
+		configFromFile = {...compiiileConfig.config}
 		if (!process.env.COMPIIILE_CONFIG_FILE) {
 			process.env.COMPIIILE_CONFIG_FILE = compiiileConfig.configFile
 		}
