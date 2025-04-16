@@ -1,4 +1,4 @@
-import emoji from "remark-emoji"
+import remarkEmoji from "remark-emoji"
 import rehypeImagePlugin from "./rehypeImagePlugin.js"
 import rehypeLinkPlugin from "./rehypeLinkPlugin.js"
 import rehypeSlug from "rehype-slug"
@@ -7,7 +7,7 @@ import { h } from "hastscript"
 import rehypeHandleYamlMatterPlugin from "./rehypeHandleYamlMatterPlugin.js"
 
 export default {
-	remarkPlugins: [emoji],
+	remarkPlugins: [remarkEmoji],
 	rehypePlugins: [
 		rehypeImagePlugin,
 		rehypeLinkPlugin,

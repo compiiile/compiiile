@@ -1,7 +1,7 @@
 ---
 import WorkspaceLayout from "../layouts/WorkspaceLayout.astro"
 import ContentWrapper from "../components/ContentWrapper.vue"
-import {routeList} from "virtual:compiiile"
+import {routeList, site} from "virtual:compiiile"
 import SlidesLayout from "../layouts/SlidesLayout.astro"
 import path from "node:path"
 
@@ -31,7 +31,8 @@ export async function getStaticPaths() {
                 uuid: route.name,
                 title: route.meta.title,
                 description: route.meta.description || "",
-                textAlign: route.meta.textAlign
+                textAlign: route.meta.textAlign,
+                meta: route.meta
             }
         }
     })
@@ -39,11 +40,13 @@ export async function getStaticPaths() {
 
 let {path} = Astro.params;
 
-const {name, title, description, asSlides, textAlign} = Astro.props
+const {name, title, description, asSlides, textAlign, meta} = Astro.props
+site.pageFrontmatter = meta
 
-const {Content} = Astro.props.md
+const {Content, getHeadings} = Astro.props.md
 
-const tableOfContent = Astro.props.md.getHeadings()
+
+const tableOfContent = getHeadings()
 ---
 
 {asSlides ?

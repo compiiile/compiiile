@@ -317,11 +317,9 @@ import Test from "./Test.vue"
 <Test client:load />
 ```
 
-You should
-use [Astro's client directives](https://docs.astro.build/en/reference/directives-reference/#client-directives) to load
-your component's script.
+You should use [Astro's client directives](https://docs.astro.build/en/reference/directives-reference/#client-directives) to load your component's script (`client:load` is not necessary on all your components).
 
-### Use config data values
+### Using config data values
 
 To use config values, you can access it by importing the `site` variable in your MDX file and then access the `data`
 key:
@@ -331,6 +329,42 @@ import { site } from "virtual:compiiile"
 
 # {site.data.someProperty}
 ```
+
+### Using frontmatter variables
+
+In your MDX files, all frontmatter variables are available via the `frontmatter` variable:
+
+```mdx
+---
+description: some description
+---
+
+{ frontmatter.description }
+```
+
+> :books: More info in the [dedicated Astro documentation](https://docs.astro.build/en/guides/integrations-guide/mdx/#using-frontmatter-variables-in-mdx).
+
+In your custom components, you can access the current page's frontmatter by using the `pageFrontmatter` property from Compiiile's Vite plugin:
+
+```vue
+<template>
+    <p>{{ frontmatter.description }}</p>
+</template>
+
+<script>
+    import { site } from "virtual:compiiile"
+
+    export default {
+        name: "CustomComponent",
+        computed: {
+            frontmatter(){
+                return site.pageFrontmatter
+            }
+        }
+    }
+</script>
+```
+
 
 ## Ignoring files and folders
 
