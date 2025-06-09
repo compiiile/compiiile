@@ -100,7 +100,7 @@ terminal to get Compiiile running with a couple of markdown files as tests:
 
 ```bash
 # creating a new folder and go into this folder
-mkdir test-compiiile && cd test-compiiile 
+mkdir test-compiiile && cd test-compiiile
 # installing compiiile as global dependency using npm
 npm i -g @compiiile/compiiile
 # a first test file
@@ -108,7 +108,7 @@ echo '# Test Compiiile\n\n> Here is a blockquote for you\n\n## Your markdown awa
 # a second test file as slides
 echo '---\nasSlides: true\n---\n\n# Slide 1\n\n---\n\n# And this is slide 2' > slides.md
 # running Compiiile for these 2 files
-compiiile --title="📚 Compiiile" 
+compiiile --title="📚 Compiiile"
 ```
 
 Et voilà, you should be able to preview your files in your browser :tada:.
@@ -201,24 +201,24 @@ The home page of Compiiile (`/`) points to a `README.md` file located at the roo
 
 Here is the list of parameters that you can set to customize Compiiile (none are required):
 
-| Parameter              | Type       | Description                                                                                                                                                                             |
-|------------------------| ---------- |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `title`                | `string`   | The title to display on the top-left of the User Interface                                                                                                                              |
-| `description`          | `string`   | The description that is rendered by default for the SEO                                                                                                                                 |
-| `logo`                 | `string`   | The relative path of the logo to display in the TopBar and as favicon                                                                                                                   |
-| `logoUrl`              | `string`   | The url to go to when clicking on the logo, defaults to the home page if not set                                                                                                        |
-| `dest`                 | `string`   | The folder in which to build files, defaults to `./.compiiile/dist`                                                                                                                     |
-| `siteUrl`              | `string`   | The url of the website in production (without trailing slash), used for the SEO tag `og:image`                                                                                          |
-| `astroConfig`          | `Object`   | Override [default Astro config](https://docs.astro.build/en/reference/configuration-reference/)                                                                                         |
-| `data`                 | `Object`   | An object with data to use in MDX files (check use case below)                                                                                                                          |
-| `theme`                | `string`   | The website theme, value can be : `auto` (default value: adapts to system preferences) \| `light` \| `dark`                                                                             |
-| `useAutoTitles`        | `Boolean`  | If set to `true`, use the first file heading as title to be displayed in the navbar and for SEO. Defaults to `false`                                                                    |
-| `noIndex`              | `Boolean`  | If set to `true`, the `robots.txt` file will disallow all routes, preventing indexation. Defaults to `false`                                                                            |
-| `publicDir`            | `string`   | The folder name in which you can serve public files, defaults to `public`                                                                                                               |
-| `vite.server.fs.allow` | `string[]` | Add local paths to vite's server fs allow list                                                                                                                                          |
-| `printReady`           | `Boolean`  | Add a `/print` page to display a full ready-to-print content (uses `@compiiile/compiiile-print`)                                                                                        |
-| `css`                  | `string`   | A relative path to a custom CSS file to customize the style <br/>:warning: Requires `compiiile-pro`                                                                                     |
-| `integrations`         | `AstroIntegration[]`   | An array of Astro Integrations for [custom Astro hooks implementations](https://docs.astro.build/en/reference/integrations-reference/#astroconfigsetup): injecting CSS, javascript, etc |
+| Parameter              | Type                 | Description                                                                                                                                                                             |
+| ---------------------- | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `title`                | `string`             | The title to display on the top-left of the User Interface                                                                                                                              |
+| `description`          | `string`             | The description that is rendered by default for the SEO                                                                                                                                 |
+| `logo`                 | `string`             | The relative path of the logo to display in the TopBar and as favicon                                                                                                                   |
+| `logoUrl`              | `string`             | The url to go to when clicking on the logo, defaults to the home page if not set                                                                                                        |
+| `dest`                 | `string`             | The folder in which to build files, defaults to `./.compiiile/dist`                                                                                                                     |
+| `siteUrl`              | `string`             | The url of the website in production (without trailing slash), used for the SEO tag `og:image`                                                                                          |
+| `astroConfig`          | `Object`             | Override [default Astro config](https://docs.astro.build/en/reference/configuration-reference/)                                                                                         |
+| `data`                 | `Object`             | An object with data to use in MDX files (check use case below)                                                                                                                          |
+| `theme`                | `string`             | The website theme, value can be : `auto` (default value: adapts to system preferences) \| `light` \| `dark`                                                                             |
+| `useAutoTitles`        | `Boolean`            | If set to `true`, use the first file heading as title to be displayed in the navbar and for SEO. Defaults to `false`                                                                    |
+| `noIndex`              | `Boolean`            | If set to `true`, the `robots.txt` file will disallow all routes, preventing indexation. Defaults to `false`                                                                            |
+| `publicDir`            | `string`             | The folder name in which you can serve public files, defaults to `public`                                                                                                               |
+| `vite.server.fs.allow` | `string[]`           | Add local paths to vite's server fs allow list                                                                                                                                          |
+| `printReady`           | `Boolean`            | Add a `/print` page to display a full ready-to-print content (uses `@compiiile/compiiile-print`)                                                                                        |
+| `css`                  | `string`             | A relative path to a custom CSS file to customize the style <br/>:warning: Requires `compiiile-pro`                                                                                     |
+| `integrations`         | `AstroIntegration[]` | An array of Astro Integrations for [custom Astro hooks implementations](https://docs.astro.build/en/reference/integrations-reference/#astroconfigsetup): injecting CSS, javascript, etc |
 
 You can use these parameters in 2 ways:
 
@@ -348,23 +348,22 @@ In your custom components, you can access the current page's frontmatter by usin
 
 ```vue
 <template>
-    <p>{{ frontmatter.description }}</p>
+	<p>{{ frontmatter.description }}</p>
 </template>
 
 <script>
-    import { site } from "virtual:compiiile"
+	import { site } from "virtual:compiiile"
 
-    export default {
-        name: "CustomComponent",
-        computed: {
-            frontmatter(){
-                return site.pageFrontmatter
-            }
-        }
-    }
+	export default {
+		name: "CustomComponent",
+		computed: {
+			frontmatter() {
+				return site.pageFrontmatter
+			}
+		}
+	}
 </script>
 ```
-
 
 ## Ignoring files and folders
 
