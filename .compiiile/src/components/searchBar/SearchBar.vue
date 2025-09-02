@@ -336,7 +336,7 @@
 		border-radius: 8px;
 		background-color: var(--darker-background-color);
 		padding: 10px 20px 10px 40px;
-		font-size: var(--text-md);
+		font-size: 16px; /* preventing ios zoom-in on input focus */
 		color: var(--text-color-base);
 		border: solid 1px var(--search-input-border-color);
 		display: block;

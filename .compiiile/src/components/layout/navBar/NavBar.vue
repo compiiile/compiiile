@@ -30,7 +30,7 @@
 		left: 0;
 		height: calc(100vh - var(--top-bar-height) + 1px);
 		overflow: auto;
-		z-index: 1;
+		z-index: 2;
 		transition:
 			width 0.3s var(--ease-in-out-quart),
 			transform 0.1s ease;
