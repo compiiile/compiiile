@@ -104,6 +104,11 @@
 		background-color: var(--blockquote-background-color) !important;
 	}
 
+	blockquote p {
+		display: block !important;
+		margin: 0 !important;
+	}
+
 	ul {
 		margin-left: 0;
 	}
