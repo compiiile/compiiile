@@ -191,7 +191,7 @@ Other frontmatter keys are handled:
 - `ignore` : Boolean value (`true` or `false`) to ignore the current file and exclude it from Compiiile (the file is not ignored by default).
 - `hidden` : Boolean value (`true` or `false`) to hide the file from the navbar and siblings links (the file is not hidden by default).
 
-> :bulb: You can override slides theme by passing it to a `theme` query parameter in your slide url (for example `/s/slides?theme=light`). See the `theme` config parameter below for valid values.
+> :bulb: You can override slides theme (light or dark) by passing it to a `theme` query parameter in your slide url (for example `/s/slides?theme=light`). See the `theme` config parameter below for valid values.
 
 ### Routing
 
