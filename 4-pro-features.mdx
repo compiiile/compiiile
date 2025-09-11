@@ -633,3 +633,40 @@ The `CDetails` component allows you to hide a block and reveal it by clicking on
     </CDetails>
 	```
 </CDetails>
+
+
+### CSlide
+
+The `CSlide` component can be used for every slide, it allows you to align content the way you want (horizontally and vertically), and to use custom themes.
+
+- The `theme` prop applies a theme to the slide: `catpuccin-mocha`, `catpuccin-macchiato`, `catpuccin-frappe`, `catpuccin-latte`, `beetroot`, `blueberry`, `lemon`, `courgette`, `aubergine`, `carrot`. If not set, the default theme is applied.
+- The `headingSerif` boolean prop changes the headings font to a serif one.
+- The `headingMono` boolean prop changes the headings font to a monospace one.
+- The `align` prop accepts a string with the horizontal and vertical alignement : `<left|center|right|stretch> <top|center|bottom>`, default `center center`.
+- The `textAlign` prop overrides the text alignement for the slide : `left`, `center`, `right`
+- For custom themes, you can provide these props : `textColor`, `backgroundColor`, and `controlsColor` that overrides theme colors.
+
+`defaultTheme`, `headingSerif`, `headingMono`, `textColor`, `backgroundColor`, `controlsColor` can also be set in the frontmatter for all `CSlide` components, or be defined in the `site.data.slides` compiiile's config object key.
+
+<CDetails summary="Example">
+    ```mdx
+    <CSlide theme="catpuccin-mocha" align="stretch center" controlsColor="#0000FF">
+
+    # A slide with a custom theme
+
+    </CSlide>
+    ```
+</CDetails>
+
+
+### CGap
+
+The `CGap` component can be used in slides, allowing you to add a gap between elements.
+
+- The gap can be set with the `width` and `height` prop (accepting CSS values).
+
+<CDetails summary="Example">
+    ```mdx
+    <CGap height="100px" />
+    ```
+</CDetails>
