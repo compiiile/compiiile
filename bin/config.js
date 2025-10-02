@@ -77,7 +77,8 @@ const astroConfig = {
 						"cssesc",
 						"fzf",
 						"@astrojs/internal-helpers",
-						"mrmime"
+						"mrmime",
+						"zod"
 					)
 				}
 			}

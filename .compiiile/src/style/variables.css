@@ -7,7 +7,7 @@
 	--top-bar-height: 60px;
 	--ease-in-out-quart: cubic-bezier(0.77, 0, 0.175, 1);
 	--monospace: "JetBrains Mono Variable", monospace;
-	--r-code-font: "JetBrains Mono Variable", monospace;
+	--r-code-font: var(--monospace);
 	--heading-font: "Archivo Variable", sans-serif;
 	--default-font: "DM Sans Variable", sans-serif;
 
