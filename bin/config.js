@@ -10,7 +10,7 @@ import sitemap from "@astrojs/sitemap"
 
 // Making sure fonts are accessible by vite's server
 import { createRequire } from "node:module"
-import { packageDirectory } from "pkg-dir"
+import { packageDirectory } from "package-directory"
 
 import { loadConfig } from "./loadConfig.js"
 
@@ -78,7 +78,8 @@ const astroConfig = {
 						"fzf",
 						"@astrojs/internal-helpers",
 						"mrmime",
-						"zod"
+						"zod",
+						"entities"
 					)
 				}
 			}
