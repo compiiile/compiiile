@@ -79,7 +79,8 @@ const astroConfig = {
 						"@astrojs/internal-helpers",
 						"mrmime",
 						"zod",
-						"entities"
+						"entities",
+						"piccolore"
 					)
 				}
 			}
