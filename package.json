@@ -1,7 +1,7 @@
 {
 	"name": "@compiiile/compiiile",
 	"private": false,
-	"version": "2.18.11",
+	"version": "2.18.12",
 	"description": "The most convenient way to render a folder containing markdown files. Previewing and searching markdown files has never been that easy.",
 	"author": "AlbanCrepel <alban.crepel@gmail.com>",
 	"license": "GPL-3.0-only",
@@ -57,7 +57,7 @@
 		"typescript": "^5.9.3",
 		"uuid": "^13.0.0",
 		"vfile-matter": "^5.0.1",
-		"vite": "^7.3.0",
+		"vite": "^6.4.1",
 		"vue": "^3.5.26",
 		"yargs": "^18.0.0",
 		"zod": "^3.25.76"
