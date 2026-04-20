@@ -15,6 +15,9 @@
 				type: String,
 				required: true
 			}
+		},
+		mounted() {
+			document.getElementById("compiiile-nav-state-style")?.remove()
 		}
 	}
 </script>

@@ -1,35 +1,62 @@
 <template>
 	<li v-if="isVisible(item)" class="nav-list-item no-wrap">
 		<template v-if="item.isDirectory">
-			<svg
-				class="directory-icon"
-				xmlns="http://www.w3.org/2000/svg"
-				width="15"
-				height="15"
-				fill="none"
-				viewBox="0 0 256 256"
+			<button
+				class="directory-toggle"
+				type="button"
+				:aria-controls="childrenId"
+				:aria-expanded="isOpen === true ? 'true' : 'false'"
+				:data-nav-storage-id="storageId"
+				@click="toggleDirectory"
 			>
-				<path
-					d="M216.9,208H39.4a7.4,7.4,0,0,1-7.4-7.4V80H216a8,8,0,0,1,8,8V200.9A7.1,7.1,0,0,1,216.9,208Z"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="16"
-				></path>
-				<path
-					d="M32,80V56a8,8,0,0,1,8-8H92.7a7.9,7.9,0,0,1,5.6,2.3L128,80"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="16"
-				></path>
-			</svg>
+				<svg
+					class="directory-caret"
+					:class="{ 'directory-caret--open': isOpen }"
+					xmlns="http://www.w3.org/2000/svg"
+					width="12"
+					height="12"
+					fill="none"
+					viewBox="0 0 256 256"
+				>
+					<polyline
+						points="96 48 176 128 96 208"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="24"
+					></polyline>
+				</svg>
 
-			<span class="directory-name">{{ item.name }}</span>
-			<ul v-if="item.children.length > 0" class="nav-list-item-children">
+				<svg
+					class="directory-icon"
+					xmlns="http://www.w3.org/2000/svg"
+					width="15"
+					height="15"
+					fill="none"
+					viewBox="0 0 256 256"
+				>
+					<path
+						d="M216.9,208H39.4a7.4,7.4,0,0,1-7.4-7.4V80H216a8,8,0,0,1,8,8V200.9A7.1,7.1,0,0,1,216.9,208Z"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="16"
+					></path>
+					<path
+						d="M32,80V56a8,8,0,0,1,8-8H92.7a7.9,7.9,0,0,1,5.6,2.3L128,80"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="16"
+					></path>
+				</svg>
+
+				<span class="directory-name">{{ item.name }}</span>
+			</button>
+			<ul v-show="isOpen && item.children.length > 0" :id="childrenId" class="nav-list-item-children">
 				<nav-list-item
 					v-for="child in item.children"
 					:key="child.uuid"
 					:item="child"
 					:current-path="currentPath"
+					:tree-path="`${itemPath}/${child.name}`"
 				/>
 			</ul>
 		</template>
@@ -150,14 +177,64 @@
 			currentPath: {
 				type: String,
 				required: true
+			},
+			treePath: {
+				type: String,
+				required: true
+			}
+		},
+		data() {
+			return {
+				isOpen: true
 			}
 		},
 		computed: {
 			route() {
 				return this.$context.routeList.find((route) => route.name === this.item.uuid)
+			},
+			childrenId() {
+				return `nav-list-item-children-${this.item.uuid}`
+			},
+			itemPath() {
+				return this.treePath
+			},
+			storageKey() {
+				return `COMPIIILE_NAV_OPEN_${this.itemPath}`
+			},
+			storageId() {
+				return encodeURIComponent(this.storageKey)
+			}
+		},
+		mounted() {
+			if (!this.item.isDirectory) {
+				return
+			}
+
+			const storedState = localStorage.getItem(this.storageKey)
+			this.isOpen = storedState === null ? true : storedState === "true"
+		},
+		watch: {
+			currentPath() {
+				if (this.item.isDirectory && this.hasCurrentPath(this.item)) {
+					this.isOpen = true
+				}
 			}
 		},
 		methods: {
+			toggleDirectory() {
+				this.isOpen = !this.isOpen
+				localStorage.setItem(this.storageKey, this.isOpen.toString())
+			},
+			hasCurrentPath(item) {
+				if (!item.isDirectory) {
+					const route = this.$context.routeList.find((route) => route.name === item.uuid)
+					return route.path === this.currentPath
+				}
+
+				return item.children.some((child) => {
+					return this.hasCurrentPath(child)
+				})
+			},
 			isVisible(item) {
 				if (!item.isDirectory) {
 					const route = this.$context.routeList.find((route) => route.name === item.uuid)
@@ -188,8 +265,39 @@
 		line-height: 1rem;
 	}
 
+	.directory-toggle {
+		display: inline-flex;
+		align-items: center;
+		gap: 3px;
+		padding: 0;
+		border: none;
+		border-radius: 4px;
+		appearance: none;
+		background: transparent;
+		color: inherit;
+		cursor: pointer;
+		font: inherit;
+		text-align: left;
+
+		&:focus-visible {
+			outline: solid 1px var(--separator-color);
+			outline-offset: 2px;
+		}
+	}
+
+	.directory-caret {
+		flex: 0 0 auto;
+		stroke: var(--dimmed-text-color);
+		transform: rotate(0);
+		transition: transform 0.2s var(--ease-in-out-quart);
+	}
+
+	.directory-caret--open {
+		transform: rotate(90deg);
+	}
+
 	.directory-icon {
-		margin-left: 2px;
+		flex: 0 0 auto;
 	}
 
 	.directory-icon path {
@@ -199,10 +307,7 @@
 	}
 
 	.directory-name {
-		display: inline;
-		margin-left: 3px;
-		position: relative;
-		top: -2px;
+		display: inline-block;
 	}
 
 	.file-icon {

@@ -23,6 +23,21 @@ const defaultTheme = site.theme
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href={ faviconBaseUrl }/>
+    <script is:inline>
+        const navStateStyle = document.createElement("style")
+        navStateStyle.id = "compiiile-nav-state-style"
+
+        let navStateStyles = ""
+        for (let index = 0; index < localStorage.length; index++) {
+            const key = localStorage.key(index)
+            if (key?.startsWith("COMPIIILE_NAV_OPEN_") && localStorage.getItem(key) === "false") {
+                navStateStyles += `[data-nav-storage-id="${encodeURIComponent(key)}"] + .nav-list-item-children { display: none; }\n`
+            }
+        }
+
+        navStateStyle.textContent = navStateStyles
+        document.head.appendChild(navStateStyle)
+    </script>
     {isNotFoundPage ? '' :
             <SEO title={title}
                  description={metaDescription}
