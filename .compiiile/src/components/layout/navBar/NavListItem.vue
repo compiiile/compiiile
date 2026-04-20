@@ -5,7 +5,7 @@
 				class="directory-toggle"
 				type="button"
 				:aria-controls="childrenId"
-				:aria-expanded="isOpen === true ? 'true' : 'false'"
+				:aria-expanded="isOpen"
 				:data-nav-storage-id="storageId"
 				@click="toggleDirectory"
 			>
@@ -56,7 +56,7 @@
 					:key="child.uuid"
 					:item="child"
 					:current-path="currentPath"
-					:tree-path="`${itemPath}/${child.name}`"
+					:tree-path="`${treePath}/${child.name}`"
 				/>
 			</ul>
 		</template>
@@ -195,11 +195,8 @@
 			childrenId() {
 				return `nav-list-item-children-${this.item.uuid}`
 			},
-			itemPath() {
-				return this.treePath
-			},
 			storageKey() {
-				return `COMPIIILE_NAV_OPEN_${this.itemPath}`
+				return `COMPIIILE_NAV_OPEN_${this.treePath}`
 			},
 			storageId() {
 				return encodeURIComponent(this.storageKey)
@@ -228,7 +225,7 @@
 			hasCurrentPath(item) {
 				if (!item.isDirectory) {
 					const route = this.$context.routeList.find((route) => route.name === item.uuid)
-					return route.path === this.currentPath
+					return route?.path === this.currentPath
 				}
 
 				return item.children.some((child) => {
