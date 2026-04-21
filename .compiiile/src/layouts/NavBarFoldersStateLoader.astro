@@ -1,0 +1,81 @@
+---
+import { site, routeList, filesTree } from "virtual:compiiile"
+
+let currentPath = Astro.url.pathname
+if(currentPath.length > 1 && currentPath.endsWith("/")){
+    currentPath = currentPath.slice(0, -1)
+}
+
+const foldersContainingCurrentPath = {}
+
+// Here we manually compute folders that have to be opened on page load if they contain the current page to display
+const scanFoldersContainingCurrentPath = (folder, fullPath) => {
+    return folder.children.some(item => {
+        if (item.isDirectory) {
+            const childPath = `${fullPath}/${item.name}`;
+            const childContainsCurrentPath = scanFoldersContainingCurrentPath(item, childPath);
+
+            if (childContainsCurrentPath) {
+                foldersContainingCurrentPath[encodeURIComponent(fullPath)] = true;
+            }
+
+            return childContainsCurrentPath;
+        }
+
+        const matchesCurrentPath = routeList.find(r => r.name === item.uuid)?.path === currentPath;
+
+        if (matchesCurrentPath) {
+            foldersContainingCurrentPath[encodeURIComponent(fullPath)] = true;
+        }
+
+        return matchesCurrentPath;
+    });
+};
+
+for(const navListItem of filesTree){
+    if(navListItem.isDirectory){
+        scanFoldersContainingCurrentPath(navListItem, navListItem.name)
+    }
+}
+
+---
+
+<script is:inline define:vars={{ site, foldersContainingCurrentPath }}>
+    /*
+    We apply styles in the HTML head to prevent blinking navbar items on page load,
+    since their state is computed on the client side because it required localStorage access.
+    This style is then removed in `NavBar.vue` to delegate the toggle behavior to the client side.
+    */
+    const navStateStyle = document.createElement("style")
+    navStateStyle.id = "compiiile-folders-state-style"
+
+    const foldersState = {
+        ...JSON.parse(localStorage.getItem("COMPIIILE_FOLDERS_STATE") || "{}"),
+        // we overwrite the localStorage expanded (true) or collapsed (false) value if the folder contains the current path
+        ...foldersContainingCurrentPath
+    }
+
+    let navStateStyles = ""
+
+    // Default values for folder states based on the global parameter `collapseFolders`
+    if(site.collapseFolders){
+        navStateStyles += `nav .files-tree .nav-list-item-children { display: none !important; }\n`
+        navStateStyles += `nav .files-tree .directory-caret { transform: rotate(0); !important }\n`
+    } else {
+        navStateStyles += `nav .files-tree .nav-list-item-children { display: block !important; }\n`
+        navStateStyles += `nav .files-tree .directory-caret { transform: rotate(90deg); !important }\n`
+    }
+
+    // Custom style declaration to force correct rendering for specific folders on page load
+    for (const [treePath, isOpen] of Object.entries(foldersState)) {
+        if (isOpen) {
+            navStateStyles += `nav .files-tree [data-folder-id="${treePath}"] + .nav-list-item-children { display: block !important; }\n`
+            navStateStyles += `nav .files-tree [data-folder-id="${treePath}"] .directory-caret { transform: rotate(90deg); !important }\n`
+        } else {
+            navStateStyles += `nav .files-tree [data-folder-id="${treePath}"] + .nav-list-item-children { display: none !important; }\n`
+            navStateStyles += `nav .files-tree [data-folder-id="${treePath}"] .directory-caret { transform: rotate(0) !important; }\n`
+        }
+    }
+    navStateStyle.textContent = navStateStyles
+    document.head.appendChild(navStateStyle)
+</script>

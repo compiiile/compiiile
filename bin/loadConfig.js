@@ -107,6 +107,10 @@ export const loadConfig = async () => {
 		.option("printReady", {
 			describe: "Add a /print page to display a full ready-to-print content (uses @compiiile/compiiile-print)"
 		})
+		.option("collapseFolders", {
+			describe: "Whether folders are collapsed by default in the navbar (expanded by default)",
+			default: false
+		})
 		.help()
 		.version(packageJSON.version).argv
 
@@ -122,6 +126,8 @@ export const loadConfig = async () => {
 
 	process.env.VITE_COMPIIILE_DATA = typeof argv.data === "string" ? argv.data : JSON.stringify(argv.data ?? {})
 	process.env.VITE_COMPIIILE_USE_AUTO_TITLES = /true/i.test(argv.useAutoTitles) // defaults to `false` if not set or not equal to `true`
+
+	process.env.VITE_COMPIIILE_COLLAPSE_FOLDERS = /true/i.test(argv.collapseFolders) // defaults to `false` if not set or not equal to `true`
 
 	// Handling logo and favicon
 	process.env.VITE_COMPIIILE_LOGO = null

@@ -21,7 +21,8 @@ That's what Compiiile does. And it does it hassle-free !
 ## Features
 
 - [x] 📦 **No config required, everything just works out of the box, without changing your files** (resolves images and
-      relative links (cross-references), print-ready rendering, :sunny: light and :first_quarter_moon_with_face: dark themes)
+      relative links (cross-references), print-ready rendering, :sunny: light and :first_quarter_moon_with_face: dark
+      themes)
 - [x] 🌱 Available everywhere with static files deployment: just host it somewhere and access it in any browser on your
       computer, phone or whatever you are using
 - [x] :link: Quick access to your files via the navbar and links to the previous and next file (with table of content
@@ -49,7 +50,8 @@ You can install Compiiile either globally or per-project:
 
 ### Globally
 
-Open a terminal and type one of these commands, whether using [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/) depending on which package manager you are using:
+Open a terminal and type one of these commands, whether using [npm](https://www.npmjs.com/)
+or [yarn](https://yarnpkg.com/) depending on which package manager you are using:
 
 ```bash
 yarn global add @compiiile/compiiile # install globally with yarn
@@ -188,14 +190,18 @@ Other frontmatter keys are handled:
 - `textAlign`: possible values
   are [CSS text-align values](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align) (`left`, `center`, ...). This
   changes the default text alignment in slides. The default value is `center`.
-- `ignore` : Boolean value (`true` or `false`) to ignore the current file and exclude it from Compiiile (the file is not ignored by default).
-- `hidden` : Boolean value (`true` or `false`) to hide the file from the navbar and siblings links (the file is not hidden by default).
+- `ignore` : Boolean value (`true` or `false`) to ignore the current file and exclude it from Compiiile (the file is not
+  ignored by default).
+- `hidden` : Boolean value (`true` or `false`) to hide the file from the navbar and siblings links (the file is not
+  hidden by default).
 
-> :bulb: You can override slides theme (light or dark) by passing it to a `theme` query parameter in your slide url (for example `/s/slides?theme=light`). See the `theme` config parameter below for valid values.
+> :bulb: You can override slides theme (light or dark) by passing it to a `theme` query parameter in your slide url (for
+> example `/s/slides?theme=light`). See the `theme` config parameter below for valid values.
 
 ### Routing
 
-The home page of Compiiile (`/`) points to a `README.md` file located at the root of your folder, or fallbacks to an `index.md` file.
+The home page of Compiiile (`/`) points to a `README.md` file located at the root of your folder, or fallbacks to an
+`index.md` file.
 
 ## Custom configuration
 
@@ -219,6 +225,7 @@ Here is the list of parameters that you can set to customize Compiiile (none are
 | `printReady`           | `Boolean`            | Add a `/print` page to display a full ready-to-print content (uses `@compiiile/compiiile-print`)                                                                                        |
 | `css`                  | `string`             | A relative path to a custom CSS file to customize the style <br/>:warning: Requires `compiiile-pro`                                                                                     |
 | `integrations`         | `AstroIntegration[]` | An array of Astro Integrations for [custom Astro hooks implementations](https://docs.astro.build/en/reference/integrations-reference/#astroconfigsetup): injecting CSS, javascript, etc |
+| `collapseFolders`      | `Boolean`            | If set to `true`, folders in the navbar will be collapsed by default. Defaults to `false`                                                                                               |
 
 You can use these parameters in 2 ways:
 
@@ -249,13 +256,17 @@ export default {
 
 > ⚠️ You should bear in mind that script arguments have priority over config file parameters.
 
-> :bulb: Compiiile uses [c12](https://github.com/unjs/c12) to load the config file, which allows to **extend config values** from other files. See the [dedicated c12 documentation](https://github.com/unjs/c12?tab=readme-ov-file#extending-configuration) for more information.
+> :bulb: Compiiile uses [c12](https://github.com/unjs/c12) to load the config file, which allows to **extend config
+> values** from other files. See
+> the [dedicated c12 documentation](https://github.com/unjs/c12?tab=readme-ov-file#extending-configuration) for more
+> information.
 
 ## Public files
 
 If you want some files to be public, just create a folder named `public` at the root of your Compiiile folder.
 
-For example, if you want to link to a local PDF in your Markdown file, you can put your PDF in your local public directory, in `public/my-pdf.pdf`.
+For example, if you want to link to a local PDF in your Markdown file, you can put your PDF in your local public
+directory, in `public/my-pdf.pdf`.
 Then, all you have to do is creating a link in Markdown with an absolute path like so :
 
 ```markdown
@@ -317,7 +328,9 @@ import Test from "./Test.vue"
 <Test client:load />
 ```
 
-You should use [Astro's client directives](https://docs.astro.build/en/reference/directives-reference/#client-directives) to load your component's script (`client:load` is not necessary on all your components).
+You should
+use [Astro's client directives](https://docs.astro.build/en/reference/directives-reference/#client-directives) to load
+your component's script (`client:load` is not necessary on all your components).
 
 ### Using config data values
 
@@ -342,9 +355,11 @@ description: some description
 { frontmatter.description }
 ```
 
-> :books: More info in the [dedicated Astro documentation](https://docs.astro.build/en/guides/integrations-guide/mdx/#using-frontmatter-variables-in-mdx).
+> :books: More info in
+> the [dedicated Astro documentation](https://docs.astro.build/en/guides/integrations-guide/mdx/#using-frontmatter-variables-in-mdx).
 
-In your custom components, you can access the current page's frontmatter by using the `pageFrontmatter` property from Compiiile's Vite plugin:
+In your custom components, you can access the current page's frontmatter by using the `pageFrontmatter` property from
+Compiiile's Vite plugin:
 
 ```vue
 <template>
@@ -367,9 +382,11 @@ In your custom components, you can access the current page's frontmatter by usin
 
 ## Ignoring files and folders
 
-To ignore a whole folder or some files matching a certain pattern, you can add a `.compiiileignore` at the root of the folder where you run Compiiile.
+To ignore a whole folder or some files matching a certain pattern, you can add a `.compiiileignore` at the root of the
+folder where you run Compiiile.
 
-This file accepts glob patterns to ignore files. For example, if you want to ignore files containing the word `preview` and files starting with a number,
+This file accepts glob patterns to ignore files. For example, if you want to ignore files containing the word `preview`
+and files starting with a number,
 you can simply put these 2 lines in your `.compiiileignore`:
 
 ```ignorelang
@@ -400,12 +417,15 @@ You can read more about it and the roadmap in the [dedicated contributing guide]
 
 You can add features to Compiiile by using the following projects:
 
-- [compiiile-pro](https://compiiile.me/c/3-pro-installation): Enhance your Markdown files, add diagrams, mindmaps, admonitions, and ready-made components
-- [compiiile-print](https://github.com/compiiile/compiiile-print): Add a print ready page containing all your Markdown files
+- [compiiile-pro](https://compiiile.me/c/3-pro-installation): Enhance your Markdown files, add diagrams, mindmaps,
+  admonitions, and ready-made components
+- [compiiile-print](https://github.com/compiiile/compiiile-print): Add a print ready page containing all your Markdown
+  files
 
 Here is a list of projects related to Compiiile developed by the community:
 
-- [compiiile-actions-cloudflare-pages](https://github.com/marketplace/actions/compiiile-cloudflare-pages): A simple GitHub action to deploy a Compiiile site to CloudFlare pages
+- [compiiile-actions-cloudflare-pages](https://github.com/marketplace/actions/compiiile-cloudflare-pages): A simple
+  GitHub action to deploy a Compiiile site to CloudFlare pages
 
 ## Support
 
