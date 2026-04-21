@@ -15,6 +15,10 @@
 				type: String,
 				required: true
 			}
+		},
+		mounted() {
+            // This is to delegate folder state to the client instead of the values computed on page load to prevent blinking
+			document.getElementById("compiiile-folders-state-style")?.remove()
 		}
 	}
 </script>

@@ -16,7 +16,7 @@ if(currentPath.length > 1 && currentPath.endsWith("/")){
     <div class="page">
         <TopBar client:load />
 
-        <NavBar currentPath={ currentPath }/>
+        <NavBar currentPath={ currentPath } client:load/>
 
         <div class="centered-layout">
             <div class="content-wrapper">

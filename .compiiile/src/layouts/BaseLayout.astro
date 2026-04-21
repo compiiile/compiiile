@@ -1,5 +1,6 @@
 ---
 import ThemeLoader from "./ThemeLoader.astro";
+import NavBarFoldersStateLoader from "./NavBarFoldersStateLoader.astro";
 import '../utils/styles.js'
 import {SEO} from "astro-seo"
 const {title, description, isNotFoundPage} = Astro.props
@@ -37,6 +38,7 @@ const defaultTheme = site.theme
                  }}
             />}
     <ThemeLoader defaultTheme={defaultTheme}/>
+    <NavBarFoldersStateLoader />
 </head>
 <body>
 <slot></slot>
