@@ -1,35 +1,61 @@
 <template>
 	<li v-if="isVisible(item)" class="nav-list-item no-wrap">
 		<template v-if="item.isDirectory">
-			<svg
-				class="directory-icon"
-				xmlns="http://www.w3.org/2000/svg"
-				width="15"
-				height="15"
-				fill="none"
-				viewBox="0 0 256 256"
+			<button
+				class="directory-toggle"
+				type="button"
+				:data-folder-id="folderId"
+				aria-label="Toggle open directory"
+				@click="toggleIsOpen"
 			>
-				<path
-					d="M216.9,208H39.4a7.4,7.4,0,0,1-7.4-7.4V80H216a8,8,0,0,1,8,8V200.9A7.1,7.1,0,0,1,216.9,208Z"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="16"
-				></path>
-				<path
-					d="M32,80V56a8,8,0,0,1,8-8H92.7a7.9,7.9,0,0,1,5.6,2.3L128,80"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="16"
-				></path>
-			</svg>
+				<svg
+					class="directory-caret"
+					:class="{ 'directory-caret--open': isOpen }"
+					xmlns="http://www.w3.org/2000/svg"
+					width="12"
+					height="12"
+					fill="none"
+					viewBox="0 0 256 256"
+				>
+					<polyline
+						points="96 48 176 128 96 208"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="24"
+					></polyline>
+				</svg>
+				<svg
+					class="directory-icon"
+					xmlns="http://www.w3.org/2000/svg"
+					width="15"
+					height="15"
+					fill="none"
+					viewBox="0 0 256 256"
+				>
+					<path
+						d="M216.9,208H39.4a7.4,7.4,0,0,1-7.4-7.4V80H216a8,8,0,0,1,8,8V200.9A7.1,7.1,0,0,1,216.9,208Z"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="16"
+					></path>
+					<path
+						d="M32,80V56a8,8,0,0,1,8-8H92.7a7.9,7.9,0,0,1,5.6,2.3L128,80"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="16"
+					></path>
+				</svg>
 
-			<span class="directory-name">{{ item.name }}</span>
-			<ul v-if="item.children.length > 0" class="nav-list-item-children">
+				<span class="directory-name">{{ item.name }}</span>
+			</button>
+
+			<ul v-if="isOpen && item.children.length > 0" class="nav-list-item-children">
 				<nav-list-item
 					v-for="child in item.children"
 					:key="child.uuid"
 					:item="child"
 					:current-path="currentPath"
+					:tree-path="`${treePath}/${child.name}`"
 				/>
 			</ul>
 		</template>
@@ -140,6 +166,14 @@
 </template>
 
 <script>
+	import { site } from "virtual:compiiile"
+
+	const FOLDERS_STATE_KEY = "COMPIIILE_FOLDERS_STATE"
+
+	const getFoldersState = () => {
+		return JSON.parse(localStorage.getItem(FOLDERS_STATE_KEY) || "{}")
+	}
+
 	export default {
 		name: "NavListItem",
 		props: {
@@ -150,14 +184,68 @@
 			currentPath: {
 				type: String,
 				required: true
+			},
+			treePath: {
+				type: String,
+				required: true
+			}
+		},
+		data() {
+			return {
+				isOpen: true
 			}
 		},
 		computed: {
 			route() {
 				return this.$context.routeList.find((route) => route.name === this.item.uuid)
+			},
+			folderId() {
+				// We don't use the uuid but the full tree path so that it's persistent across builds
+				return encodeURIComponent(this.treePath)
 			}
 		},
+		watch: {
+			currentPath() {
+				if (this.item.isDirectory && this.containsCurrentPath(this.item)) {
+					this.isOpen = true
+				}
+			}
+		},
+		mounted() {
+			this.computeIsOpen()
+		},
 		methods: {
+			computeIsOpen() {
+				if (!this.item.isDirectory) {
+					return
+				}
+
+				const currentFoldersState = getFoldersState()
+
+				this.isOpen =
+					this.containsCurrentPath(this.item) ||
+					(Object.prototype.hasOwnProperty.call(currentFoldersState, this.folderId)
+						? currentFoldersState[this.folderId]
+						: !site.collapseFolders)
+			},
+			containsCurrentPath(item) {
+				if (!item.isDirectory) {
+					const route = this.$context.routeList.find((route) => route.name === item.uuid)
+					return route?.path === this.currentPath
+				}
+
+				return item.children.some((child) => this.containsCurrentPath(child))
+			},
+			toggleIsOpen() {
+				this.isOpen = !this.isOpen
+
+				const currentFoldersState = getFoldersState()
+				const newFoldersState = {
+					...currentFoldersState,
+					[this.folderId]: this.isOpen
+				}
+				localStorage.setItem(FOLDERS_STATE_KEY, JSON.stringify(newFoldersState))
+			},
 			isVisible(item) {
 				if (!item.isDirectory) {
 					const route = this.$context.routeList.find((route) => route.name === item.uuid)
@@ -188,6 +276,37 @@
 		line-height: 1rem;
 	}
 
+	.directory-toggle {
+		display: inline-flex;
+		align-items: center;
+		gap: 3px;
+		padding: 0 3px 0 0;
+		border: none;
+		border-radius: 4px;
+		appearance: none;
+		background: transparent;
+		color: inherit;
+		cursor: pointer;
+		font: inherit;
+		text-align: left;
+
+		&:focus-visible {
+			outline: solid 1px var(--separator-color);
+			outline-offset: 2px;
+		}
+	}
+
+	.directory-caret {
+		stroke: var(--dimmed-text-color);
+		transform: rotate(0);
+		transition: transform 0.1s linear;
+		will-change: transform;
+	}
+
+	.directory-caret--open {
+		transform: rotate(90deg);
+	}
+
 	.directory-icon {
 		margin-left: 2px;
 	}
@@ -200,9 +319,6 @@
 
 	.directory-name {
 		display: inline;
-		margin-left: 3px;
-		position: relative;
-		top: -2px;
 	}
 
 	.file-icon {

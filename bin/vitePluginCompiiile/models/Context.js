@@ -30,7 +30,8 @@ export default class {
 			siteUrl: process.env.VITE_COMPIIILE_SITE_URL !== "" ? process.env.VITE_COMPIIILE_SITE_URL : undefined,
 			base: process.env.VITE_COMPIIILE_BASE,
 			data: JSON.parse(process.env.VITE_COMPIIILE_DATA),
-			theme: process.env.VITE_COMPIIILE_THEME
+			theme: process.env.VITE_COMPIIILE_THEME,
+			collapseFolders: JSON.parse(process.env.VITE_COMPIIILE_COLLAPSE_FOLDERS)
 		}
 	}
 

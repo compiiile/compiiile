@@ -5,6 +5,7 @@
 			:key="navItem.uuid"
 			:item="navItem"
 			:current-path="currentPath"
+			:tree-path="navItem.name"
 		/>
 	</ul>
 </template>
