@@ -1,19 +1,17 @@
 import Context from "./models/Context.js"
 import { createMarkdownProcessor } from "@astrojs/markdown-remark"
-import markdownConfig from "./markdownConfig.js"
+import {rehypePlugins, remarkPlugins, shikiConfig} from "./markdownConfig.js"
 import path from "node:path"
 import { loadConfig } from "../loadConfig.js"
 import { promises as fs } from "node:fs"
 
 const source = "."
 
-let context = null
-
 const pathFromSource = (filePath) => {
 	return filePath?.replace(process.env.COMPIIILE_SOURCE + "/", "")
 }
 
-export default function compiiile() {
+export default function compiiile(sharedContext) {
 	const virtualModuleId = "virtual:compiiile"
 	const resolvedVirtualModuleId = "\0" + virtualModuleId
 
@@ -29,14 +27,10 @@ export default function compiiile() {
 				return
 			}
 
-			context = new Context()
-			context.filesTree = await context.scanDirectoryRecursively(source)
-			process.env.context = JSON.stringify(context)
-
-			return `const fileList = ${JSON.stringify(context.fileList)};\n\n
-            const filesTree = ${JSON.stringify(context.filesTree)};\n\n
-            const routeList = ${JSON.stringify(context.routeList)};\n\n
-            const site = ${JSON.stringify(context.site)};\n\n
+			return `const fileList = ${JSON.stringify(sharedContext.fileList)};\n\n
+            const filesTree = ${JSON.stringify(sharedContext.filesTree)};\n\n
+            const routeList = ${JSON.stringify(sharedContext.routeList)};\n\n
+            const site = ${JSON.stringify(sharedContext.site)};\n\n
             export { fileList, filesTree, routeList, site };`
 		},
 		async hotUpdate({ file, read }) {
@@ -47,12 +41,12 @@ export default function compiiile() {
 				try {
 					const content = await read()
 
-					const routeListItem = context.routeList.find((route) => route.fullPath === absolutePath)
+					const routeListItem = sharedContext.routeList.find((route) => route.fullPath === absolutePath)
 
-					const markdownProcessor = await createMarkdownProcessor(markdownConfig)
+					const markdownProcessor = await createMarkdownProcessor({remarkPlugins, rehypePlugins: rehypePlugins(sharedContext), shikiConfig})
 					const renderedMarkdown = await markdownProcessor.render(content)
 
-					const title = context.getFileTitleFromProcessedMarkdown(renderedMarkdown)
+					const title = sharedContext.getFileTitleFromProcessedMarkdown(renderedMarkdown)
 					const meta = renderedMarkdown.metadata.frontmatter
 					meta.title = title || path.parse(file).name
 
@@ -64,11 +58,11 @@ export default function compiiile() {
 					const currentStateIsAsSlides = !!meta.asSlides
 
 					if (prevStateWasAsSlides !== currentStateIsAsSlides) {
-						const newRoutePath = context.generateRoutePathFromFilePath(
+						const newRoutePath = sharedContext.generateRoutePathFromFilePath(
 							routeListItem.fullPath,
 							"",
 							currentStateIsAsSlides,
-							context.getEntryFileMatcher([routeListItem.fullPath])
+							sharedContext.getEntryFileMatcher([routeListItem.fullPath])
 						)
 
 						this.environment.hot.send({

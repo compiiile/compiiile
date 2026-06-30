@@ -13,6 +13,7 @@ import { createRequire } from "node:module"
 import { packageDirectory } from "package-directory"
 
 import { loadConfig } from "./loadConfig.js"
+import Context from "./vitePluginCompiiile/models/Context.js";
 
 const { argv, localIntegrations, configFromFile, source, hasPublicFiles, publicDir } = await loadConfig()
 
@@ -38,6 +39,9 @@ if (packageDir) {
 	viteServerFsAllowList.push(packageDir)
 }
 
+let sharedContext = new Context()
+sharedContext.filesTree = await sharedContext.scanDirectoryRecursively(".")
+
 const astroConfig = {
 	server: {
 		host: argv.host,
@@ -56,39 +60,21 @@ const astroConfig = {
 		{
 			name: "include-dependencies",
 			hooks: {
-				"astro:build:setup": ({ vite }) => {
-					vite.ssr.noExternal.push(
-						"kleur",
-						"clsx",
-						"vue",
-						"@vue/compiler-dom",
-						"@vue/compiler-core",
-						"@vue/shared",
-						"@babel/parser",
-						"estree-walker",
-						"source-map-js",
-						"@vue/runtime-dom",
-						"@vue/runtime-core",
-						"@vue/reactivity",
-						"@vue/server-renderer",
-						"@vue/compiler-ssr",
-						"html-escaper",
-						"@oslojs/encoding",
-						"cssesc",
-						"fzf",
-						"@astrojs/internal-helpers",
-						"mrmime",
-						"zod",
-						"entities",
-						"piccolore"
-					)
+				"astro:build:setup": ({ updateConfig }) => {
+					updateConfig({
+						vite: {
+							ssr: {
+								noExternal: true
+							}
+						}
+					})
 				}
 			}
 		}
 	],
 	...(process.env.VITE_COMPIIILE_SITE_URL ? { site: process.env.VITE_COMPIIILE_SITE_URL } : {}),
 	vite: {
-		plugins: [compiiile()],
+		plugins: [compiiile(sharedContext)],
 		resolve: {
 			preserveSymlinks: true,
 			alias: {
@@ -101,7 +87,7 @@ const astroConfig = {
 			}
 		}
 	},
-	markdown: markdownConfig,
+	markdown: markdownConfig(sharedContext),
 	output: "static",
 	base: "/",
 	trailingSlash: "never",
