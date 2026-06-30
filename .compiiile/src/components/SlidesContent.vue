@@ -77,7 +77,7 @@
 	@import "reveal.js/theme/black.css";
 	@import "../style/slides.css";
 
-	:global(#app) {
+	#app {
 		height: 100%;
 	}
 
