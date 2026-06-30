@@ -73,8 +73,8 @@
 </script>
 
 <style>
-	@import "reveal.js/dist/reveal.css";
-	@import "reveal.js/dist/theme/black.css";
+	@import "reveal.js/reveal.css";
+	@import "reveal.js/theme/black.css";
 	@import "../style/slides.css";
 
 	:global(#app) {

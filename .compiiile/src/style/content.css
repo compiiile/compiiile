@@ -1,0 +1,185 @@
+/* Putting the style from the ContentWrapper component here so that no "flash" occur in dev mode with HMR */
+.page .content-wrapper .markdown-content {
+    margin-right: calc(var(--toc-width) + 80px);
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        &:before {
+            /* hack to offset scroll on route hash navigation */
+            padding-top: calc(var(--top-bar-height) - 1px);
+            margin-top: calc((var(--top-bar-height) - 1px) * -1);
+            content: " ";
+            display: block;
+        }
+    }
+
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin: 20px 0 10px;
+    }
+
+    h2 {
+        margin-top: 40px;
+    }
+
+    p code,
+    li code,
+    table code {
+        padding: 2px 4px;
+        border-radius: 3px;
+        background-color: var(--code-background-color);
+        border: solid 1px var(--code-background-color); /* same color, useful when printing without background graphics */
+        color: var(--code-color);
+        font-family: var(--monospace);
+        font-size: 0.85rem;
+    }
+
+    p,
+    ul {
+        line-height: 1.618rem;
+        margin-bottom: 1rem;
+    }
+
+    ul {
+        padding-left: 40px;
+    }
+
+    hr {
+        margin: 40px 0;
+        background-color: var(--separator-color);
+        height: 1px;
+        border: 0;
+    }
+
+    blockquote {
+        background-color: var(--blockquote-background-color);
+        border: solid 1px var(--blockquote-border-color);
+        border-radius: 8px;
+        padding: 0.5em 1em;
+        color: var(--blockquote-color);
+        margin: 20px 0;
+
+        p {
+            margin-bottom: 0;
+        }
+
+        code {
+            background-color: rgb(169 156 231 / 22%);
+        }
+    }
+
+    img {
+        max-width: 100%;
+        margin: 20px auto;
+        display: block;
+        object-fit: contain;
+        height: auto;
+    }
+
+    a {
+        color: var(--link-color);
+    }
+
+    table {
+        padding: 0;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    table tr {
+        border-top: 1px solid var(--table-border-color);
+        background-color: var(--table-odd-lines-background-color);
+        margin: 0;
+        padding: 0;
+    }
+
+    table tr:nth-child(2n) {
+        background-color: var(--table-even-lines-background-color);
+    }
+
+    table tr th {
+        font-weight: bold;
+        border: 1px solid var(--table-border-color);
+        text-align: left;
+        margin: 0;
+        padding: 6px 13px;
+    }
+
+    table tr td {
+        border: 1px solid var(--table-border-color);
+        text-align: left;
+        margin: 0;
+        padding: 6px 13px;
+    }
+
+    table tr th :first-child,
+    table tr td :first-child {
+        margin-top: 0;
+    }
+
+    table tr th :last-child,
+    table tr td :last-child {
+        margin-bottom: 0;
+    }
+
+    pre code {
+        margin-bottom: 1rem;
+    }
+
+    pre.astro-code {
+        margin-bottom: 20px;
+        font-size: 0.85rem;
+    }
+
+    .header-anchor {
+        float: left;
+        margin-left: -0.87em;
+        padding-right: 0.23em;
+        font-weight: 500;
+        opacity: 0;
+        transition: opacity 0.25s;
+        text-decoration: none;
+    }
+
+    h1:hover .header-anchor,
+    h2:hover .header-anchor,
+    h3:hover .header-anchor,
+    h4:hover .header-anchor,
+    h5:hover .header-anchor,
+    h6:hover .header-anchor,
+    .header-anchor:focus {
+        opacity: 1;
+    }
+}
+
+.siblings {
+    display: flex;
+    margin-right: calc(var(--toc-width) + 80px);
+    color: var(--link-color);
+    margin-top: 80px;
+    gap: 20px;
+    flex-wrap: wrap;
+
+    .sibling-link {
+        text-decoration: none;
+        border-radius: 2px;
+
+        &:focus-visible {
+            outline: solid 1px var(--separator-color);
+        }
+    }
+
+    .sibling-link--next {
+        text-align: right;
+        margin-left: auto;
+    }
+}
