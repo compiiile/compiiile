@@ -5,7 +5,7 @@ import rehypeSlug from "rehype-slug"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import { h } from "hastscript"
 import rehypeHandleYamlMatterPlugin from "./rehypeHandleYamlMatterPlugin.js"
-import { unified } from '@astrojs/markdown-remark';
+import { unified } from "@astrojs/markdown-remark"
 
 export const remarkPlugins = [remarkEmoji]
 export const rehypePlugins = (sharedContext) => [

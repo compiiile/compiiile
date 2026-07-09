@@ -1,11 +1,8 @@
-import Context from "./models/Context.js"
 import { createMarkdownProcessor } from "@astrojs/markdown-remark"
-import {rehypePlugins, remarkPlugins, shikiConfig} from "./markdownConfig.js"
+import { rehypePlugins, remarkPlugins, shikiConfig } from "./markdownConfig.js"
 import path from "node:path"
 import { loadConfig } from "../loadConfig.js"
 import { promises as fs } from "node:fs"
-
-const source = "."
 
 const pathFromSource = (filePath) => {
 	return filePath?.replace(process.env.COMPIIILE_SOURCE + "/", "")
@@ -43,7 +40,11 @@ export default function compiiile(sharedContext) {
 
 					const routeListItem = sharedContext.routeList.find((route) => route.fullPath === absolutePath)
 
-					const markdownProcessor = await createMarkdownProcessor({remarkPlugins, rehypePlugins: rehypePlugins(sharedContext), shikiConfig})
+					const markdownProcessor = await createMarkdownProcessor({
+						remarkPlugins,
+						rehypePlugins: rehypePlugins(sharedContext),
+						shikiConfig
+					})
 					const renderedMarkdown = await markdownProcessor.render(content)
 
 					const title = sharedContext.getFileTitleFromProcessedMarkdown(renderedMarkdown)
