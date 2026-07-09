@@ -5,7 +5,7 @@ import FileListItem from "./FileListItem.js"
 import FilesTreeItem from "./FilesTreeItem.js"
 import RouteListItem from "./RouteListItem.js"
 import { createMarkdownProcessor } from "@astrojs/markdown-remark"
-import {remarkPlugins, rehypePlugins, shikiConfig} from "../markdownConfig.js"
+import { remarkPlugins, rehypePlugins, shikiConfig } from "../markdownConfig.js"
 import { unemojify } from "node-emoji"
 import slugify from "slugify"
 import parseIgnore from "parse-gitignore"
@@ -152,7 +152,11 @@ export default class {
 							encoding: "utf8"
 						})
 
-						const markdownProcessor = await createMarkdownProcessor({remarkPlugins, rehypePlugins: rehypePlugins(this), shikiConfig})
+						const markdownProcessor = await createMarkdownProcessor({
+							remarkPlugins,
+							rehypePlugins: rehypePlugins(this),
+							shikiConfig
+						})
 						const renderedMarkdown = await markdownProcessor.render(markdownContent)
 
 						fileListItem.textContent = unemojify(

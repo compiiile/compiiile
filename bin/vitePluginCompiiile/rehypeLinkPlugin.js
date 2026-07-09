@@ -11,7 +11,7 @@ export default function rehypeLinkPlugin(sharedContext) {
 					const filePath = decodedFilePath.replace(process.env.COMPIIILE_SOURCE, "")
 
 					node.properties.href = sharedContext?.fileRouteMap?.[filePath.substring(1)] + linkTargetUrl.hash
-				} else if(!node.properties.href.startsWith("#")){
+				} else if (!node.properties.href.startsWith("#")) {
 					node.properties.target = "_blank"
 				}
 			}

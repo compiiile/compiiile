@@ -1,7 +1,7 @@
 {
 	"name": "@compiiile/compiiile",
 	"private": false,
-	"version": "2.20.0",
+	"version": "2.20.1",
 	"description": "The most convenient way to render a folder containing markdown files. Previewing and searching markdown files has never been that easy.",
 	"author": "AlbanCrepel <alban.crepel@gmail.com>",
 	"license": "GPL-3.0-only",
@@ -21,10 +21,10 @@
 		"url": "git+https://github.com/compiiile/compiiile.git"
 	},
 	"dependencies": {
-		"@astrojs/markdown-remark": "^7.2.0",
-		"@astrojs/mdx": "^7.0.0",
+		"@astrojs/markdown-remark": "^7.2.1",
+		"@astrojs/mdx": "^7.0.2",
 		"@astrojs/sitemap": "^3.7.3",
-		"@astrojs/vue": "^7.0.0",
+		"@astrojs/vue": "^7.0.1",
 		"@babel/core": "^7.28.5",
 		"@babel/eslint-parser": "^7.28.5",
 		"@babel/parser": "^7.28.5",
@@ -35,7 +35,7 @@
 		"@fontsource-variable/dm-sans": "^5.2.8",
 		"@fontsource-variable/jetbrains-mono": "^5.2.8",
 		"@phosphor-icons/web": "^2.1.2",
-		"astro": "^7.0.3",
+		"astro": "^7.0.7",
 		"astro-seo": "^1.1.0",
 		"c12": "^3.3.4",
 		"eslint": "^9.39.2",
@@ -49,6 +49,7 @@
 		"node-emoji": "^2.2.0",
 		"package-directory": "^8.1.0",
 		"parse-gitignore": "^2.0.0",
+		"piccolore": "^0.1.3",
 		"prettier": "^3.7.4",
 		"rehype-autolink-headings": "^7.1.0",
 		"rehype-slug": "^6.0.0",
@@ -58,7 +59,7 @@
 		"typescript": "^5.9.3",
 		"uuid": "^13.0.0",
 		"vfile-matter": "^5.0.1",
-		"vite": "^8.1.0",
+		"vite": "^8.1.4",
 		"vue": "^3.5.39",
 		"yargs": "^18.0.0",
 		"zod": "^3.25.76"

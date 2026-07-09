@@ -13,7 +13,7 @@ import { createRequire } from "node:module"
 import { packageDirectory } from "package-directory"
 
 import { loadConfig } from "./loadConfig.js"
-import Context from "./vitePluginCompiiile/models/Context.js";
+import Context from "./vitePluginCompiiile/models/Context.js"
 
 const { argv, localIntegrations, configFromFile, source, hasPublicFiles, publicDir } = await loadConfig()
 
@@ -60,11 +60,17 @@ const astroConfig = {
 		{
 			name: "include-dependencies",
 			hooks: {
+				// fixing packages not included for certain environments (like 'piccolore' when installed globally)
 				"astro:build:setup": ({ updateConfig }) => {
 					updateConfig({
-						vite: {
-							ssr: {
-								noExternal: true
+						ssr: {
+							noExternal: true
+						},
+						environments: {
+							prerender: {
+								resolve: {
+									noExternal: true
+								}
 							}
 						}
 					})
