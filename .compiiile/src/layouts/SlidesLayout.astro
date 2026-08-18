@@ -4,7 +4,7 @@ import BaseLayout from "./BaseLayout.astro";
 const { title, description, textAlign } = Astro.props
 ---
 
-<BaseLayout title={ title } description={ description } isNotFoundPage={ false }>
+<BaseLayout title={ title } description={ description } isNotFoundPage={ false } layoutType="slides">
     <SlidesContent client:load textAlign={textAlign}>
         <slot></slot>
     </SlidesContent>

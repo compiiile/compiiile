@@ -3,7 +3,7 @@ import ThemeLoader from "./ThemeLoader.astro";
 import NavBarFoldersStateLoader from "./NavBarFoldersStateLoader.astro";
 import '../utils/styles.js'
 import {SEO} from "astro-seo"
-const {title, description, isNotFoundPage} = Astro.props
+const {title, description, isNotFoundPage, layoutType} = Astro.props
 import { site } from "virtual:compiiile"
 const titleTemplate = site.title ? `%s | ${ site.title }` : ''
 const siteUrl = site.siteUrl || Astro.url.origin
@@ -19,7 +19,7 @@ const metaDescription = description || site.description
 const defaultTheme = site.theme
 ---
 
-<html lang="en">
+<html lang="en" class:list={[`layout--${layoutType}`]}>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
