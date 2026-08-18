@@ -19,8 +19,8 @@ export const loadConfig = async () => {
      3. default config as fallback
      */
 	let configFromFile = {}
-	let compiiileConfig = {}
 	try {
+		let compiiileConfig = {}
 		compiiileConfig = await loadConfigFile({
 			name: process.env.COMPIIILE_TEMP_CONFIG_NAME || "compiiile",
 			cwd: process.env.COMPIIILE_TEMP_DIR || source
