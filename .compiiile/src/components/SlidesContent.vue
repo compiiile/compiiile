@@ -71,7 +71,7 @@
 
 			// Useful for custom plugins to know when the slides are ready
 			window.compiiileSlidesReady = true
-			document.dispatchEvent(new CustomEvent("compiiile-slides-ready", { detail: { deck } }))
+			document.dispatchEvent(new CustomEvent("compiiile-slides-ready", { detail: { deck: Reveal } }))
 		}
 	}
 </script>
