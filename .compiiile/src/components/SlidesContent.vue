@@ -68,6 +68,10 @@
 			})
 
 			Reveal.slide(new URLSearchParams(window.location.search).get("slide") || 0)
+
+			// Useful for custom plugins to know when the slides are ready
+			window.compiiileSlidesReady = true
+			document.dispatchEvent(new CustomEvent("compiiile-slides-ready", { detail: { deck } }))
 		}
 	}
 </script>

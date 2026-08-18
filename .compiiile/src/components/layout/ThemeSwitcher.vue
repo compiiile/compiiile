@@ -76,6 +76,7 @@
 		fill: var(--dimmed-text-color);
 		will-change: opacity, transform;
 		transform-origin: center;
+		opacity: 0;
 		transition:
 			0.2s opacity,
 			0.2s transform var(--ease-in-out-quart);
