@@ -6,7 +6,20 @@ import SlidesLayout from "../layouts/SlidesLayout.astro"
 import path from "node:path"
 
 export async function getStaticPaths() {
-    const markdownFiles = Object.values(import.meta.glob('@source/**/*.{md,mdx}', { eager: true }))
+    // Literal patterns to exclude which matches `IGNORED_ENTRIES` from `Context.js`
+    const markdownFiles = Object.values(import.meta.glob([
+        '@source/**/*.{md,mdx}',
+        '!@source/**/.vuepress/**',
+        '!@source/**/.git/**',
+        '!@source/**/node_modules/**',
+        '!@source/**/.compiiile/**',
+        '!@source/**/bin/**',
+        '!@source/**/.idea/**',
+        '!@source/**/.DS_Store/**',
+        '!@source/**/.gitignore/**',
+        '!@source/**/var/**',
+        '!@source/**/vendor/**',
+    ], { eager: true }))
 
     return routeList.map(route => {
         const md = markdownFiles.find(post => {
