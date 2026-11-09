@@ -15,7 +15,11 @@ export default class {
 	WORKSPACE_BASE_PATH = "c"
 	SLIDES_BASE_PATH = "s"
 
-	constructor() {
+	constructor(directoryPath = ".") {
+		this.directoryPath = directoryPath
+	}
+
+	async init(){
 		this.fileList = []
 		this.filesTree = []
 		this.routeList = []
@@ -33,6 +37,10 @@ export default class {
 			theme: process.env.VITE_COMPIIILE_THEME,
 			collapseFolders: JSON.parse(process.env.VITE_COMPIIILE_COLLAPSE_FOLDERS)
 		}
+
+
+		this.filesTree = await this.scanDirectoryRecursively(this.directoryPath)
+		return this
 	}
 
 	generateRoutePathFromFilePath(filePath, hash = "", asSlides = false, entryFileMatcher) {

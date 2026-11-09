@@ -39,8 +39,7 @@ if (packageDir) {
 	viteServerFsAllowList.push(packageDir)
 }
 
-let sharedContext = new Context()
-sharedContext.filesTree = await sharedContext.scanDirectoryRecursively(".")
+let sharedContext = await (new Context()).init()
 
 const astroConfig = {
 	server: {

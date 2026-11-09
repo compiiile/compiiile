@@ -160,7 +160,7 @@ export const loadConfig = async () => {
 
 	const localIntegrations = []
 
-	if (/true/i.test(argv.printReady)) {
+	if (/true/i.test(argv.printReady) && (!argv.integrations || !argv.integrations?.find(integration => integration.name === "compiiile-print-integration"))) {
 		const compiiilePrintIntegration = (await import("@compiiile/compiiile-print")).default
 		localIntegrations.push(compiiilePrintIntegration())
 	}

@@ -24,6 +24,8 @@ export default function compiiile(sharedContext) {
 				return
 			}
 
+			sharedContext = await sharedContext.init()
+
 			return `const fileList = ${JSON.stringify(sharedContext.fileList)};\n\n
             const filesTree = ${JSON.stringify(sharedContext.filesTree)};\n\n
             const routeList = ${JSON.stringify(sharedContext.routeList)};\n\n
