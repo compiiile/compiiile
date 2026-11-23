@@ -1,6 +1,5 @@
 import { build, dev, preview } from "astro"
 import vue from "@astrojs/vue"
-import { passthroughImageService } from "astro/config"
 import compiiile from "./vitePluginCompiiile/index.js"
 import mdx from "@astrojs/mdx"
 import path from "node:path"
@@ -100,7 +99,9 @@ const astroConfig = {
 		enabled: false
 	},
 	image: {
-		service: passthroughImageService()
+		service: {
+			entrypoint: fileURLToPath(new URL("./passthroughImageService.js", import.meta.url))
+		}
 	},
 	...(configFromFile.astroConfig ?? {}),
 	...(argv.astroConfig ?? {})
